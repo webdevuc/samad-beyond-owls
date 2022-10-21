@@ -1,0 +1,188 @@
+<div class="container-fluid bg-color">
+
+    <div class="row content">
+
+
+        <div class="col-lg-12" id="Overview">
+            <div class="scrollable-title-container">
+                <label class="scrollable-title mb-5">NFT Collections</label>
+            </div>
+            <div class="heading">
+                <div class="line-splitter"></div>
+                <h1 class="heading-text">Grise Meta Moonverse Collection</h1>
+                <div class="line-splitter"></div>
+            </div>
+
+            <div class="row mt-5 mb-5">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div  class="tab flex-column align-items-center position-relative">
+                        <h3 class="text-uppercase title-tripy">Trippy Owl</h3>
+                        <!-- <button class="sync-icon" mat-raised-button (click)="syncNamiWallet()"
+                            matTooltip="Sync assets with blockchain" matTooltipClass="tooltip-custum">
+                              <i class="fas fa-redo-alt"></i>
+                            </button> -->
+                        <div class="d-flex justify-content-between w-100 flex-column flex-md-row flex-lg-column flex-xl-row align-items-center">
+                            <a
+                                    href="/trippy-owl-listing"
+                                    class="btn btn-secondary tab-button border-0"
+                            >
+                                View all
+                            </a>
+                            <a
+                                    href="javascript:void(0)"
+                                    class="btn btn-primary tab-button border-0 tealcolor"
+                                    data-toggle="modal"
+                                    data-target="#claimconfirm"
+                            >
+                                Claim
+                                <div class="spinner-border spinner-border-sm" role="status" *ngIf="circleLoader">
+
+                                </div>
+                            </a>
+                            <!-- [ngClass]="{'notallowed d-none': buttondisnft, 'notallowed': circleLoader}" -->
+
+
+                            <!-- <div
+                            class="btn btn-primary tab-button border-0 tealcolor"
+                            *ngIf="buttondisnft"
+                            >Loading...
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                          </div> -->
+
+                            <!-- <a
+                              href="javascript:void(0)"
+                              class="btn btn-primary tab-button border-0 tealcolor"
+                              (click)="syncNamiWallet()"
+                               >
+                              Sync
+                              </a> -->
+
+                        </div>
+                        <div class="trippy-box">
+                            <img
+                                    class="img-responsive nft-img"
+                                    alt="NFTs"
+                                    src="{{SERVER_URL}}/trippy-owl/1.png"
+                                    loading="lazy"
+                            />
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="tab flex-column align-items-center">
+                            <a  href="/moonverse">
+                            <h3 class="text-uppercase clr-white">Moon Land</h3>
+
+                            <div class="trippy-box">
+                                <img
+                                class="img-responsive nft-img"
+                                alt="NFTs"
+                                src="../../../assets/moonverse.png"
+                            />
+                            </div>
+
+                        </a>
+                        </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="tab flex-column align-items-center">
+                            <a href="/nft" >
+                            <h3 class="text-uppercase clr-white">Legacy Collection</h3>
+
+                            <div class="trippy-box">
+                                <img
+                                class="img-responsive nft-img"
+                                alt="NFTs"
+                                src="../../../assets/legend/GRISEL12021.png"
+                            />
+                            </div>
+                        </a>
+                        </div>
+                </div> -->
+            </div>
+
+            <div class="heading">
+                <div class="line-splitter"></div>
+                <h1 class="heading-text">Other NFT collections</h1>
+                <div class="line-splitter"></div>
+            </div>
+
+            <div class="row mt-5 mb-5">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="tab flex-column align-items-center">
+                        <h3 class="text-uppercase">List Your NFT collections</h3>
+                        <div class="position-relative">
+                            <a href="javascript:void(0)" class="plus-icon">
+                                <i class="fa fa-plus-circle"></i>
+                            </a>
+                            <img
+                                    class="img-responsive nft-img"
+                                    alt="NFTs"
+                                    src="../../../assets/cross.png"
+                            />
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- conformation modal -->
+<div
+        class="modal fade mintmodal"
+        id="claimconfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModaltwo"
+        aria-hidden="true"
+
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h3 class="modal-title mb-0">
+                    Are you sure you want to  Claim ?
+                </h3>
+
+            </div>
+            <div class="modal-footer">
+
+
+                <button
+                        type="button"
+                        class="tab-button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    Cancel
+                </button>
+                <button
+                        type="button"
+                        class="tab-button"
+                        (click)="clickMint()"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

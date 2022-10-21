@@ -1,0 +1,61 @@
+
+<div class="container">
+    <div class="row full-height">
+        <div class="col-md-7 col-lg-5 mx-auto">
+            <div class="tab flex-column align-items-center">
+                <div class="w-100" *ngIf="loginbox">
+                    <h3>Login</h3>
+                    <form>
+                        <div class="mb-5">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                        </div>
+                        <div class="mb-5">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <!-- <div class="forget-btn mb-5">
+                            <a href="javascript:void(0)" (click)="forgetboxshow()">Forgot Password?</a>
+                        </div> -->
+                        <button type="submit" class="btn btn-primary tab-button">Login</button>
+                    </form>
+                    <p class="d-flex flex-column">New to Grise Metamoonverse? <a href="javascript:void(0)" (click)="createAccount()" class="mint-color">Create New Account</a></p>
+                    
+                </div>
+
+                <div class="w-100" *ngIf="forgotbox">
+                    <h3>Password reset</h3>
+                    <form>
+                        <div class="mb-5">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <button type="submit" class="btn btn-primary tab-button">Submit</button>
+                    </form>
+                </div>
+                
+                
+                <div class="w-100" *ngIf="signupform">
+                    <h3>Register</h3>
+                    <form>
+                        <div class="mb-5">
+                            <label for="Username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="Username" aria-describedby="Username">
+                        </div>
+                        <div class="mb-5">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-5">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <button type="submit" class="btn btn-primary tab-button">Sign Up</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

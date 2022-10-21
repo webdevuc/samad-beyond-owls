@@ -1,0 +1,435 @@
+<div style="background-color: rgb(59, 65, 72)">
+  <div class="personal header_div">
+    <div class="d-flex wallet-box">
+      <div class="d-flex align-items-center">
+        <i
+          class="fas fa-chalkboard-teacher personal_icon header_icon"
+          style="height: 2.9em"
+        ></i>
+        <label class="personal_title header_title">Personal Dashboard</label>
+      </div>
+
+      <div class="d-flex infowallet">
+        <!-- <a
+          href="/info"
+          class="
+            w3-button w3-round-xlarge
+            Connect-wallet
+            without-accno
+            d-flex
+            align-items-center
+            justify-content-center
+            info-btn
+          "
+        >
+          Information about AI
+        </a> -->
+        <!-- <button class="w3-button w3-round-xlarge Connect-wallet without-accno">
+          Connect to Wallet {{isLogin}}
+        </button> -->
+        
+        <!-- <app-mata-mask-button ></app-mata-mask-button> -->
+
+
+       
+      </div>
+    </div>
+  </div>
+  <div class="sub-end-part">
+    <!-- <div style=" border-bottom: 2px solid grey;margin-bottom: 40px;"></div> -->
+    <div class="row maintab">
+      <div
+        class="col-xl-4 col-lg-12 col-md-12 col-sm-12 tab"
+        [ngClass]="{ 'active-tab': selectedPeriod == 'W' }"
+        (click)="onTabClick('W')"
+      >
+        <h2>Monthly Stake</h2>
+        <div class="subtab">
+          <h3>NFT Stake</h3>
+          <h1 style="font-size: 55px">{{ weeklyPeriodStake.slotLeft }}</h1>
+        </div>
+        <br />
+        <div class="mat-dropdown-container">
+          <mat-select
+            placeholder="Select Week"
+            [(value)]="weekly.periodValue"
+            (selectionChange)="changePeriodStake('W')"
+            class="mat-dropdown"
+          >
+            
+            <mat-option [value]="1">1 Month </mat-option>
+            <mat-option [value]="2">2 Month </mat-option>
+            
+          </mat-select>
+        </div>
+        <div class="mat-btn-group-container">
+          <button mat-button class="small_button left" (click)="decrement('W')">
+            -
+          </button>
+          <input
+            class="small_input"
+            style="margin-left: 0px; text-align: center"
+            name="weeklyStakeValue"
+            [(ngModel)]="weekly.stakeValue"
+            disabled
+          />
+          <button
+            mat-button
+            class="small_button right"
+            (click)="increment('W')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- <div style="width: 2%"></div> -->
+      <div
+        class="col-xl-4 col-lg-12 col-md-12 col-sm-12 tab"
+        [ngClass]="{ 'active-tab': selectedPeriod == 'M' }"
+        (click)="onTabClick('M')"
+      >
+        <h2>3 Month Stake</h2>
+        <div class="subtab">
+          <h3>NFT Stake</h3>
+          <h1 style="font-size: 55px">
+            {{ monthlyPeriodStake ? monthlyPeriodStake.slotLeft : 0 }}
+          </h1>
+        </div>
+        <br />
+        <div class="mat-dropdown-container">
+          <mat-select
+            placeholder="Select Month"
+            [(value)]="monthly.periodValue"
+            (selectionChange)="changePeriodStake('M')"
+            class="mat-dropdown"
+          >
+            <mat-option [value]="3">3 Month</mat-option>
+            <mat-option [value]="6">6 Month</mat-option>
+            <mat-option [value]="9">9 Month</mat-option>
+            
+          </mat-select>
+        </div>
+        <div class="mat-btn-group-container">
+          <button mat-button class="small_button left" (click)="decrement('M')">
+            -
+          </button>
+          <input
+            class="small_input"
+            style="margin-left: 0px; text-align: center"
+            name="monthlyStakeValue"
+            [(ngModel)]="monthly.stakeValue"
+            disabled
+          />
+          <button
+            mat-button
+            class="small_button right"
+            (click)="increment('M')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- <div style="width: 2%"></div> -->
+      <div
+        class="col-xl-4 col-lg-12 col-md-12 col-sm-12 tab"
+        [ngClass]="{ 'active-tab': selectedPeriod == 'Y' }"
+        (click)="onTabClick('Y')"
+      >
+        <h2>Yearly Stake</h2>
+        <div class="subtab">
+          <h3>NFT Stake</h3>
+          <h1 style="font-size: 55px">{{ yearlyPeriodStake.slotLeft }}</h1>
+        </div>
+        <br />
+        <div class="mat-dropdown-container">
+          <mat-select
+            placeholder="Select Year"
+            [(value)]="yearly.periodValue"
+            (selectionChange)="changePeriodStake('Y')"
+            class="mat-dropdown"
+          >
+            <mat-option [value]="1">1 Year </mat-option>
+            <mat-option [value]="2">2 Year </mat-option>
+            
+          </mat-select>
+        </div>
+        <div class="mat-btn-group-container">
+          <button mat-button class="small_button left" (click)="decrement('Y')">
+            -
+          </button>
+          <input
+            class="small_input"
+            style="margin-left: 0px; text-align: center"
+            name="yearlyStakeValue"
+            [(ngModel)]="yearly.stakeValue"
+            disabled
+          />
+          <button
+            mat-button
+            class="small_button right"
+            (click)="increment('Y')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary staking_button"
+        [disabled]="checkValueWithGriseBalance()"
+        (click)="createGriseStake()"
+      >
+       
+        Create Stake</button>
+    </div>
+    <div class="line-splitter"></div>
+    <div>
+      <table style="margin-left: auto; margin-right: auto; color: #ffffff">
+        <tr>
+          <td>Time to Claim Weekly Reward</td>
+          <td>
+            <a class="progress">
+              <a
+                class="progress-bar"
+                role="progressbar"
+                [attr.aria-valuenow]="weeklyDaysProgress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                [style.width.%]="weeklyDaysProgress"
+              ></a>
+            </a>
+            <span *ngIf="weeklyDaysLeft == 0" class="progress-text"
+              >(Claim Reward)</span
+            >
+            <span *ngIf="weeklyDaysLeft != 0" class="progress-text"
+              >({{ weeklyDaysLeft }} days left)</span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Time to Claim Monthly Reward</td>
+          <td>
+            <a class="progress">
+              <a
+                class="progress-bar"
+                role="progressbar"
+                [attr.aria-valuenow]="monthlyDaysProgress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                [style.width.%]="monthlyDaysProgress"
+              ></a>
+            </a>
+            <span *ngIf="monthlyDaysLeft == 0" class="progress-text"
+              >(Claim Reward)</span
+            >
+            <span *ngIf="monthlyDaysLeft != 0" class="progress-text"
+              >({{ monthlyDaysLeft }} days left)</span
+            >
+          </td>
+        </tr>
+      </table>
+      <div class="line-splitter"></div>
+    </div>
+    <!-- class="tab_slot" -->
+    <div style="margin-left: 2%">
+      <div *ngFor="let stakeTran of stakeTransactions">
+        <div class="tab_slot">
+          <div>
+            <table
+              style="margin-left: auto; margin-right: auto; color: #ffffff"
+            >
+              <tr style="font-size: 16px">
+                <td colspan="2" class="slot_title">
+                  {{ stakeTran.stakeTypeName }}
+                </td>
+              </tr>
+              <tr>
+                <td class="personaltd">Stake Created</td>
+                <td class="personaltd1">
+                  <span>
+                    {{ stakeTran.stakeCreatedOn | date }} ({{
+                      stakeTran.stakeBasicData?.lockDays
+                    }}
+                    days)
+                  </span>
+                </td>
+                <br />
+              </tr>
+              <tr
+                *ngIf="
+                  stakeTran.stakeProgress &&
+                  stakeTran.stakeBasicData &&
+                  stakeTran.stakeBasicData.isActive
+                "
+              >
+                <td class="personaltd">Stake Progress</td>
+                <td class="personaltd1">
+                  <a class="progress">
+                    <a
+                      class="progress-bar"
+                      role="progressbar"
+                      [attr.aria-valuenow]="stakeTran.stakeProgress"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [style.width.%]="stakeTran.stakeProgress"
+                    ></a>
+                  </a>
+                </td>
+              </tr>
+              <tr
+                *ngIf="
+                  stakeTran.stakeBasicData && stakeTran.stakeBasicData.isActive
+                "
+              >
+                <td class="personaltd">Lock Up</td>
+                <td class="personaltd1">
+                  <span
+                    >{{ stakeTran.stakeLockUpOn | date }} ({{
+                      stakeTran.stakeLockUpDaysLeft
+                    }}
+                    days left)</span
+                  >
+                </td>
+              </tr>
+              <tr
+                *ngIf="
+                  stakeTran.stakeBasicData &&
+                  stakeTran.stakeBasicData.scrapeDay != 0
+                "
+              >
+                <td class="personaltd">Scraped On</td>
+                <td class="personaltd1">
+                  <span>{{ stakeTran.stakeScrapeOn | date }}</span>
+                </td>
+              </tr>
+              <tr
+                *ngIf="
+                  stakeTran.stakeBasicData &&
+                  stakeTran.stakeBasicData.closeDay != 0
+                "
+              >
+                <td class="personaltd">Closed On</td>
+                <td class="personaltd1">
+                  <span>{{ stakeTran.stakeCloseOn | date }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="personaltd">Stake ID</td>
+                <td class="trancate personaltd1">{{ stakeTran.stakeId }}</td>
+              </tr>
+              <tr>
+                <td class="personaltd">Amount Staked</td>
+                <td class="personaltd1">
+                  <span>{{ stakeTran.stakeBasicData?.stakedAmount }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="personaltd">Transaction Fees Reward</td>
+                <td class="personaltd1">
+                  <span
+                    >{{
+                      stakeTran.stakeRewardData?.transcRewardAmount
+                        | number: "1.0-2"
+                    }}
+                    Grise</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="personaltd">Cancellation Penalty Reward</td>
+                <td class="personaltd1">
+                  <span
+                    >{{
+                      stakeTran.stakeRewardData?.penaltyRewardAmount
+                        | number: "1.0-2"
+                    }}
+                    Grise</span
+                  >
+                </td>
+              </tr>
+              <tr
+                *ngIf="
+                  stakeTran.stakeBasicData &&
+                  stakeTran.stakeBasicData.stakeType != 0
+                "
+              >
+                <td class="personaltd">Reservoir Reward</td>
+                <td class="personaltd1">
+                  <span
+                    >{{
+                      stakeTran.stakeRewardData?.reservoirRewardAmount
+                        | number: "1.0-2"
+                    }}
+                    Grise</span
+                  >
+                </td>
+              </tr>
+              <tr *ngIf="false">
+                <td class="personaltd">Inflation Reward</td>
+                <td class="personaltd1">
+                  <span
+                    >{{
+                      stakeTran.stakeRewardData?.inflationRewardAmount
+                        | number: "1.0-2"
+                    }}
+                    Grise</span
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div *ngIf="stakeTran.stakeBasicData?.isActive">
+            <button
+              type="button"
+              [disabled]="checkScarpeReward(stakeTran) ? null : 'disabled'"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#confirmModal"
+              (click)="scrapeReward(stakeTran)"
+            >
+              Scarpe Reward
+            </button>
+            <button
+              *ngIf="stakeTran?.stakeBasicData?.isMature"
+              type="button"
+              class="btn btn-primary stake_btn"
+              (click)="endStake(stakeTran)"
+            >
+              End Stake
+            </button>
+            <button
+              *ngIf="!stakeTran?.stakeBasicData?.isMature"
+              type="button"
+              class="btn btn-primary stake_btn"
+              data-toggle="modal"
+              data-target="#confirmModal"
+              (click)="cancelStake(stakeTran)"
+            >
+              Cancel Stake
+            </button>
+          </div>
+        </div>
+        <div class="line-splitter"></div>
+      </div>
+    </div>
+    <!-- <div *ngIf="stakeTransactions" class="line-splitter"></div> -->
+    <div *ngIf="!reachMaxRecords">
+      <button
+        type="button"
+        class="btn btn-primary staking_button"
+        (click)="loadMore()"
+      >
+        Load more...
+      </button>
+    </div>
+    <div class="grise">
+      <!-- <img style="width: 250px" src="../../../assets/logo.png"> -->
+    </div>
+  </div>
+</div>
+<app-confirm-dialog
+  [data]="data"
+  (onConfirm)="onConfirm($event)"
+></app-confirm-dialog>

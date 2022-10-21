@@ -1,0 +1,159 @@
+<div class="container-fluid bg-color">
+  <div class="row content">
+    <div class="col-md-7">
+      <div class="item-container">
+        <h2>List item for sale</h2>
+        <div class="d-flex justify-content-between mrg-btm-12">
+          <div>Type</div>
+          <div><i class="fas fa-exclamation-circle"></i></div>
+        </div>
+        <ul class="nav nav-tabs border-0 mrg-btm-15">
+          <li class="tabs-list">
+            <a
+              data-target="#tab1"
+              data-toggle="tab"
+              class="m-0 firstboxtab active"
+            >
+              <div class="d-flex tab-box-content">
+                <div><i class="fas fa-dollar-sign"></i></div>
+                <div>Fixed Price</div>
+              </div>
+            </a>
+          </li>
+          <li class="tabs-list disabled">
+            <a
+              data-target="#tab2"
+              data-toggle="tab"
+              class="secondboxtab disabled"
+            >
+              <div class="d-flex tab-box-content">
+                <div><i class="fas fa-clock"></i></div>
+                <div>Timed Auction</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab1" class="tab-pane active">
+            <div class="d-flex justify-content-between mrg-btm-12">
+              <div>Price</div>
+              <div><i class="fas fa-exclamation-circle"></i></div>
+            </div>
+            <div class="d-flex mrg-btm-15">
+              <div class="ethbtn">
+                <div class="mat-dropdown-container">
+                  <!-- <mat-form-field style="width:88%;">
+                    <mat-select placeholder="Contact *" formControlName="contact">
+                      <mat-select-trigger>
+                        <mat-icon>home</mat-icon>&nbsp;{{contact.institution}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let contact of contacts" [value]="contact">
+                        <mat-icon [ngStyle]="{'color': contact.color}">home</mat-icon>{{contact.institution}} 
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
+                  <!-- <mat-select
+                    placeholder="Select Currancy"
+                    class="mat-dropdown"
+                  >
+                    <mat-select-trigger >
+                      <span class="cardino-icon mr-3"></span> ADA
+                    </mat-select-trigger>
+                    <mat-option [value]="1"
+                      ><span class="cardino-icon mr-3"></span>ADA
+                    </mat-option>
+                  </mat-select> -->
+
+                  <span class="select-span">
+                    <span class="cardino-icon mr-3"></span> ADA
+                  </span>
+                </div>
+                <!-- <button class="etherium-btn tab-button">
+                  <i class="fab fa-ethereum mr-3"></i>ETH
+                </button> -->
+              </div>
+              <div class="inotamount">
+                <div class="validate-input">
+                  <input type="number" value="amounshow" min="{{amountresit}}" class="amount-field" id="amounshow" name="amounshow" [(ngModel)]="amounshow" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
+                  
+                  <div class="alert alert-danger mt-2" role="alert" *ngIf="amounshow < amountresit">
+                    Price should be >= to minting price.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="schedule-wrapper">
+              <p class="mrg-btm-12">Schedule Listing</p>
+              <div>
+                <input
+                  type="datetime-local"
+                  placeholder="6 Months"
+                  class="calender-field"
+                  disabled="true"
+                  
+                />
+              </div>
+            </div>
+            <div class="d-flex bundle-wrapper mb-4">
+              <div>Sell as a Bundle</div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" disabled="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div class="d-flex bundle-wrapper mb-2">
+              <div>Reserve for specific buyer</div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" disabled="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div class="d-flex align-items-center my-4 border-bottom-wrapper">
+              <p class="text-color-wrapper">
+                Fewer Option<i class="fas fa-chevron-up ml-3"></i>
+              </p>
+            </div>
+            <div class="mb-5">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h3>Fees</h3>
+                </div>
+                <div>
+                  <a href="javascript:void(0)" (click)="feeshow()" class="text-white">
+                  <i class="fas fa-exclamation-circle"></i>
+                </a>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div>Service Fee</div>
+                <div *ngIf="feeamount">1.77%</div>
+              </div>
+              <!-- <div class="d-flex justify-content-between">
+                <div>Creator Royality</div>
+                <div>10.0%</div>
+              </div> -->
+            </div>
+            <button class="btn-wrapper tab-button position-relative" (click)="getAmount()" [disabled]="amounshow < amountresit" [ngClass]="{'custumspinner' : disablebtn}">Complete listing</button>
+          </div>
+          <div id="tab2" class="tab-pane">this is Tab 2.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="preview-container">
+        <p>Preview</p>
+        <div class="img-container">
+          <div class="img-wrapper">
+            <!-- <img src="assets/rare/r1.png" class="img-fluid" /> -->
+            <img [src]="nftImg" class="img-fluid" />
+            <!-- <img src={`assets/{selectedNft.nftType}/${selectedNft.src}`} class="img-fluid" /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

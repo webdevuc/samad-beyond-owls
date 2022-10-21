@@ -1,0 +1,122 @@
+<div class="container-fluid bg-color">
+    <div class="row content">
+      
+  
+      <div class="col-lg-12 col-md-12 tokeninfo-second">
+        <div class="scrollable-title-container">
+          <!-- <img style="width: 250px" src="../../../assets/logo.png"> -->
+          <!-- <i class="fas fa-coins"></i> -->
+          <label class="scrollable-title mb-5">My NFT's</label>
+        </div>
+  
+        <div class="nft-container">
+          <!-- <div *ngIf="!allMyNFTGroups[0] || !allMyNFTGroups[0].contentData || allMyNFTGroups[0].contentData.length === 0 && hideAssets" class="empty-list">
+            <img src="/assets/empty-bids.svg"/>
+            <p>No assets yet</p>
+           </div> -->
+
+           <div *ngIf="(!allMyNFTGroups[0] || !allMyNFTGroups[0].contentData || allMyNFTGroups[0].contentData.length === 0) && hideAssets" class="empty-list">
+            <img src="/assets/empty-bids.svg"/>
+            <p>No assets yet</p>
+           </div>
+          <div>
+            <div class="heading">
+              <h1 class="heading-text"></h1>
+              <div class="line-splitter"></div>
+            </div>
+            <div class="row">
+              <div
+              *ngFor="let nftContent of ((allMyNFTGroups[0] && allMyNFTGroups[0].contentData) ? allMyNFTGroups[0].contentData : [])"
+                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 d-flex"
+              >
+              <div class="tab flex-column align-items-center">
+                
+                <!-- <img
+                class="img-responsive nft-img"
+                [src]="nftContent.contentPath"
+                alt="NFTs"
+                (click)="redirectlandingPage(nftContent.nftObj)"
+                /> -->
+
+                <img *ngIf="!spinnerLoader" src="../../../assets/wait-loader.gif" class="loader-image">
+                <img *ngIf="!nftContent.src" [hidden]="!spinnerLoader" [src]="nftContent.contentPath" (load)="spinnerLoader = true" class="img-responsive nft-img" (click)="redirectlandingPage(nftContent.nftObj)">
+                <img *ngIf="nftContent.src" [hidden]="!spinnerLoader" [src]="nftContent.src" (load)="spinnerLoader = true" class="img-responsive nft-img" (click)="redirectlandingPage(nftContent.nftObj)">
+
+                <div class="d-flex justify-content-between align-items-center nftcolumn" *ngIf="false">
+                <a
+                *ngIf="nftContent.nftObj.status == 'mint' || nftContent.nftObj.status == 'buy' || nftContent.nftObj.status == 'cancel'"
+                (click)="redirectform(nftContent.nftObj)"
+                href="javascript:void(0)"
+                class="btn btn-primary tab-button border-0"
+                >
+                Sell
+                </a>
+                <a
+                *ngIf="nftContent.nftObj.status == 'list' || nftContent.nftObj.status == 'cancelPending'"
+                (click)="cancelSelectedNft(nftContent.nftObj)"
+                href="javascript:void(0)"
+                class="btn btn-primary tab-button border-0 position-relative"
+                [ngClass]="{'custumspinner' : cancelbtn}"
+                >
+                Cancel from list
+                </a>
+                <span>{{ nftContent.nftObj.amount || '-' }} ADA</span>
+                </div>
+             </div>
+            </div>
+
+            <!-- <div
+                
+                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12"
+              >
+                <div class="tab flex-column align-items-center">
+                    <img
+                  class="img-responsive nft-img"
+                  alt="NFTs"
+                  src="../../../assets/rare.png"
+                />
+                <div class="d-flex justify-content-between align-items-center nftcolumn ">
+                  <a
+                href="javascript:void(0)"
+                class="btn btn-primary tab-button border-0"
+                >
+                Mint
+                </a>
+                <span>$100</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div
+                
+                class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12"
+              >
+                <div class="tab flex-column align-items-center">
+                    <img
+                  class="img-responsive nft-img"
+                  alt="NFTs"
+                  src="../../../assets/rare.png"
+                />
+                <div class="d-flex justify-content-between align-items-center nftcolumn ">
+                  <a
+                href="javascript:void(0)"
+                class="btn btn-primary tab-button border-0"
+                >
+                Mint
+                </a>
+                <span>$100</span>
+                </div>
+              </div>
+            </div> -->
+            
+          </div>
+          
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+
+  </div>

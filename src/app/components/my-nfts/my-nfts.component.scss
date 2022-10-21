@@ -1,0 +1,84 @@
+p,
+span,
+div {
+  color: #fff;
+}
+
+.bg-color {
+  min-height: 100%;
+  max-width: 100%;
+  background-color: rgb(59, 65, 72);
+}
+
+.tab {
+  width: 100%;
+}
+
+.tab {
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 15px 8px #292a29;
+  margin-bottom: 26px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  transition: all 0.7s ease-in-out;
+  min-height: 500px;
+}
+.tab-button {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+  // border-color: darkgoldenrod;
+  border-radius: 10px;
+  min-width: 200px;
+  width: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  margin: 12px;
+}
+.nft-img {
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.tab:hover {
+  box-shadow: 0 0 20px 6px #8c52ff;
+  border-radius: 30px;
+}
+
+.nft-img:hover {
+  transform: scale(1.04);
+}
+
+@media (min-width: 1601px) {
+  .tab {
+    width: 83%;
+  }
+}
+
+.nftcolumn {
+  @media (min-width: 992px) and (max-width: 1200px) {
+    flex-direction: column !important;
+  }
+}
+// .empty-list {
+//   margin-top: 100px;
+//   img {
+//     width: 200px;
+//   }
+// }
+
+.nftcolumn {
+  @media (max-width: 1200px) {
+    flex-direction: column !important;
+  }
+}
+.nftcolumn2 {
+  @media (max-width: 1400px) {
+    flex-direction: column !important;
+  }
+}
+
+.loader-image {
+  max-width: 50%;
+}

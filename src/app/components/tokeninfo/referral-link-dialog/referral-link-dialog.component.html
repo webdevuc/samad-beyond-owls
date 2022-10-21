@@ -1,0 +1,33 @@
+<!-- <div class="dialog-container">
+    <h2 mat-dialog-title>Referral Link</h2>
+    <a class="btn-close" href="javascript:void(0)" (click)="onClose()">X</a>
+    <div mat-dialog-content>
+        <h3 class="header-text">Your Referral Link:</h3>
+        <input type="text" class="referralUrl" disabled [value]="referralUrl">
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary tab-button" [cdkCopyToClipboard]="referralUrl" (click)="copyUrl()">{{ urlCopied ?
+            'Copied Referral Link' : 'Copy Referral Link' }}</button>
+    </div>
+</div> -->
+
+<div style="color: black;" class="modal fade" id="referralModal" data-backdrop="static" data-keyboard="true"
+    tabindex="-1" role="dialog" aria-labelledby="referralModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content dialog-container">
+            <div class="modal-header">
+                <h5 class="modal-title" id="referralModalLabel">
+                    Referral Link</h5>
+                <a class="btn-close" href="javascript:void(0)" data-dismiss="modal" (click)="onClose()">X</a>
+            </div>
+            <div class="modal-body" #container>
+                <h3 class="header-text">Your Referral Link:</h3>
+                <input type="text" class="referralUrl" disabled [value]="referralUrl">
+            </div>
+            <div class="modal-footer" style="padding:0; margin:0">
+                <button class="btn btn-primary tab-button" ngxClipboard [container]="container" [cbContent]="referralUrl" (click)="copyUrl()">{{
+                    urlCopied ? 'Copied Referral Link' : 'Copy Referral Link' }}</button>
+            </div>
+        </div>
+    </div>
+</div>

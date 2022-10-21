@@ -1,0 +1,70 @@
+<div class="coin-technical-analysis-div">
+    <h2 for="ice-cream-choice" class="mr-3">Choose Coin:</h2>
+    <input class="inputcoinsearch mb-3 " type="text" list="productList" name="product" [(ngModel)]='currentProduct'
+      (change)="getCoinData(currentProduct)" />
+
+    <datalist id="productList">
+      <option *ngFor="let data_coin_name of coins_list_api;" [value]="data_coin_name.id">
+        {{data_coin_name.id}} ({{data_coin_name.symbol}})
+      </option>
+    </datalist>
+    <div class="row ">
+        <!-- introduction part -->
+        
+        <div class="col-lg-12 card-outer-div" style="margin-top: 59px;">
+        
+            <h1 class="headingAi">Introduction AI Platform</h1>
+            <div class="main-div card-div" style="text-align: justify;">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <h1> How to use Grise Token AI-Indices</h1>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                    <h4 class="text-danger">NOTE: Indices Rebalancing Times Are an Approximation.</h4>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                        <div class="info-text">
+                        Sometimes we may update the indices when we make important updates or changes to technical details and
+                        calculations for an index. For example, we recently added a requirement for all indices to only hold
+                        cryptocurrencies with a daily trading volume greater than $500k. Each of these technical updates requires us
+                        to re-do the index. This will apply with future technical updates to indices.
+                            Furthermore, we have recently add features related to trading signal. This features is based on Deep Learning by which our stacker can take smart decision to avoid loss in trading. In AI-Price prediction algorithms we can see the future expected price up-to two months and take fast decision to in-out the market.
+                        As a result, the days and times are an approximation and indices may take 1-4 hours to fully update or on
+                        occasion be rebalanced more than their time-horizon to make important technical updates.
+                        </div>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                    <h4 class="text-danger">DISCLAIMER
+                    Indices of crypto investments, like all types of investment-related information, are subject to risk; they can
+                    go down as well as up; and relying on such information can lead to losses as well as gains. Information about
+                    past performance is not necessarily indicative of future performance.
+                    </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-outer-div">
+        <h1 class="headingAi">Coin Cashflow</h1>
+        <div class="card-div">
+            <div class="d-flex justify-content-between cashflow-percentage-div">
+                <span>Cashflow In: {{CashIn.toFixed(2)}}%</span>
+                <span>Cashflow Out: {{CashOut.toFixed(2)}}%</span>
+            </div>
+            <highcharts-chart class="custom-chart-styles"
+                [Highcharts]="highcharts"
+                [constructorType]="'stockChart'"
+                [options]="CashflowGraph">
+            </highcharts-chart>
+        </div>
+    </div>
+    <div class="card-outer-div">
+        <h1 class="headingAi">Coin Technical Analysis</h1>
+        <div class="card-div">
+            <highcharts-chart class="custom-chart-styles"
+                [Highcharts]="highcharts"
+                [options]="TechnicalGraph">
+            </highcharts-chart>
+        </div>
+    </div>
+</div>

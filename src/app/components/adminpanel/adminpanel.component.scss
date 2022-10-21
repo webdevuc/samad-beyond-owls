@@ -1,0 +1,108 @@
+::ng-deep .leftmenu .sidenav {
+  display: none !important;
+}
+::ng-deep .leftmenu .router-outlet {
+  margin-left: 0;
+}
+::ng-deep .tab {
+  @media (max-width: 992px) {
+    width: 100% !important;
+    margin-left: 0% !important;
+  }
+}
+.full-height {
+  height: calc(100vh - 128px);
+  align-items: center;
+}
+.tab {
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 15px 8px #292a29;
+
+  display: flex;
+  justify-content: center;
+  transition: all 0.7s ease-in-out;
+  color: #fff;
+
+  form {
+    width: 100%;
+    text-align: left;
+    input {
+      border: 1px solid #9a97aa;
+      outline: none;
+      border-radius: 4px;
+      height: 43px;
+      font-size: 15px;
+    }
+  }
+}
+
+.tab-button {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+  border-radius: 10px;
+  min-width: 200px;
+  margin: 12px auto 12px auto;
+  padding: 6px 12px;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.forget-btn {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  a {
+    color: #fff;
+  }
+}
+
+.mint-color {
+  color: #0096a1;
+}
+.modal-content {
+  box-shadow: 0 0 15px 8px #292a29;
+  background: #3b4148;
+  padding: 20px;
+  border-radius: 30px;
+  .modal-body {
+    padding: 0px;
+    .modal-body-inner {
+      flex-wrap: wrap;
+      justify-content: center;
+      ol {
+        padding-left: 15px;
+        margin-top: 1rem;
+        li {
+          text-align: left;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+.mintmodal {
+  .modal-dialog {
+    max-width: 400px;
+    .modal-header {
+      margin-bottom: 1rem;
+      border: none;
+      color: #ffffff;
+    }
+    .modal-body-inner {
+      justify-content: space-between;
+    }
+    .modal-footer {
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+    .tab-button {
+      min-width: 100px;
+      max-width: 100px;
+      margin-bottom: 0;
+      border: none;
+      color: #ffffff;
+    }
+  }
+}

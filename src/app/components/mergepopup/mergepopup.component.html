@@ -1,0 +1,243 @@
+<div class="container-fluid bg-color">
+  <div class="row content">
+    <div class="col-lg-3 tokeninfo-first">
+      <div style="display: grid; justify-content: center">
+        <button
+          type="button"
+          class="btn btn-primary tab-button all_reser"
+          (click)="commonMerge('Common Merge')"
+        >
+          Common Merger
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary tab-button"
+          (click)="mythicMerge('Mythic Merger')"
+        >
+          Mythic Merger
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary tab-button"
+          (click)="legendaryMerge('Legendary Merger')"
+        >
+          Legendary Merger
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary tab-button"
+          (click)="mythicTwoMerge('Mythic Merger')"
+        >
+          Mythic Merger
+        </button>
+      </div>
+      <div
+        class="alert alert-success text-dark mt-3 mx-auto"
+        *ngIf="resultBoxMerge"
+        role="alert"
+      >
+        14 days Left
+      </div>
+    </div>
+
+    <div class="col-lg-9 col-md-12 tokeninfo-second" id="Overview">
+      <div class="scrollable-title-container">
+        <label class="scrollable-title">{{ userTab }}</label>
+      </div>
+
+      <div class="nft-container">
+        <div>
+          <div class="heading">
+            <h1 class="heading-text"></h1>
+            <div class="line-splitter"></div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="tab flex-column" *ngIf="firstMerge">
+                <h3 *ngIf="firstBoxMerge">
+                  Following NFTs are being incubated for this merge
+                </h3>
+                <h3 *ngIf="secondBoxMerge">
+                  You'll get these NFTs after the merge is complete
+                </h3>
+                <h3 *ngIf="resultBoxMerge">
+                  Your NFTs have been incubated, you'll get your new NFTs in
+                </h3>
+                <div class="" *ngIf="firstBoxMerge">
+                  <div class="modal-body-inner d-flex">
+                    <a
+                      href="javascript:void(0);"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                      class="modal-body-img-box"
+                    >
+                      <img src="assets/rare/r1.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r2.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r3.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r4.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r5.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r1.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r2.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r3.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r4.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                  </div>
+                  <button
+                    class="tab-button border-0 mt-5 mx-auto"
+                    (click)="nextMerge()"
+                  >
+                    Next
+                  </button>
+                </div>
+                <div class="" *ngIf="secondBoxMerge">
+                  <div class="modal-body-inner d-flex">
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r1.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r2.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r3.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r4.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r5.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r1.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                    <a href="javascript:void(0);" class="modal-body-img-box">
+                      <img src="assets/rare/r2.png" />
+                      <p>Sample Text here</p>
+                    </a>
+                  </div>
+                  <button class="tab-button border-0 mt-5">Rent Key</button>
+                  <button
+                    class="tab-button border-0 mt-5 mx-auto"
+                    (click)="submitmerge()"
+                  >
+                    Submit
+                  </button>
+                </div>
+                <div class="" *ngIf="resultBoxMerge">
+                  <div class="modal-body-inner d-flex">
+                    <h3>14 Days Left</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="tab flex-column" *ngIf="secondMerge">
+                <div class="modal-body-inner d-flex">
+                  <div class="modal-body-img-box">
+                    <img src="assets/rare/r1.png" />
+                    <p>Sample Text here</p>
+                  </div>
+                </div>
+                <button class="tab-button border-0 mt-5 mx-auto">Next</button>
+              </div>
+              <div class="tab flex-column" *ngIf="threeMerge">
+                <div class="modal-body-inner d-flex">
+                  <div class="modal-body-img-box">
+                    <img src="assets/rare/r1.png" />
+                    <p>Sample Text here</p>
+                  </div>
+                </div>
+                <button class="tab-button border-0 mt-5 mx-auto">Next</button>
+              </div>
+              <div class="tab flex-column" *ngIf="fourMerge">
+                <div class="modal-body-inner d-flex">
+                  <div class="modal-body-img-box">
+                    <img src="assets/rare/r1.png" />
+                    <p>Sample Text here</p>
+                  </div>
+                </div>
+                <button class="tab-button border-0 mt-5 mx-auto">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0">Listing</h5>
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body-inner d-flex">
+          <div class="modal-body-img-box">
+            <img src="assets/rare/r1.png" />
+            <p>Sample Text here Sample</p>
+          </div>
+          <div class="modal-body-img-box">
+            <img src="assets/rare/r5.png" />
+            <p>Sample Text here Sample Text</p>
+          </div>
+          <div class="modal-body-img-box">
+            <img src="assets/rare/r2.png" />
+            <p>Sample Text here Sample</p>
+          </div>
+          <div class="modal-body-img-box">
+            <img src="assets/rare/r3.png" />
+            <p>Sample Text here Sample</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

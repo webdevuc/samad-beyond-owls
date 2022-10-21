@@ -1,0 +1,161 @@
+@import "./slots.component.scss";
+
+.bg-color {
+  min-height: 100%;
+  background-color: rgb(59, 65, 72);
+}
+
+.cp_img {
+  i,
+  input,
+  button {
+    margin: 10px;
+  }
+}
+
+.form-control {
+  font-size: 12px;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
+.tab-button {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+  // border-color: darkgoldenrod;
+  border-radius: 10px;
+  min-width: 200px;
+  width: 200px;
+
+  padding: 6px 12px;
+  font-size: 14px;
+  margin: 12px;
+}
+
+// .reservation-button {
+//   border-color: darkgoldenrod;
+// }
+
+.btn-close {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+  // border-color: darkgoldenrod;
+}
+
+.reservation-first {
+  height: 100%;
+  box-shadow: 8px 0 24px rgb(0 0 0 / 16%), 4px 0 16px rgb(0 0 0 / 8%);
+  position: fixed;
+  z-index: 99;
+}
+
+.reservation-second {
+  padding-left: 34%;
+  min-height: 800px;
+}
+
+.reservation-title {
+  padding-top: 20%;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  color: white;
+}
+
+.modal-dialog {
+  max-width: 60% !important;
+}
+
+.itemcard {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+  .modal-dialog {
+    max-width: 100% !important;
+  }
+}
+.all_reser {
+  margin-top: 67%;
+}
+
+@media (min-width: 992px) {
+  .col-md-9 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .all_reser {
+    margin-top: 10%;
+  }
+
+  .reservation-second {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .reservation-title {
+    padding-top: 10%;
+  }
+
+  //   .reservation-first {
+  //     margin-left: 0;
+  //     box-shadow: none;
+  //     position: relative;
+  //     display: flex;
+  //     padding-left: 15px;
+  //     padding-right: 15px;
+  //     flex-direction: column;
+  //   }
+
+  .reservation-first {
+    position: relative;
+    box-shadow: none;
+    margin-left: 0px;
+  }
+}
+
+.personal_title {
+  //padding-left: 20%;
+  margin: auto;
+  padding-left: 0px;
+}
+@media (max-width: 992px) {
+  .personal {
+    //margin-left: 8% !important;
+    //padding-left: 0px!important;
+    margin: 0px;
+    left: 0% !important;
+  }
+}
+.model_img {
+  width: 180px;
+}
+.model_btn {
+  zoom: 1.4;
+}
+.model_img_box {
+  padding-right: 18px;
+  padding-left: 8px;
+}
+
+.personal {
+  left: 15%;
+}
+.text_paragraph {
+  text-align: left;
+  font-size: 24px;
+  line-height: 25px;
+  padding: 0px 16px;
+
+  @media (max-width: 400px) {
+    font-size: 8px;
+    padding: 0px;
+    font-size: 13px;
+    line-height: 16px;
+    padding-top: 10px;
+    text-align: center;
+  }
+  padding-top: 9px;
+}

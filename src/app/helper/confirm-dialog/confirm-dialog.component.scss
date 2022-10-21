@@ -1,0 +1,40 @@
+.dialog-container {
+  background-color: rgb(70, 73, 79);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 27px;
+  color: white;
+}
+
+.modal-body {
+  color: white;
+}
+
+.modal-footer,
+.mat-dialog-actions {
+  justify-content: center;
+}
+
+.tab-button {
+  background: linear-gradient(89.02deg, #6226D9 0.89%, #8C52FF 100%) !important;
+  // border-color: darkgoldenrod;
+  border-radius: 10px;
+  min-width: 100px;
+  margin: 12px 6px !important;
+}
+
+table {
+  margin-right: auto;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+  font-size: 16px;
+  padding-left: 0;
+}

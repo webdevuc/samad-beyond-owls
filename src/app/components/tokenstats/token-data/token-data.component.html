@@ -1,0 +1,93 @@
+<div>
+  <!-- <div class="personal">
+    <h1 class="personal_title">Graph</h1>
+  </div> -->
+  <div class="sub-end-part">
+    <!-- <div style="border-bottom: 2px solid grey;margin-bottom: 40px;"></div> -->
+    <div style="margin-top: 5%;">
+      <!-- <div class="row" style="margin-top: 5%;">
+        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+          <div class="box_lable">
+            <br>
+            <span class="box">{{ tokenLocked ? (tokenLocked | number: '1.0-0') : '-' }}</span>
+            <br>
+            <h4 class="label">Token Locked in Liquidity</h4>
+            <br>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+          <div class="box_lable">
+            <br>
+            <span class="box">{{ tokenCirculating ? (tokenCirculating | number: '1.0-0') : '-' }}</span>
+            <br>
+            <h4 class="label">Token Freely Circulating</h4>
+            <br>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+          <div class="box_lable">
+            <br>
+            <span class="box">{{ totalStakedToken ? (totalStakedToken | number: '1.0-0') : '-' }}</span>
+            <br>
+            <h4 class="label">Total Staked</h4>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br> -->
+      <div class="table_chart d-flex justify-content-center">
+        <div class="left_table" style="margin-top: 30px; border-collapse: collapse; ">
+          <table class="table table-dark">
+            <tr>
+              <th class="tbl-description">Token Data</th>
+              <th class="tbl-usd">USD</th>
+            </tr>
+            <tr>
+              <td class="tbl-description">Volume (24h)</td>
+              <td class="tbl-usd">{{ priceData?.volume24hUSD ? (priceData?.volume24hUSD | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Volume Change (24h)</td>
+              <td class="tbl-usd">{{ priceData?.volumeChange24h ? (priceData?.volumeChange24h | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Liquidity</td>
+              <td class="tbl-usd">{{ priceData?.liquidityUSD ? (priceData?.liquidityUSD | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Liquidity Change (24h)</td>
+              <td class="tbl-usd">{{ priceData?.liquidityChange24h ? (priceData?.liquidityChange24h | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Price USD</td>
+              <td class="tbl-usd">{{ priceData?.priceUSD ? (priceData?.priceUSD | number: '1.5-5') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Price USD Change (24h)</td>
+              <td class="tbl-usd">{{ priceData?.priceChange24h ? (priceData?.priceChange24h | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Transaction (24h)</td>
+              <td class="tbl-usd">{{ priceData?.txns24h ? (priceData?.txns24h | number: '1.2-2') : '-' }}</td>
+            </tr>
+            <tr>
+              <td class="tbl-description">Transaction Change (24h)</td>
+              <td class="tbl-usd">{{ priceData?.txns24hChange ? (priceData?.txns24hChange | number: '1.2-2') : '-' }}</td>
+            </tr>
+          </table>
+          <br> <br> <br>
+        </div>
+      </div>
+      <div *ngIf="tokenDayDatas">
+        <div class="d-flex justify-content-center line-chart">
+          <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+            [colors]="lineChartColors" chartType="line" [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+        <br> <br> <br>
+      </div>
+    </div>
+  </div>
+  
+<div style=" padding-top: 60px;"></div>
+</div>

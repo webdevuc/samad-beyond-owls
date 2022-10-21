@@ -1,0 +1,553 @@
+<div class="container-fluid bg-color">
+  <div class="row content">
+     <!-- <div class="col-lg-3 tokeninfo-first">
+        <div class="left-scroll">
+           <div style="display: grid; justify-content: center">
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="allNFTs()"
+                 [ngClass]="{'active-tab': this.filterNFTGroups === this.allNFTGroups}"
+                 >
+              All NFTs
+              </button>
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="mythicNFTs()"
+                 [ngClass]="{'active-tab': this.filterNFTGroups === this.mythicNFTsGroup}"
+                 >
+              Mythic
+              </button>
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="rareNFTs()"
+                 [ngClass]="{'active-tab': this.filterNFTGroups === this.rareNFTsGroup}"
+                 >
+              Rare
+              </button>
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="legendaryNFTs()"
+                 [ngClass]="{'active-tab': this.filterNFTGroups === this.legendaryNFTsGroup}"
+                 >
+              Legendary
+              </button>
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="commonNFTs()"
+                 [ngClass]="{'active-tab': this.filterNFTGroups === this.commonNFTsGroup}"
+                 >
+              Common
+              </button>
+              <button
+                 type="button"
+                 class="btn btn-primary tab-button"
+                 (click)="mergerButtonsShow()"
+                 [ngClass]="{'active-tab': this.mergerButtons === true}"
+                 >
+              Merge
+              </button>
+              <button 
+                 class="btn btn-primary tab-button black-bg"
+                 (click)="incubationShow()"
+                 [ngClass]="{'active-tab': this.incubationText === true}"
+                 >
+              Incubation
+              </button>
+           </div>
+           <div class="m-0 p-0" style="overflow: hidden;">
+              <h3>Documentation</h3>
+              <div class="row justify-content-center img-responsive-setting">
+                 <div  class="col-md-4 col-lg-6">
+                    <span >
+                       <h5>GRSE NFT Mechanics </h5>
+                       <a  href="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/GRSE NFT Mechanics (3).pdf" target="_blank">
+                       <img src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/GRSE NFT Mechanics.jpeg"  class="img-responsive" style="border-radius: 10px;"></a>
+                    </span>
+                 </div>
+                 <div  class="col-md-4 col-lg-6">
+                    <span >
+                       <h5 > Acquire GRISE NFT</h5>
+                       <a  href="../../..//assets/How-To-Acquire-GRSE-NFTs-November-2021.pdf" target="_blank"><img src="../../../assets/How_To_Acquire_GRISE_NFT.png" class="img-responsive" style="border-radius: 10px;"></a>
+                    </span>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div> -->
+     <div class="col-lg-12 col-md-12 tokeninfo-second" *ngIf="AllNftShow">
+        <div class="scrollable-title-container">
+           <label class="scrollable-title">NFT Market Place</label>
+           <div class="feesbtn d-flex flex-column">
+            <!-- <a href="javascript:void(0)"
+            data-toggle="modal"
+            data-target="#exampleModalFees" class="tab-button btn btn-primary border-0 mb-0 mt-0">Fees & Commision</a> -->
+            <a href="/adminpanel" class="tab-button btn btn-primary border-0" *ngIf="fundsbtn">Withdraw Funds</a>
+            <a href="javascript:void(0)" class="tab-button btn btn-primary border-0" (click)="batchMinting()" *ngIf="remainingNftsClaimBtn">Claim Remaining NFTs</a>
+           </div>
+        </div>
+        <div class="nft-container">
+           <!-- <div class="empty-list">
+            <img src="/assets/empty-bids.svg"/>
+            <p>No assets yet</p>
+           </div> -->
+           <div *ngFor="let nftGroup of filterNFTGroups">
+              <div class="heading">
+                 <h1 class="heading-text">{{ nftGroup.contentHeader }}</h1>
+                 <div class="line-splitter"></div>
+              </div>
+              <div class="row">
+                 <div class="empty-list" *ngIf="nftGroup.contentData.length === 0">
+            <img src="/assets/empty-bids.svg"/>
+            <p>No assets yet</p>
+           </div>
+
+                  
+                 <div
+                 *ngFor="let nftContent of nftGroup.contentData"
+                 class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex mx-auto"
+                 [ngClass]="{ 'single-center col-xl-9 col-lg-12 col-md-12 col-sm-12': nftGroup.contentGroup == 1 }"
+                 
+                 
+                 >
+                 <div class="tab flex-column align-items-center">
+                    <img
+                    *ngIf="nftContent.contentType == 1"
+                    class="img-responsive nft-img"
+                    [src]="nftContent.contentPath"
+                    alt="NFTs"
+                    (click)="redirectlandingPage(nftContent.nftObj)"
+                    />
+                    <video
+                       *ngIf="nftContent.contentType == 2"
+                       style="width: 100%; height: inherit"
+                       autoplay
+                       muted
+                       loop
+                       >
+                       <source [src]="nftContent.contentPath" type="video/mp4" />
+                    </video>
+                    <img
+                    *ngIf="nftContent.contentType == 3"
+                    class="img-responsive nft-gif"
+                    [src]="nftContent.contentPath"
+                    alt="NFTs"
+                    (click)="redirectlandingPage(nftContent.nftObj)"
+                    />
+                    <!-- <div class="d-flex justify-content-between align-items-center nftcolumn">
+                    
+                    <a
+                   
+                    class="btn btn-primary tab-button border-0 position-relative"
+                    *ngIf="nftContent.nftObj.quantity > 0"
+                    (click)="handleMintNft(nftContent.nftObj, 'mint')"
+                    [ngClass]="{'custumspinner' : disablebtn && btnid === nftContent.nftObj._id}"
+                    >
+                    Mint
+                    </a>
+
+                    <span *ngIf="nftContent.nftObj.quantity > 0">{{ nftContent.nftObj.amount }} ADA + fee</span>
+                    
+                    </div> -->
+                    <!-- <div class="d-flex justify-content-between align-items-center nftcolumn2">
+                     <a
+                   href="javascript:void(0)"
+                   class="btn btn-primary tab-button border-0 position-relative"
+                   *ngIf="(nftContent.nftObj.userNftData && nftContent.nftObj.userNftData.status) === 'list'"
+                   (click)="handleMintNft(nftContent.nftObj, 'buy')"
+                   [attr.data-target] = "custumid"
+                   data-toggle="modal"
+                   [ngClass]="{'custumspinner' : buydiable && buyid === nftContent.nftObj.userNftData.userNftId}"
+                   >
+                   Buy Secondary
+                   </a>
+                   <p class="mb-0" *ngIf="(nftContent.nftObj.userNftData && nftContent.nftObj.userNftData.status) === 'list'">Lowest Price: {{ nftContent.nftObj.userNftData.amount }}</p>
+                   
+                   </div> -->
+                    <!-- [ngClass]="{ 'disabled': nftContent.nftObj.status == 'pending' }" -->
+                    <a
+                    (click)="redirectform(nftContent.nftObj)"
+                    href="javascript:void(0)"
+                    class="btn btn-primary tab-button border-0"
+                    *ngIf="showsell"
+                    >
+                    Sell
+                    </a>
+                 </div>
+              </div>
+            
+           </div>
+        </div>
+        
+    </div>
+    <!-- <div class="row" *ngIf="keynfthide">
+      
+      <div class="col-md-12">
+         <div class="tab tab--keyNft flex-column align-items-center" style="min-height: 20px;">
+            
+            
+            <img src="../../../assets/key.gif" height="309px"/>
+            <div class="d-flex justify-content-between align-items-center nftcolumn">
+             <a
+           href="javascript:void(0)"
+           
+           class="btn btn-primary tab-button border-0 notallowed"
+                    disabled
+           >
+           Mint
+           </a>
+           <span>300 ADA + fee</span>
+           </div>
+           <div class="d-flex justify-content-between align-items-center nftcolumn2">
+            <a
+          href="javascript:void(0)"
+          class="btn btn-primary tab-button border-0"
+          *ngIf="(keyitem.userNftData && keyitem.userNftData.status) === 'list'"
+          (click)="handleMintNft(keyitem, 'buy')"
+          >
+          Buy Secondary
+          </a>
+          <a
+          href="javascript:void(0)"
+          class="btn btn-primary tab-button border-0"
+          *ngIf="(keyitem.userNftData && keyitem.userNftData.status) === 'list'"
+          (click)="handleMintNft(keyitem, 'buy')"
+          [attr.data-target] = "custumid"
+          data-toggle="modal"
+          >
+          Lowest Price: {{ keyitem.userNftData.amount }}
+          </a>
+          </div>
+            
+         </div>
+      </div>
+   </div> -->
+    <div class="row d-none" *ngIf="keynfthide && keyitem && keyitem._id">
+      
+      <div class="col-md-12">
+         <div class="tab tab--keyNft flex-column align-items-center" style="min-height: 20px;">
+            
+            <!-- <img [src]="keyitem.src" height="309px"/> -->
+            <img src="../../../assets/key/GRISEKEY2021.gif" height="309px"/>
+            <!-- <div class="d-flex justify-content-between align-items-center nftcolumn">
+             <a
+           href="javascript:void(0)"
+           class="btn btn-primary tab-button border-0"
+           (click)="handleMintNft(keyitem, 'mint')"
+           [attr.data-target] = "custumid"
+           data-toggle="modal"
+           *ngIf="keyitem.quantity > 0"
+           >
+           Mint
+           </a>
+           <span *ngIf="keyitem.quantity > 0" >{{ (keyitem && keyitem.amount) ? keyitem.amount : 'N/A' }} ADA + fee</span>
+           </div> -->
+           <!-- <div class="d-flex justify-content-between align-items-center nftcolumn2">
+            <a
+          href="javascript:void(0)"
+          class="btn btn-primary tab-button border-0"
+          *ngIf="(keyitem && keyitem.userNftData && keyitem.userNftData.status) === 'list'"
+          (click)="handleMintNft(keyitem, 'buy')"
+          >
+          Buy Secondary
+          </a> -->
+          <!-- <a
+          href="javascript:void(0)"
+          class="btn btn-primary tab-button border-0"
+          *ngIf="(keyitem && keyitem.userNftData && keyitem.userNftData.status) === 'list'"
+          (click)="handleMintNft(keyitem, 'buy')"
+          [attr.data-target] = "custumid"
+          data-toggle="modal"
+          >
+          Lowest Price: {{ (keyitem && keyitem.userNftData && keyitem.userNftData.amount) ? keyitem.userNftData.amount : 'N/A' }}
+          </a> -->
+          <!-- <p *ngIf="(keyitem && keyitem.userNftData && keyitem.userNftData.status) === 'list'">Lowest Price: {{ (keyitem && keyitem.userNftData && keyitem.userNftData.amount) ? keyitem.userNftData.amount : 'N/A' }}</p>
+          </div> -->
+            
+         </div>
+      </div>
+   </div>
+    
+</div>
+<div class="col-lg-9 col-md-12 tokeninfo-second" *ngIf="mergerButtons">
+  <div class="nft-container">
+     <div class="heading">
+        <h1 class="heading-text">Merger Show</h1>
+        <div class="line-splitter"></div>
+     </div>
+     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="mergernewsection">
+           <button
+              class="btn btn-primary tab-button"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              >
+           Common Merger
+           </button>
+           <button class="btn btn-primary tab-button">Mythic Merger</button>
+           <button class="btn btn-primary tab-button">Legendary Merger</button>
+           <button class="btn btn-primary tab-button">Mythic Merger</button>
+        </div>
+     </div>
+  </div>
+</div>
+<div class="col-lg-9 col-md-12 tokeninfo-second" *ngIf="incubationText">
+  <div class="scrollable-title-container">
+     <!-- <img style="width: 250px" src="../../../assets/logo.png"> -->
+     <!-- <i class="fas fa-coins"></i> -->
+     <label class="scrollable-title"
+        >NFT Market Place</label
+        >
+  </div>
+  <div class="nft-container">
+     <div class="heading">
+        <h1 class="heading-text">Incubation</h1>
+        <div class="line-splitter"></div>
+     </div>
+     <div class="col-md-12 col-sm-12 col-xs-12">
+        <h1>You have no current incubations</h1>
+        <h1>14 days left Common Merger incubations</h1>
+        <h1>14 days left Mythic Merger incubations</h1>
+        <h1>14 days left Legendary Merger incubations</h1>
+        <h1>14 days left Mythic Merger incubations</h1>
+     </div>
+  </div>
+</div>
+</div>
+<!-- conformation modal -->
+<div
+  class="modal fade mintmodal"
+  id="exampleModaltwo"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModaltwo"
+  aria-hidden="true"
+  
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-header border-0">
+           <h3 class="modal-title mb-0">
+            Are you sure you want to {{ action === 'mint' ? 'mint' : 'buy'}} <b>({{ action === 'mint' ? mintNftObj.assetName : buyNftObj.assetName }}) NFT ?</b>
+           </h3>
+           
+        </div>
+        <div class="modal-footer">
+           <button
+              type="button"
+              class="tab-button"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="resetMintNftObj()"
+              >
+           Cancel
+           </button>
+           <button
+              type="button"
+              class="tab-button"
+              (click)="action === 'mint' ? clickMint() : clickBuy()"
+              data-dismiss="modal"
+              aria-label="Close"
+              >
+           Confirm
+           </button>
+        </div>
+     </div>
+  </div>
+</div>
+<!-- when not login show modal -->
+<div
+  class="modal fade mintmodal"
+  id="exampleModalnotlogin"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalnotlogin"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-body">
+           <p>Wallet is not connected</p>
+           <button
+              type="button"
+              class="tab-button btn text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="resetMintNftObj()"
+              >
+           Ok
+           </button>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title mb-0" *ngIf="firstBox">
+              Following NFTs are being incubated for this merge
+           </h5>
+           <h5 class="modal-title mb-0" *ngIf="nextBox">
+              You'll get these NFTs after the merge is complete
+           </h5>
+           <h5 class="modal-title mb-0" *ngIf="resultBox">
+              Your NFTs have been incubated, you'll get your new NFTs in
+           </h5>
+           <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              >
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <div class="modal-body-inner d-flex" *ngIf="firstBox">
+              <div class="modal-body-img-box">
+                 
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+           
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+           </div>
+           <div class="modal-body-inner d-flex" *ngIf="nextBox">
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+              <div class="modal-body-img-box">
+                 <img src="../../../assets/cross.png">
+              </div>
+           </div>
+           <div class="successBox" *ngIf="resultBox">
+              <h2>14 days Left</h2>
+           </div>
+        </div>
+        <div class="modal-footer">
+           <button
+           type="button"
+           class="tab-button"
+           *ngIf="firstBox"
+           (click)="nextImagesBox()"
+           >
+           Next
+           </button>
+           <button
+           type="button"
+           class="tab-button"
+           *ngIf="nextBox"
+           (click)="nextResultBox()"
+           >
+           Submit
+           </button>
+        </div>
+     </div>
+  </div>
+</div>
+
+
+<!-- Fees modal -->
+<div
+  class="modal fade"
+  id="exampleModalFees"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h3 class="modal-title mb-0 text-center">
+            Fees & Commision
+           </h3>
+           <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              >
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <div class="modal-body-inner d-flex">
+              <ol>
+              <li>There is a minimal network ‘dust’ fee to link each wallet to your account, none of which is retained by <a href="https://grisemetamoonverse.io/.">https://grisemetamoonverse.io/.</a></li>
+               <li>There will be no cost to create an account or ongoing membership fee.</li>
+               <li>We charge 1.77% commission (min 1 ADA) on each successful NFT sale. This will be deducted from the sellers ADA amount.</li>
+               <li>In addition there are Cardano network transaction fees, which will vary over time, none of which are retained by <a href="https://grisemetamoonverse.io/.">https://grisemetamoonverse.io/.</a>. These fees will also be deduced from the sellers ADA amount.</li>
+               <li>For any abortive transactions for any reason the seller will receive their ADA back minus the network TX fee. It is simply not possible to avoid this fee.</li>
+               <li>Part Of the transactional proceeding will be shared with Mythic NFT holders.</li>
+            </ol>
+            </div>
+           
+        </div>
+        <div class="modal-footer justify-content-center">
+           <button
+           type="button"
+           class="tab-button"
+           data-dismiss="modal"
+              aria-label="Close"
+           >
+           OK
+           </button>
+        </div>
+     </div>
+  </div>
+</div>

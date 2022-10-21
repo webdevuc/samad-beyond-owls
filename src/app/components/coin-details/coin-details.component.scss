@@ -1,0 +1,63 @@
+.coin-details-navbar-div{
+    width: 100%;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    overflow: scroll;
+    overflow-x: scroll;
+}
+
+.coin-details-navbar-div::-webkit-scrollbar {
+    display: none;
+}
+
+.coin-navbar-item{
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+}
+
+.coin-navbar-item.active{
+    background-color: #6610f2;
+    color: #fff;
+    label{
+        cursor: pointer;
+    }
+}
+
+.coin-navbar-item:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    label{
+        cursor: pointer;
+    }
+  }
+
+.details-div{
+    margin: 0%;
+    padding: 20px;
+    width: 100%;
+    background-color: #3b4148;
+}
+
+.text-center{
+    color: #fff;
+}
+
+.access-btn-div{
+    padding: 20px 50px;
+  }
+  
+  .access-btn{
+    background-color: #6226D9;
+    border: 1px solid #6226D9;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 5px;
+  }
+  
+  .access-btn:hover{
+    border: 1px solid #fff;
+    cursor: pointer;
+  }

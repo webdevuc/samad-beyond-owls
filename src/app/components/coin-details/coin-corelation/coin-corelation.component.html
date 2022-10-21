@@ -1,0 +1,153 @@
+<div class="coin-correlation-div">
+    <div class="row ">
+        <!-- introduction part -->
+        
+        <div class="col-lg-12 card-outer-div" style="margin-top: 59px;">
+        
+            <h1 class="headingAi">Introduction AI Platform</h1>
+            <div class="main-div card-div" style="text-align: justify;">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <h1> How to use Grise Token AI-Indices</h1>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                    <h4 class="text-danger">NOTE: Indices Rebalancing Times Are an Approximation.</h4>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                        <div class="info-text">
+                        Sometimes we may update the indices when we make important updates or changes to technical details and
+                        calculations for an index. For example, we recently added a requirement for all indices to only hold
+                        cryptocurrencies with a daily trading volume greater than $500k. Each of these technical updates requires us
+                        to re-do the index. This will apply with future technical updates to indices.
+                            Furthermore, we have recently add features related to trading signal. This features is based on Deep Learning by which our stacker can take smart decision to avoid loss in trading. In AI-Price prediction algorithms we can see the future expected price up-to two months and take fast decision to in-out the market.
+                        As a result, the days and times are an approximation and indices may take 1-4 hours to fully update or on
+                        occasion be rebalanced more than their time-horizon to make important technical updates.
+                        </div>
+                    </div>
+                    <div class="col-lg-12 my-3">
+                    <h4 class="text-danger">DISCLAIMER
+                    Indices of crypto investments, like all types of investment-related information, are subject to risk; they can
+                    go down as well as up; and relying on such information can lead to losses as well as gains. Information about
+                    past performance is not necessarily indicative of future performance.
+                    </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 card-outer-div">
+            <h1 class="headingAi">Coin</h1>
+            <div class='main-div card-div'>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-12 col-lg-6 coin-detail-div d-flex">
+                        <img class="coin-image" src={{CoinDetails.image}}/>
+                        <div class="coin-name-div">
+                            <p class="coin-name">{{CoinDetails.id}}</p>
+                            <p class="coin-symbol">{{CoinDetails.symbol}}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 ">
+                        <span class="mr-3 coin-text">Choose Coin: </span>
+                        <input class="inputcoinsearch mb-3 " type="text" list="productList" name="product" [(ngModel)]='Coin'
+                        (change)="getCoinCorrelation(Coin,CorrelateCoin)" />
+    
+                        <datalist id="productList">
+                            <option *ngFor="let coin of Coins;" [value]="coin.id">
+                                {{coin.id}} ({{coin.symbol}})
+                            </option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="coin-details">
+                    <div class="d-flex justify-content-between">
+                        <span>Price</span>
+                        <span>{{CoinDetails.price}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Market Cap</span>
+                        <span>{{CoinDetails.market_cap}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Market Cap Rank</span>
+                        <span>{{CoinDetails.market_cap_rank}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Price Change 24h</span>
+                        <span>{{CoinDetails.price_change_24h}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Total Volume</span>
+                        <span>{{CoinDetails.total_volume}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 card-outer-div">
+            <h1 class="headingAi">Coorelate Coin</h1>
+            <div class='main-div card-div'>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-12 col-lg-6 coin-detail-div d-flex">
+                        <img class="coin-image" src={{CorrelateCoinDetails.image}}/>
+                        <div class="coin-name-div">
+                            <p class="coin-name">{{CorrelateCoinDetails.id}}</p>
+                            <p class="coin-symbol">{{CorrelateCoinDetails.symbol}}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <span class="mr-3 coin-text">Choose Coin: </span>
+                        <input class="inputcoinsearch mb-3 " type="text" list="correlateCoins" name="coin" [(ngModel)]='CorrelateCoin'
+                        (change)="getCoinCorrelation(Coin,CorrelateCoin)" />
+    
+                        <datalist id="correlateCoins">
+                            <option value="bitcoin">
+                                Bitcoin
+                            </option>
+                            <option value="cardano">
+                                Cardano
+                            </option>
+                            <option value="ethereum">
+                                Ethereum
+                            </option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="coin-details">
+                    <div class="d-flex justify-content-between">
+                        <span>Price</span>
+                        <span>{{CorrelateCoinDetails.price}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Market Cap</span>
+                        <span>{{CorrelateCoinDetails.market_cap}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Market Cap Rank</span>
+                        <span>{{CorrelateCoinDetails.market_cap_rank}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Price Change 24h</span>
+                        <span>{{CorrelateCoinDetails.price_change_24h}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Total Volume</span>
+                        <span>{{CorrelateCoinDetails.total_volume}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-outer-div">
+        <h1 class="headingAi">Coins Correlation</h1>
+        <div class="card-div">
+            <div class="d-flex justify-content-between correlation-values">
+                <p>PValue: {{PValue}}</p>
+                <p>Correlation Value: {{CorrelationValue}}</p>
+            </div>
+            <highcharts-chart class="custom-chart-styles"
+                [Highcharts]="highcharts"
+                [options]="CorrelationGraph">
+            </highcharts-chart>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="container-fluid bg-color px-0 video-part">
+    <div class="content_video ml-auto">
+      <div class="row h_custom_100">
+        <div class="w-100 h_custom_100 position-relative">
+          
+         <div class="leftsidebar position-relative d-none" [ngClass]="{'width-0': zeroWidth}">
+           <a  class="sidebar-button" (click)="hideSideBar()">
+             <div *ngIf="!hideArrow">
+              <i class="fas fa-chevron-left"></i>
+             </div>
+             <div *ngIf="hideArrow">
+              <i class="fas fa-chevron-right"></i>
+             </div>
+            
+           </a>
+          <div class="leftsidebar-container" *ngIf="hideleftside">
+              <div class="">
+                <div class="leftsidr-bar-top d-flex justify-content-between  align-items-center w-100">
+                  <h4 class="mb-0">Map</h4>
+                  <a href="javascript:void(0);">Clear</a>
+                </div>
+
+                <div class="check-box-map d-flex align-items-start flex-column border-top">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="forSale">
+                    <label class="form-check-label" for="forSale">
+                      For Sale
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="premium">
+                    <label class="form-check-label" for="premium">
+                      Premium
+                    </label>
+                  </div>
+                </div>
+
+
+                <div class="check-box-map d-flex align-items-start flex-column border-top">
+                  <h4 class="text-white mb-2">Find Land on <a href="https://cnft.io/" target="_blank">cnft.io</a></h4>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="radio1">
+                    <label class="form-check-label" for="radio1">
+                      1 x 1
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="radio2">
+                    <label class="form-check-label" for="radio2">
+                      3 x 3
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="radio3">
+                    <label class="form-check-label" for="radio3">
+                      6 x 6
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="radio4">
+                    <label class="form-check-label" for="radio4">
+                      12 x 12
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="radio5">
+                    <label class="form-check-label" for="radio5">
+                      24 x 24
+                    </label>
+                  </div>
+                </div>
+
+                <div class="check-box-map d-flex align-items-start flex-column border-top">
+                  <h4 class="text-white mb-2 d-flex justify-content-between w-100">Coordinates <span data-bs-toggle="tooltip" data-bs-placement="top" title="Filters all lands between min(x,y) and max(x,y). Min must be lesser than max one. "><i class="fas fa-info-circle"></i></span></h4>
+                  <div class="coordinates-input">
+                    <div>
+                      <label>Min (X,Y)</label>
+                      <input type="text" placeholder="" class="form-control" placeholder="0, 0" disabled/>
+                    </div>
+                    <div>
+                      <label>Max (X,Y)</label>
+                      <input type="text" placeholder="" class="form-control" placeholder="0, 0" disabled/>
+                    </div>
+                  </div>
+                  <button>Apply</button>
+                </div>
+
+                <div class="check-box-map d-flex align-items-start flex-column border-top">
+                  <h4 class="text-white mb-2 d-flex justify-content-between w-100">Wallet </h4>
+                  <div class="coordinates-input">
+                    
+                      <input type="text" placeholder="" class="form-control w-100" placeholder="ex: addr2b323567..........." disabled/>
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+         </div>
+          
+          <div class="moonmapbg position-relative ">
+            <div class="loader-box" [ngClass]="{'pl-3': zeroWidth}">
+              <div style="font-size: 30px; margin-top: 21%; line-height: normal; padding:0px 10px;" class="text-center mb-5">
+                coming soon
+                <div>
+                  <img class="sidebar-icon" src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/dashboard.png" alt="dashboard">
+                  <br>
+                  <div class="d-flex justify-content-center access-btn-div">
+                 
+                  </div>
+                </div>
+              
+            </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

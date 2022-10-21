@@ -1,0 +1,71 @@
+<div class="container-fluid bg-color">
+
+    <div class="row content">
+
+        
+        <div class="col-lg-12" id="Overview">
+            <div class="scrollable-title-container">
+                <!-- <h3 style="float: left;">12/500</h3> -->
+                <!-- <label class="scrollable-title mb-5">Trippy Owl</label> -->
+              </div>
+
+             <div class="row mt-5 mb-5">
+                <div class="empty-list mx-auto" *ngIf="hideassets && lists.length === 0">
+                    <img src="/assets/empty-bids.svg"/>
+                    <p>No assets yet</p>
+                   </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let list of lists" > 
+                    <!-- | paginate: { itemsPerPage: 12, currentPage: p } -->
+                    <div class="tab flex-column align-items-center">
+                        <!-- <h3 class="text-uppercase"> {{list.src.split('.')[0] }} </h3> -->
+
+                        
+                        
+                        <div class="trippy-box">
+                            <!-- <img
+                            class="img-responsive nft-img"
+                            alt="NFTs"
+                            src= {{list.imageLink}} 
+                            *ngIf="!spinnerloader"
+                            loading="lazy"
+                        />
+                        <i class="fas fa-spinner fa-spin" *ngIf="spinnerloader"></i> -->
+
+
+                        <img *ngIf="!spinnerloader" src="../../../assets/wait-loader.gif" class="loader-image">
+                        <!-- <img [hidden]="!spinnerloader" src="{{SERVER_URL}}/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img"> -->
+                        <img [hidden]="!spinnerloader" src="../../../assets/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img">
+                        </div>
+
+                        
+
+                        
+                
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center w-100" *ngIf="lists.length !== allRecords.length">
+                    <button (click)="loadMore()" class="btn btn-secondary tab-button border-0 pancakeswap" [ngClass]="{'notallowed': loadMoreBtn}" >Load More <div class="spinner-border spinner-border-sm" role="status" *ngIf="loadMoreBtn"></div></button>
+                    
+                </div>
+                
+                
+                
+
+                <!-- <div class="mx-auto">
+                    <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+                </div> -->
+                
+
+                
+             </div>
+
+             
+            
+            
+
+
+        </div>
+          
+    </div>
+</div>

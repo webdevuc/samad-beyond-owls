@@ -1,0 +1,57 @@
+<div class="container-fluid bg-color">
+
+  <div class="row content">
+
+    <div class="col-lg-3 dashboard-first">
+
+      <div style="display: grid">
+        <div class="dashboard_button">
+          <button type="button" routerLink="personal" queryParamsHandling="merge" routerLinkActive="active-tab"
+            class="btn btn-primary tab-button pr_button">Personal</button>
+        </div>
+        <!-- <div class="">
+          <button type="button" routerLink="liquidity" queryParamsHandling="merge"
+            class="btn btn-primary tab-button">Liquidity</button>
+        </div>
+        <div class="">
+          <button type="button" routerLink="refundhistory" queryParamsHandling="merge"
+            class="btn btn-primary tab-button ">Refund History</button>
+        </div>
+        <div class="">
+          <button type="button" routerLink="referrals" queryParamsHandling="merge"
+            class="btn btn-primary tab-button">Referrals</button>
+        </div> -->
+        <div class="">
+          <!-- <button type="button" routerLink="reward" queryParamsHandling="merge" routerLinkActive="active-tab"
+            class="btn btn-primary tab-button">Reward</button> -->
+        </div>
+        <div class="white-color">
+          <!-- <p>
+            Grise Market Cap
+            <span>
+              {{ marketCapValue | currency: "USD":"symbol":"1.5-5" }}
+            </span>
+          </p>
+          <p>
+            Grise Price
+            <span>
+              {{ priceData?.priceUSD | currency: "USD":"symbol":"1.5-5" }}
+            </span>
+          </p>
+          <p>
+            Grise Total Supply
+            <span>
+              {{ totalGriseSupply | number: "1.0-0" }}
+            </span>
+          </p> -->
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-12 dashboard-second">
+
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

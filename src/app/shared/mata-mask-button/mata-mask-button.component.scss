@@ -1,0 +1,31 @@
+::ng-deep .accNO {
+  font-size: 20px;
+  color: #fff;
+  background: #f4772e !important;
+  height: 55px;
+  border-radius: 10px;
+  margin: 10px 0px 10px 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+
+  &:hover {
+    background: #f4772e !important;
+  }
+  @media screen and (max-width: 1300px) {
+    margin: 10px 10px 10px 10px;
+  }
+  @media (min-width: 993px) and (max-width: 1300px) {
+    font-size: 14px;
+    height: 35px;
+  }
+}
+::ng-deep .without-accno {
+  line-height: normal;
+  &:hover {
+    background: #f4772e !important;
+    text-decoration: none;
+  }
+}

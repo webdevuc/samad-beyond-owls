@@ -1,0 +1,51 @@
+<div *ngIf="allowed_user == true">
+    <div class="coin-details-navbar-div">
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/summary" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Summary</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/market" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Market</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/prediction" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Prediction</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/google-trend" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Google Trend</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/tweets" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Tweets</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/technical-analysis" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Technical Analysis</label>
+        </a>
+        <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/correlation" queryParamsHandling="merge">
+            <label class="mb-0 app-item-text">Coin Correlation</label>
+        </a>
+    </div>
+    <app-my-loader></app-my-loader>
+    <div class="details-div">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div *ngIf="allowed_user == false">
+    <div style="font-size: 30px; margin-top: 21%; line-height: normal;" class="text-center mb-5">
+        AI will only be available to NFT holders and token stakers
+        <div>
+          <img class="sidebar-icon" src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/dashboard.png" alt="dashboard">
+          <br>
+          <div class="d-flex justify-content-center access-btn-div">
+            <span (click)="giveAccess()" class="access-btn">Access AI</span>
+          </div>
+        </div>
+    </div>
+    <!-- <div style="font-size: 30px; margin-top: 21%;" class="text-center mb-5">
+        Please hold grise NFT's to gain access
+        <div>
+            <a routerLinkActive="active" routerLink="/dashboard" queryParamsHandling="merge" onclick="closeNav()">
+            <img class="sidebar-icon" src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/dashboard.png" alt="dashboard">
+            <br>
+            <label class="mb-0 app-item-text">Dashboard</label>
+            </a>
+        </div>
+    </div> -->
+</div>

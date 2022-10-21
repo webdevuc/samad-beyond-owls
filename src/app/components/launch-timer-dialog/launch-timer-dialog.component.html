@@ -1,0 +1,26 @@
+<div *ngIf="showLaunchTimerDialog" style="color: black;" class="modal fade" id="launchTimerModal" data-backdrop="static"
+    data-keyboard="true" tabindex="-1" role="dialog" aria-labelledby="launchTimerModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content dialog-container">
+            <div class="modal-header">
+                <h5 class="modal-title" id="launchTimerModalLabel">
+                    Launch on mainnet</h5>
+                <h3 class="launch-date">Apr 30, 2021</h3>
+                <a class="btn-close" href="javascript:void(0)" #closebutton data-dismiss="modal">X</a>
+            </div>
+            <div class="modal-body" #container>
+                <div class="timebox">
+                    <button class="icon-box">
+                        <i class="fa fa-clock" style="font-size: 30px;" aria-hidden="true"></i>
+                    </button>
+                    <span class="digit">
+                        <span class="timer-text">{{ timeLeft }}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <h4 class="footer-text">Currently we have deployed on bsc Testnet</h4>
+            </div>
+        </div>
+    </div>
+</div>
