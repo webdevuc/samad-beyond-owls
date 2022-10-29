@@ -10,7 +10,6 @@
     "strictPropertyInitialization": false,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
     "noImplicitReturns": true,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,

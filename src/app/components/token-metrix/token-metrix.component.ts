@@ -46,8 +46,7 @@ export class TokenMetrixComponent implements OnInit {
   min_cap: number;
   max_cap: number;
   limit: number;
-  // url = 'https://etherkat.com/get-best-coin`;
-  url = 'https://etherkat.com'
+  url = `https://api.ethama.finance/get-best-coin`;
   items: any  = [];
   public pieChartOptions: any = {
   responsive: true,
@@ -326,7 +325,7 @@ doughnutChartLabels: Label[] = ['Money IN-OUT','Largest Transaction','User Growt
   getCoinPrediction(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("coin", coinName);
-    this.http.get(this.url+`/get-coin-predict`, {
+    this.http.get(`https://api.ethama.finance/get-coin-predict`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -556,7 +555,7 @@ staker_fuction(){
   CustomOnInit(){
     this.getCoinPrediction('bitcoin')
     // get coin names for dropdown options
-    this.http.get(this.url+'/get-coin-name').subscribe(Response =>{
+    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response =>{
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
@@ -567,7 +566,7 @@ staker_fuction(){
 
 
     // all coins api call
-  //   this.http.get(this.url+'/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
+  //   this.http.get('https://api.ethama.finance/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
   //     // console.log(Response);
   //     let resSTR = JSON.stringify(Response);
   //     let resJSON = JSON.parse(resSTR);
@@ -576,7 +575,7 @@ staker_fuction(){
   // })
 
 // Trending coins api call
-  this.http.get(this.url+'/get-trending-coin').subscribe(Response =>{
+  this.http.get('https://api.ethama.finance/get-trending-coin').subscribe(Response =>{
       // console.log(Response);
       let trendResSTR = JSON.stringify(Response);
       let trendResJSON = JSON.parse(trendResSTR);
@@ -588,7 +587,7 @@ staker_fuction(){
 let headers = new HttpHeaders();
 let params = new HttpParams()
 .set("coin", "bitcoin")
-this.http.get(this.url+'/get-coin-predict',{headers: headers, params: params, responseType: 'text' }).toPromise().then(Response =>{
+this.http.get('https://api.ethama.finance/get-coin-predict',{headers: headers, params: params, responseType: 'text' }).toPromise().then(Response =>{
       // console.log(Response);
 
 
@@ -681,7 +680,7 @@ this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intothebloc
     if (this.page_number >1)
     {
       this.page_number -= 1
-      this.http.get(this.url+'/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
+      this.http.get('https://api.ethama.finance/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
@@ -690,7 +689,7 @@ this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intothebloc
   })
     }
     else{
-      this.http.get(this.url+'/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
+      this.http.get('https://api.ethama.finance/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
@@ -707,7 +706,7 @@ this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intothebloc
   if (this.page_number <=900)
   {
     this.page_number += 1
-    this.http.get(this.url+'/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
+    this.http.get('https://api.ethama.finance/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
     // console.log(Response);
     let resSTR = JSON.stringify(Response);
     let resJSON = JSON.parse(resSTR);
@@ -716,7 +715,7 @@ this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intothebloc
 })
   }
   else{
-    this.http.get(this.url+'/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
+    this.http.get('https://api.ethama.finance/get-all-coin?page='+this.page_number+'&per_page=10').subscribe(Response =>{
     // console.log(Response);
     let resSTR = JSON.stringify(Response);
     let resJSON = JSON.parse(resSTR);
@@ -760,7 +759,7 @@ this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intothebloc
     .set("limit", "10")
     .set("time_frame", this.time_frame)
     .set("time_win", this.time_win); //Create new HttpParams
-    this.http.get(this.url+'/get-best-coin', {headers: headers, params: params, responseType: 'text' }).toPromise().then(data => {
+    this.http.get(this.url, {headers: headers, params: params, responseType: 'text' }).toPromise().then(data => {
       let data_json = JSON.parse( data )
       // let CoinsData:any = [];
       // console.log(data_json)

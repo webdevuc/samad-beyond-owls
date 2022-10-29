@@ -20,7 +20,7 @@ export class TrippyOwlDetailComponent implements OnInit {
   allRecords: any = [];
   empty = false;
 
-  spinnerloader = true;
+  spinnerloader = false;
   hideassets = false;
   loadMoreBtn = false;
 
@@ -32,7 +32,7 @@ export class TrippyOwlDetailComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const resp: any = await new Promise(async (resolve, reject) => {
+    /*const resp: any = await new Promise(async (resolve, reject) => {
       const data = await this.APIServices.trippyOwlList();
       resolve(data)
     });
@@ -45,7 +45,7 @@ export class TrippyOwlDetailComponent implements OnInit {
     setTimeout(() => {
       this.hideassets = true;
     }, 1000);
-
+*/
   }
 
   loadMore() {

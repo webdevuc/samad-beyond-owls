@@ -25,8 +25,6 @@ export class NFTsAPIServices {
   public totalNamiWalletNFT$: BehaviorSubject<any>;
   // Handle Claim button loading
   public claimButtonLoading$: BehaviorSubject<any>;
-  // Selected Wallet
-  public selectedWallet$: BehaviorSubject<any>;
 
 
   public set loginData(_value: any) {
@@ -63,7 +61,7 @@ export class NFTsAPIServices {
   }
   // END: Total Nami wallet's NFTs
 
-
+  
   // Handle Claim button loading
   public set handleClaimBtnLoading(_value: any) {
     console.log("handleClaimBtnLoading :: =>> ", _value);
@@ -75,23 +73,11 @@ export class NFTsAPIServices {
   }
   // END: Handle Claim button loading
 
-  // Handle Selected wallet
-  public set handleSelectedWallet(_value: any) {
-    console.log("handSeselectedWallet :: =>> ", _value);
-    this.selectedWallet$.next(_value.data);
-  }
-
-  public get handleSelectedWallet$() {
-    return this.selectedWallet$.asObservable();
-  }
-  // END: Handle Selected wallet
-
   constructor(private readonly http: HttpClient) {
     this.userLoginData$ = new BehaviorSubject<any>(false);
     this.userAuthToken$ = new BehaviorSubject<any>(false);
     this.totalNamiWalletNFT$ = new BehaviorSubject<any>(false);
     this.claimButtonLoading$ = new BehaviorSubject<any>(false);
-    this.selectedWallet$ = new BehaviorSubject<any>('nami');
     // Nothing
   }
 

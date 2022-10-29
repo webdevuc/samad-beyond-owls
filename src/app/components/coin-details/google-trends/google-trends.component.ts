@@ -132,7 +132,7 @@ export class GoogleTrendsComponent implements OnInit {
 
   getGoogleTrend(){
     const body = { 'coinName': this.currentProduct };
-    this.http.post('https://etherkat.com/get_google_trends', body).subscribe(Response => {
+    this.http.post('https://api.ethama.finance/get_google_trends', body).subscribe(Response => {
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
       if(resJSON.code == 200){
@@ -251,7 +251,7 @@ export class GoogleTrendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGoogleTrend()
-    this.http.get('https://etherkat.com/get-coin-name').subscribe(Response => {
+    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);

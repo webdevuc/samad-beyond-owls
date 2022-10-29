@@ -28,7 +28,7 @@ export class CoinMarketComponent implements OnInit {
   getCoinMarket(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("exchange", coinName)
-    this.http.get(`https://etherkat.com/get-detail-exchange?exchange=${coinName}`, {
+    this.http.get(`https://api.ethama.finance/get-detail-exchange?exchange=${coinName}`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -43,7 +43,7 @@ export class CoinMarketComponent implements OnInit {
   getExchanges(){
     let headers = new HttpHeaders();
     let params = new HttpParams()
-    this.http.get(`https://etherkat.com/get-top-exchange`, {
+    this.http.get(`https://api.ethama.finance/get-top-exchange`, {
       headers: headers,
       params: params,
       responseType: 'text'

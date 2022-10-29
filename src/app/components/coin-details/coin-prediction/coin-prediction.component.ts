@@ -151,7 +151,7 @@ export class CoinPredictionComponent implements OnInit {
   getCoinPrediction(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("coin", coinName)
-    this.http.get(`https://etherkat.com/get-coin-predict`, {
+    this.http.get(`https://api.ethama.finance/get-coin-predict`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -271,7 +271,7 @@ export class CoinPredictionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoinPrediction("bitcoin")
-    this.http.get('https://etherkat.com/get-coin-name').subscribe(Response => {
+    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);

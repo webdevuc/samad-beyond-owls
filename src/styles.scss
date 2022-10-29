@@ -300,3 +300,50 @@ button:focus,
 .title-tripy {
   padding: 0px 40px;
 }
+
+.svg-container {
+  width: 4rem;
+  height: 5rem;
+}
+
+.cdk-overlay-pane .mat-dialog-container {
+  background-color: inherit;
+}
+
+.opacity-20 {
+  opacity: .2;
+  color: white;
+}
+
+.icon-container {
+  min-width: 5em;
+}
+#wallet-options {
+
+}
+.mat-list-option:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+
+.wallet {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+  border-radius: 10px;
+  margin: 5px;
+  min-width: 200px;
+  margin: 0;
+  font-size: 14px;
+  height: 3em;
+}
+
+.md-aptos-wallet {
+  display: none;
+}
+@media (max-width: 1439px) and (min-width: 992px) {
+  .aptos-caption {
+    visibility: hidden;
+    //display: none !important;
+  }
+  .md-aptos-wallet {
+    display: flex !important;
+  }
+}

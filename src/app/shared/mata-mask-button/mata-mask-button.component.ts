@@ -99,7 +99,7 @@ export class MataMaskButtonComponent implements OnInit {
     this.getTokenData();
     let header = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
     this.http
-      .get("https://etherkat.com/get-top-coin-grise")
+      .get("https://api.ethama.finance/get-top-coin-grise")
       .subscribe((Response) => {
         // console.log(Response);
         let resSTR = JSON.stringify(Response);

@@ -1,7 +1,6 @@
 const URL = 'https://backend.grisemetamoonverse.io';
 export const environment = {
   production: true,
-  url:'https://etherkat.com',
   uniswapUrl: 'https://uniswap.org/',
   tokenDayDataAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
   marketCapPairAddress: '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11',

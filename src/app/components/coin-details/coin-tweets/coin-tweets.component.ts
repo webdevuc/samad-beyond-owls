@@ -55,7 +55,7 @@ export class CoinTweetsComponent implements OnInit {
   getCoinTweets(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("coin", coinName)
-    this.http.get(`https://etherkat.com/get-sentiment-coin?coin=${coinName}`, {
+    this.http.get(`https://api.ethama.finance/get-sentiment-coin?coin=${coinName}`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -149,7 +149,7 @@ export class CoinTweetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoinTweets("bitcoin")
-    this.http.get('https://etherkat.com/get-coin-name').subscribe(Response => {
+    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);

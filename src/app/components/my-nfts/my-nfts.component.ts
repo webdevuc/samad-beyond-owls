@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from '../../helper/spinner/spinner.service';
 import { environment as env } from '../../../environments/environment';
 import Loader from '../../services/nami-loader.service';
-import CCLoader from '../../services/ccvault-minting.service';
 
 
 @Component({
@@ -21,14 +20,12 @@ import CCLoader from '../../services/ccvault-minting.service';
 })
 export class MyNftsComponent implements OnInit {
   SERVER_URL = env.SERVER_URL;
-
+  
   allMyNFTGroups: NFTContentGroupData[] = [];
   selectedNft: any;
   authUser: any = null;
   hideAssets = false;
   spinnerLoader = true;
-  selectedCaardanoWallet: any = 'nami';
-
   constructor(
     private readonly APIServices: NFTsAPIServices,
     private readonly router: Router,
@@ -38,41 +35,23 @@ export class MyNftsComponent implements OnInit {
   cancelbtn: boolean = false;
   async ngOnInit() {
 
-    this.APIServices.userLoginData$.subscribe(async (data: any) => {
+    this.APIServices.userLoginData$.subscribe(async (data) => {
       // console.log(data, 'My NFT component');
       this.authUser = data;
-
-      // Get selected wallet
-      this.APIServices.selectedWallet$.subscribe(async (data: any) => {
-        console.log(data, 'selectedWallet Home component');
-        this.selectedCaardanoWallet = data;
-      });
 
       this.allMyNFTGroups = [];
 
       try {
         const Nami = await Loader.Cardano();
-        const CCVault = await CCLoader.Cardano();
-
-        // console.log("============ START ==============");
-        const balanceInfo = await CCVault.getBalance();
-        const CCTokensList = balanceInfo.assets;
-        // console.log(CCTokensList, "==== List of UTXO :: => ");
-        // console.log("============ END ==============", await Nami.getAssets())
 
         const namiWalletAssetsList = await Nami.getAssets();
-        let namiWalletTokens: any = [];
-        if (this.selectedCaardanoWallet === 'ccvault') {
-          namiWalletTokens = CCTokensList.map((item: any) => `${item.policy}.${item.name}`);
-        } else {
-          namiWalletTokens = namiWalletAssetsList.map((item: any) => item.unit);
-        }
-        let paymentAddr = this.selectedCaardanoWallet === 'ccvault' ? await CCLoader.getAddress() : await Loader.CardanoWalletAddress(); // await Nami.getAddress();
+        const namiWalletTokens = namiWalletAssetsList.map((item: any) => item.unit);
+        let paymentAddr = await Loader.CardanoWalletAddress(); // await Nami.getAddress();
         const walletAddr = paymentAddr;
 
         if (walletAddr) {
 
-          const checkWallet = this.selectedCaardanoWallet === 'ccvault' ? await CCLoader.verifyWallet(0, this.authUser.type) : await Loader.verifyWallet(0, this.authUser.type);
+          const checkWallet = await Loader.verifyWallet(0, this.authUser.type);
           // console.log("clickMint verifyWallet => ", checkWallet);
 
           if (checkWallet !== true) {
@@ -82,7 +61,7 @@ export class MyNftsComponent implements OnInit {
 
           this.APIServices.myNftsList(
             {
-              walletAddress: paymentAddr,
+              walletAddress: await Loader.CardanoWalletAddress(),
               action: 'getUserNfts'
             }
           )
@@ -90,7 +69,7 @@ export class MyNftsComponent implements OnInit {
 
               let userNftsList = res.data ? res.data : [];
               const list: any = [];
-              this.spinnerLoader = false;
+              this.spinnerLoader =  false;
               userNftsList.map(async (item: any) => {
                 if ((namiWalletTokens.includes(item.mintToken) || item.status === 'list' || item.status === 'cancelPending') && (item.nftId && item.nftId.nftType !== 'trippy-owl')) {
                   list.push(item);
@@ -102,19 +81,19 @@ export class MyNftsComponent implements OnInit {
                   id: 1,
                   contentGroup: NFTContentGroup.Mythic,
                   contentHeader: "My NFTs",
-                  contentData: list.map((item: any) => {
+                  contentData: list.map( (item: any) => {
                     const nft = item.nftId;
-
+                    
                     return {
                       contentType: (nft && nft.nftType === "mythic") ? NFTContentType.Gif : NFTContentType.Image,
                       contentPath: nft && nft.imageLink, //? nft.imageLink : `assets/${nft && nft.nftType ? nft.nftType : 'type'}/${nft && nft.src ? nft.src : 'src'}`,
                       nftObj: item,
-                      src: nft && nft.nftType === 'trippy-owl-single' ? `${this.SERVER_URL}/trippy-owl/${nft.src}` : null
+                      src: nft && nft.nftType === 'trippy-owl-single' ? `${this.SERVER_URL}/trippy-owl/${nft.src}` : null 
                     }
                   }),
                 },
               ];
-
+              
             })
             .catch(async (err) => {
               console.log("Error is: ", err);
@@ -127,7 +106,7 @@ export class MyNftsComponent implements OnInit {
 
     setTimeout(() => {
       this.hideAssets = true;
-    }, 5000);
+     }, 5000);
 
   }
 

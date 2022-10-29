@@ -3,10 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 // const URL = 'https://f370c13eceed.ngrok.io';
-const URL = 'http://localhost:4040';
+const URL = 'https://backend.grisemetamoonverse.io';
 
 export const environment = {
-  url:'https://etherkat.com',
   production: false,
   uniswapUrl: "https://uniswap.org/",
   tokenDayDataAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
@@ -32,4 +31,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

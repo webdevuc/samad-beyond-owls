@@ -1,12 +1,18 @@
 <div class="container-fluid bg-color">
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 70vh">
+        <h1>Collection will be visible on the launch day</h1>
+        <a class="btn btn-primary wallet" href="/#/nft-collection" style="min-width: 6.5em; height: 2.5em">
+            Go Back
+        </a>
+    </div>
 
-    <div class="row content">
+    <!--<div class="row content">
 
         
         <div class="col-lg-12" id="Overview">
             <div class="scrollable-title-container">
-                <!-- <h3 style="float: left;">12/500</h3> -->
-                <!-- <label class="scrollable-title mb-5">Trippy Owl</label> -->
+                &lt;!&ndash; <h3 style="float: left;">12/500</h3> &ndash;&gt;
+                &lt;!&ndash; <label class="scrollable-title mb-5">Trippy Owl</label> &ndash;&gt;
               </div>
 
              <div class="row mt-5 mb-5">
@@ -16,25 +22,25 @@
                    </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let list of lists" > 
-                    <!-- | paginate: { itemsPerPage: 12, currentPage: p } -->
+                    &lt;!&ndash; | paginate: { itemsPerPage: 12, currentPage: p } &ndash;&gt;
                     <div class="tab flex-column align-items-center">
-                        <!-- <h3 class="text-uppercase"> {{list.src.split('.')[0] }} </h3> -->
+                        &lt;!&ndash; <h3 class="text-uppercase"> {{list.src.split('.')[0] }} </h3> &ndash;&gt;
 
                         
                         
                         <div class="trippy-box">
-                            <!-- <img
+                            &lt;!&ndash; <img
                             class="img-responsive nft-img"
                             alt="NFTs"
                             src= {{list.imageLink}} 
                             *ngIf="!spinnerloader"
                             loading="lazy"
                         />
-                        <i class="fas fa-spinner fa-spin" *ngIf="spinnerloader"></i> -->
+                        <i class="fas fa-spinner fa-spin" *ngIf="spinnerloader"></i> &ndash;&gt;
 
 
                         <img *ngIf="!spinnerloader" src="../../../assets/wait-loader.gif" class="loader-image">
-                        <!-- <img [hidden]="!spinnerloader" src="{{SERVER_URL}}/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img"> -->
+                        &lt;!&ndash; <img [hidden]="!spinnerloader" src="{{SERVER_URL}}/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img"> &ndash;&gt;
                         <img [hidden]="!spinnerloader" src="../../../assets/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img">
                         </div>
 
@@ -52,9 +58,9 @@
                 
                 
 
-                <!-- <div class="mx-auto">
+                &lt;!&ndash; <div class="mx-auto">
                     <pagination-controls (pageChange)="p = $event" ></pagination-controls>
-                </div> -->
+                </div> &ndash;&gt;
                 
 
                 
@@ -67,5 +73,5 @@
 
         </div>
           
-    </div>
+    </div>-->
 </div>

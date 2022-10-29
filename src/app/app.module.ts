@@ -49,6 +49,8 @@ import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptors/loader-interceptor.service';
 import { GoogleTrendsComponent } from './components/coin-details/google-trends/google-trends.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { ConnectWalletDialogComponent } from './components/connect-wallet-dialog/connect-wallet-dialog.component';
+import {MatListModule} from "@angular/material/list";
 //import { LazyLoadImageModule } from 'ng-lazyload-image'; 
 
 @NgModule({
@@ -80,10 +82,11 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
     MyLoaderComponent,
     GoogleTrendsComponent,
     AdminpanelComponent,
-    
+    ConnectWalletDialogComponent,
   ],
   imports: [
     FormsModule,
+    MatListModule,
     HttpClientModule,
     MatDialogModule,
     CountdownModule,

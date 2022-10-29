@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from '../../helper/spinner/spinner.service';
 import { environment as env } from '../../../environments/environment';
 import Loader from '../../services/nami-loader.service';
-import CCLoader from '../../services/ccvault-minting.service';
 import MintLoader from '../../services/nami-minting-243.service';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 @Component({
@@ -25,8 +24,6 @@ export class NftCollectionComponent implements OnInit {
   KEY = 'nfttime'
   DEFAULT = 120
   circleLoader: boolean = false;
-  selectedCaardanoWallet: any = 'nami';
-
   config: CountdownConfig = { leftTime: this.DEFAULT, notify: 0, format: 'm:s' }
   constructor(
     private readonly APIServices: NFTsAPIServices,
@@ -47,12 +44,6 @@ export class NftCollectionComponent implements OnInit {
 
 
     this.buttondisnft = Boolean(localStorage.getItem('buttonvaluenft'));
-
-    // Get selected wallet
-    this.APIServices.selectedWallet$.subscribe((data) => {
-      console.log(data, 'selectedWallet Home component');
-      this.selectedCaardanoWallet = data;
-    });
 
     this.APIServices.userLoginData$.subscribe((data) => {
       // console.log(data, '@dadadadad nft collection component');
@@ -147,16 +138,23 @@ export class NftCollectionComponent implements OnInit {
   }
 
   clickMint = async () => {
+    // if (!this.authUser) return;
+
+    // console.log(this.mintNftObj, 'this.mintNftObjakldjfa;lksdjfas')
+    // ***
+    // verify wallet validations
+    // check availbele tokens for minting
+    // nami-wallet minting
+    // update db records
+    // ***
+    //  this.circleLoader = true;
 
     try {
 
+      // const tokenAmmount = Number(this.mintNftObj.amount)
       const MintNami = await MintLoader.Cardano();
-      let checkWallet: any = false;
-      if (this.selectedCaardanoWallet === 'ccvault') {
-        checkWallet = await CCLoader.verifyWallet(0, this.authUser.type);
-      } else {
-        checkWallet = await Loader.verifyWallet(0, this.authUser.type);
-      }
+
+      const checkWallet = await Loader.verifyWallet(0, this.authUser.type);
       console.log("clickMint verifyWallet => ", checkWallet);
 
       if (checkWallet !== true) {
@@ -164,13 +162,16 @@ export class NftCollectionComponent implements OnInit {
         return
       }
 
-      const walletAddress = this.selectedCaardanoWallet === 'ccvault' ? await CCLoader.getAddress() : await Loader.CardanoWalletAddress();
-      console.log("walletAddress ", walletAddress);
+        // if (localStorage.getItem("isCollectionLaunched") || localStorage.getItem("isCollectionLaunched") === "1") {
+        // // if (this.authUser.type !== "dev") {
+        //   this.toastr.info("Comming Soon!")
+        //   return
+        // }
 
       const nftResp: any = await new Promise(async (resolve, reject) => {
         const resp = await this.APIServices.verifyClaimedCollection({
           action: 'trippy-owl',
-          walletAddress
+          walletAddress: await Loader.CardanoWalletAddress()
         });
         resolve(resp)
       });
@@ -182,13 +183,24 @@ export class NftCollectionComponent implements OnInit {
       }
 
       const requiredAmount = nftResp.isFreeClaimable ? this.ASSET_TRANSFER_PRICE : this.TRIPPY_OWL_COLLECTION_PRICE + this.ASSET_TRANSFER_PRICE;
-      const getBalance = this.selectedCaardanoWallet === 'ccvault' ? await Loader.getWalletBalance() : await CCLoader.getBalance();
+      const getBalance = await Loader.getWalletBalance();
       console.log("Wallet balance is: ", getBalance);
       if (!getBalance) { this.toastr.warning('Something went wrong to get wallet balance'); return; }
       if (await Loader.convertToADA(getBalance) < requiredAmount) { this.toastr.warning('Insufficient balance'); return; }
 
       this.handleClaimButton(true);
+
+      // const newPolicy = await MintLoader.createPolicy();
+      // console.log("newPolicy ", JSON.stringify(newPolicy));
       const recipients = [
+        // { // mint nft against connected wallet
+        //   address: await MintNami.getAddress(),
+        //   amount: this.ASSET_TRANSFER_PRICE,
+        //   mintedAssets: [{
+        //     assetName: this.mintNftObj.assetKey, quantity: "1", policyId: newPolicy.id,
+        //     policyScript: newPolicy.script
+        //   }]
+        // },
         { // send nft amount to admin
           address: this.adminNamiWalletAddress,
           // claim free if exist into airdrop addresses
@@ -196,19 +208,27 @@ export class NftCollectionComponent implements OnInit {
         }
       ];
 
+      // const mintMetadata: any = {
+      //   "721": {
+      //     [newPolicy.id]: {
+      //       [this.mintNftObj.assetKey]: {
+      //         name: this.mintNftObj.assetKey,
+      //         description: 'GRISE NFT Marketplace.', // `GRISE Metamoonverse NFT Marketplace. https://grisemetamoonverse.io/nft`,
+      //         image: this.mintNftObj.imageUrl,
+      //         authors: ["GRISE"] // GRISEMETAMOONVERSE
+      //       }
+      //     }
+      //   }
+      // };
+      // console.log("mintMetadata => ", JSON.stringify(mintMetadata));
       let txHash: any = '';
       try { // T#1
         console.log("======================= Start Tx ==========================")
-        if (this.selectedCaardanoWallet === 'ccvault') {
-          txHash = await CCLoader.buildFullTransaction(recipients);
-        } else {
-          txHash = await MintLoader.buildFullTransaction(recipients);
-        }
-        console.log("======================= End Tx ==========================")
+        txHash = await MintLoader.buildFullTransaction(recipients);
+        console.log("======================= End Tx ==========================", txHash)
 
         if (txHash && txHash.error) {
           this.toastr.error("Transaction Failed");
-          // this.disablebtn = false;
           // this.circleLoader = false;
           this.handleClaimButton(false);
           return
@@ -218,6 +238,8 @@ export class NftCollectionComponent implements OnInit {
         this.handleClaimButton(false);
         if (err && err.info) {
           this.toastr.info(err.info);
+          // this.circleLoader = false;
+          console.log(err.info, "error test");
           return
 
         }
@@ -225,57 +247,116 @@ export class NftCollectionComponent implements OnInit {
           this.toastr.warning("Insufficient balance");
           return;
         }
+        // else {
+
+        //   console.log("mintMetadata 1:: ", JSON.stringify(mintMetadata));
+        //   try { // T#2
+        //     delete mintMetadata["721"][newPolicy.id][this.mintNftObj.assetKey].description;
+        //     txHash = await MintLoader.buildFullTransaction(recipients, mintMetadata);
+        //   } catch (err2) {
+        //     console.log("err2: ", err2);
+        //     try { // T#3
+        //       mintMetadata["721"][newPolicy.id][this.mintNftObj.assetKey].image = this.mintNftObj.imageLink;
+        //       txHash = await MintLoader.buildFullTransaction(recipients, mintMetadata);
+        //     } catch (err3) {
+        //       console.log("err3: ", err3);
+        //       try { // T#4
+        //         delete mintMetadata["721"][newPolicy.id][this.mintNftObj.assetKey].image;
+        //         // mintMetadata["721"][newPolicy.script] = mintMetadata["721"][newPolicy.id];
+        //         // delete mintMetadata["721"][newPolicy.id];
+        //         // console.log("mintMetadata 3:: ", JSON.stringify(mintMetadata));
+        //         txHash = await MintLoader.buildFullTransaction(recipients, mintMetadata);
+        //       } catch (err4) {
+        //         console.log("err4: ", err4);
+        //         txHash = await MintLoader.buildFullTransaction(recipients);
+        //       }
+        //     }
+
+        //   }
+        // }
       }
       console.log("mintTransaction ", txHash);
 
+      // const txHash = await Nami.send({
+      //   address: this.adminNamiWalletAddress, // ADMIN ADDRESS
+      //   amount: tokenAmmount
+      // })
       if (!txHash) {
+        // this.toastr.error("Failed to claim trippy owl collection");
         this.toastr.error("Unable to proceed this transaction, Try again!");
+        // this.circleLoader = false;
         this.handleClaimButton(false);
       } else {
         // this.toastr.success(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
         const data = {
           isFreeClaimable: nftResp.isFreeClaimable,
-          walletAddress // : await Loader.CardanoWalletAddress() // this.authUser.walletAddr
+          walletAddress: await Loader.CardanoWalletAddress(), //this.authUser.walletAddr
+          // nftId: this.mintNftObj._id,
+          // mintToken: `${newPolicy.id}.${this.mintNftObj.assetKey}`,
+          // nftQuantity: 1
         }
 
         this.APIServices.mintTrippyOwl(data)
           .then((res) => {
-
+            // this.btnid = ""
             if (res.status) {
               var currentdate: any = new Date();
               localStorage.setItem("claimStartTime", currentdate);
-
+              // this.circleLoader = false;
+              this.handleClaimButton(false);
+              // this.disablebtn = false;
+              // this.mintNftObj.quantity = String(Number(this.mintNftObj.quantity) - 1);
               this.toastr.success(`TxHash is: ${txHash}`, res.msg);
               this.buttondisnft = true;
               localStorage.setItem("buttonvaluenft", `${this.buttondisnft}`)
-              this.handleClaimButton(false);
               setTimeout(() => {
                 this.buttondisnft = false;
-              }, 300000);
-
+                localStorage.removeItem(`${this.buttondisnft}`)
+              }, 120000);
             } else {
-              // this.toastr.success(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
+              // this.toastr.error(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
               this.toastr.error(res.msg);
               // this.circleLoader = false;
               this.handleClaimButton(false);
             }
           })
           .catch((err) => {
-            // this.toastr.success(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
+            // this.toastr.error(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
             this.toastr.error("Something went wrong");
             console.log("Error is: ", err);
+            // this.circleLoader = false;
             this.handleClaimButton(false);
           });
       }
 
     } catch (error: any) {
+      // this.circleLoader = false;
+      this.handleClaimButton(false);
       console.log("Error :: ", error);
       if (error && error.info) {
         this.toastr.info(error.info);
       } else {
         this.toastr.error("Something went wrong");
+        // this.circleLoader = false;
+
       }
       this.handleClaimButton(false);
     }
   }
+
+  // handleEvent(ev: CountdownEvent) {
+  //   //console.log(ev, "envkfadfja;lsdjf")
+  //   if (ev.action === 'notify') {
+  //     // Save current value
+  //     localStorage.setItem(this.KEY, `${ev.left / 1000}`);
+  //   }
+  //   if (ev.action === 'done') {
+  //     localStorage.removeItem("buttonvaluenft")
+  //     localStorage.removeItem("nfttime")
+  //     //localStorage.clear();
+  //     this.buttondisnft = false;
+  //   }
+
+  // }
+
 }
