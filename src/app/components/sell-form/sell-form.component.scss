@@ -402,7 +402,7 @@ input::-webkit-datetime-edit-fields-wrapper {
 
 ::ng-deep mat-select-trigger {
   // background-image: url("/src/assets/ada.svg");
-  background-image: url("assets/ada.svg");
+  background-image: url("../../../assets/ada.svg");
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -420,7 +420,7 @@ input::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   color: #000;
   .cardino-icon {
-    background-image: url("assets/ada.svg");
+    background-image: url("../../../assets/ada.svg");
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
