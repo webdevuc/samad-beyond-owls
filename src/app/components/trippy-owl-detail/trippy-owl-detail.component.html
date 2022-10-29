@@ -39,9 +39,9 @@
                         <i class="fas fa-spinner fa-spin" *ngIf="spinnerloader"></i> &ndash;&gt;
 
 
-                        <img *ngIf="!spinnerloader" src="../../../assets/wait-loader.gif" class="loader-image">
+                        <img *ngIf="!spinnerloader" src="assets/wait-loader.gif" class="loader-image">
                         &lt;!&ndash; <img [hidden]="!spinnerloader" src="{{SERVER_URL}}/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img"> &ndash;&gt;
-                        <img [hidden]="!spinnerloader" src="../../../assets/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img">
+                        <img [hidden]="!spinnerloader" src="assets/trippy-owl/{{list.src}}" (load)="spinnerloader = true" class="img-responsive nft-img">
                         </div>
 
                         

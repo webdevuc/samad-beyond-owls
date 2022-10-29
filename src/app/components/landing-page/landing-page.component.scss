@@ -290,14 +290,14 @@
             right: 13px;
             top: 50%;
             content: "";
-            background-image: url("../../../assets/downicon.svg");
+            background-image: url("assets/downicon.svg");
             width: 24px;
             height: 24px;
             transform: translateY(-50%);
           }
           &[aria-expanded="true"] {
             &:before {
-              background-image: url("../../../assets/upicon.svg");
+              background-image: url("assets/upicon.svg");
             }
           }
         }
