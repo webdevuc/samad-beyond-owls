@@ -113,6 +113,14 @@ button:focus,
 .sub-end-part {
   padding-top: 125px;
 }
+.bg-color {
+  min-height: 100%;
+  max-width: 100%;
+  background-color: #3b4148;
+}
+.bg-gradient {
+  background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
+}
 @media (max-width: 992px) {
   .sub-end-part {
     padding-top: 10px;
