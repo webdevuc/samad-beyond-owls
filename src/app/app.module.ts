@@ -51,6 +51,7 @@ import { GoogleTrendsComponent } from './components/coin-details/google-trends/g
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { ConnectWalletDialogComponent } from './components/connect-wallet-dialog/connect-wallet-dialog.component';
 import {MatListModule} from "@angular/material/list";
+import { OwlStoryComponent } from './components/owl-story/owl-story.component';
 //import { LazyLoadImageModule } from 'ng-lazyload-image'; 
 
 @NgModule({
@@ -83,6 +84,7 @@ import {MatListModule} from "@angular/material/list";
     GoogleTrendsComponent,
     AdminpanelComponent,
     ConnectWalletDialogComponent,
+    OwlStoryComponent,
   ],
   imports: [
     FormsModule,

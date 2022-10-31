@@ -44,6 +44,7 @@ import { CoinTechnicalAnalysisComponent } from './components/coin-details/coin-t
 import { CoinCorelationComponent } from './components/coin-details/coin-corelation/coin-corelation.component';
 import { GoogleTrendsComponent } from './components/coin-details/google-trends/google-trends.component'
 import { AdminpanelComponent } from "./components/adminpanel/adminpanel.component";
+import { OwlStoryComponent } from "./components/owl-story/owl-story.component";
 
 const material = [MatTabsModule, ClipboardModule, MatTooltipModule];
 const routes: Routes = [
@@ -102,6 +103,7 @@ const routes: Routes = [
   { path: "owly-bird", component: OwlybirdComponent },
   { path: "trippy-owl-listing", component: TrippyOwlDetailComponent },
   { path: "adminpanel", component: AdminpanelComponent },
+  { path: "owl-story", component: OwlStoryComponent },
   { path: "**", redirectTo: "dashboard", pathMatch: "full" },
 ];
 
