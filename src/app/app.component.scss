@@ -7,11 +7,13 @@
 .btn:focus {
   outline: none !important;
 }
-.soical_icon ul li {display: inline-block;padding: 0 0 0 20px;}
+.soical_icon ul li {
+  list-style: none!important;
+}
 
 .soical_icon ul {padding: 0;}
 .soical_icon ul li a img {
-  width: 40px;
+  width: 30px;
 }
 .truncate {
   width: 110%;
@@ -31,11 +33,15 @@
   background-color: #26253d;
   position: fixed;
   z-index: 999;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  // padding-top: 12px;
+  // padding-bottom: 12px;
 
+  @media (max-width: 991px) {
+    height: 50px;
+  }
+  
   @media (min-width: 992px) {
-    height: 100px;
+    height: 75px;
   }
 }
 .truncate {
@@ -73,18 +79,18 @@
   background: #b30000;
 }
 
-.header a {
-  float: left;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 18px;
-  border-radius: 4px;
-  @media (min-width: 992px) and (max-width: 1228px) {
-    font-size: 14px;
-  }
-}
+// .header a {
+//   float: left;
+//   color: white;
+//   text-align: center;
+//   text-decoration: none;
+//   font-size: 18px;
+//   line-height: 18px;
+//   border-radius: 4px;
+//   @media (min-width: 992px) and (max-width: 1228px) {
+//     font-size: 14px;
+//   }
+// }
 
 .header a.logo {
   font-size: 25px;
@@ -158,10 +164,10 @@
   }
 }
 .logo_video {
-  max-width: 250px;
+  max-width: 175px;
 
   @media (max-width: 991px) {
-    max-width: 200px;
+    max-width: 175px;
   }
 }
 
@@ -534,15 +540,15 @@ img.logo2 {
   height: inherit;
   position: fixed;
   z-index: 99;
-  padding-top: 128px;
+  padding-top: 75px;
 }
 
 .router-outlet {
   // padding-top: 107px;
   // padding-left: 53px;
   // height: 100vh;
-  height: calc(100vh - 100px);
-  margin-top: 100px;
+  height: calc(100vh - 75px);
+  margin-top: 75px;
   margin-left: 120px;
 }
 
@@ -703,19 +709,19 @@ mat-button:hover {
     color: #ffffff !important;
   }
 }
-.social-icons {
-  width: 54px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-size: cover;
-  @media (min-width: 992px) and (max-width: 1300px) {
-    width: 40px;
-    height: 40px;
-  }
-}
+// .social-icons {
+//   width: 54px;
+//   height: 54px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 50%;
+//   background-size: cover;
+//   @media (min-width: 992px) and (max-width: 1300px) {
+//     width: 40px;
+//     height: 40px;
+//   }
+// }
 // .telegram-icon {
 //   background-image: url("assets/telegram-logo.png");
 // }

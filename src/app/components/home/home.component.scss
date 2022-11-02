@@ -161,7 +161,7 @@ button {
   // width: calc(100% - 64px);
   // height: 100%;
   width: 100%;
-  height: calc(100vh - 128px);
+  height: calc(100vh - 75px);
 
   // video{
   //   margin-top: 26px;
@@ -170,7 +170,7 @@ button {
 
 .homeBgVideo {
   width: 100%;
-  height: calc(100vh - 100px) !important;
+  height: calc(100vh - 75px) !important;
   object-fit: unset;
 }
 
@@ -193,7 +193,7 @@ button {
 
 .video-part {
   position: relative;
-  height: calc(100vh - 128px);
+  height: calc(100vh - 75px);
   // overflow: hidden;
 }
 
@@ -791,10 +791,6 @@ button {
   font-size: 25px !important;
 }
 
-.fs-15 {
-  font-size: 15px;
-}
-
 .w-250 {
   max-width: 250px;
 }
@@ -823,10 +819,6 @@ button {
       object-fit: contain;
     }
   }
-}
-
-.btn {
-  border-radius: 10px !important;
 }
 
 .bg-dark-box {
