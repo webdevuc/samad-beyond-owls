@@ -10268,10 +10268,8 @@ bs-daterangepicker-container {
   background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
   border-radius: 10px;
   margin: 5px;
-  min-width: 200px;
   margin: 0;
   font-size: 14px;
-  height: 3em;
 }
 .md-aptos-wallet {
   display: none;
@@ -10281,17 +10279,23 @@ bs-daterangepicker-container {
     visibility: hidden;
   }
 }
+.fs-15 {
+  font-size: 15px !important;
+}
 .fs-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 .fs-20 {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 .fs-30 {
-  font-size: 30px;
+  font-size: 30px !important;
 }
 .text-logo-color {
   color: #38ff14 !important;
+}
+.btn {
+  border-radius: 10px !important;
 }
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
 
