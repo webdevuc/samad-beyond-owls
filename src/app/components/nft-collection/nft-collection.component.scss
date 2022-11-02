@@ -3,9 +3,11 @@ span,
 div {
   color: #fff;
 }
+
 h1 {
   line-height: normal;
 }
+
 .bg-color {
   min-height: 100%;
   max-width: 100%;
@@ -136,19 +138,23 @@ h1 {
   @media (min-width: 1601px) {
     width: 83%;
   }
+
   @media (max-width: 991px) {
     margin-left: auto !important;
   }
+
   &:hover {
     box-shadow: 0 0 20px 6px #8c52ff;
     text-decoration: none;
   }
+
   .tab-button {
     margin: 0px 0 20px;
     min-width: 130px;
     width: 130px;
   }
 }
+
 .plus-icon {
   position: absolute;
   top: 0;
@@ -156,6 +162,7 @@ h1 {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+
   .svg-inline--fa {
     width: 30px;
     height: 30px;
@@ -173,16 +180,20 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+
   img {
     max-height: 100%;
   }
+
   @media (max-width: 767px) {
     height: auto;
   }
+
   @media (min-width: 992px) and (max-width: 1300px) {
     height: 335px;
   }
 }
+
 @media (min-width: 576px) and (max-width: 767px) {
   .tab {
     width: 60% !important;
@@ -206,19 +217,24 @@ h1 {
   background: #0096a1 !important;
   border-color: #0096a1 !important;
 }
+
 .modal-content {
   box-shadow: 0 0 15px 8px #292a29;
   background: #3b4148;
   padding: 20px;
   border-radius: 30px;
+
   .modal-body {
     padding: 0px;
+
     .modal-body-inner {
       flex-wrap: wrap;
       justify-content: center;
+
       ol {
         padding-left: 15px;
         margin-top: 1rem;
+
         li {
           text-align: left;
           margin-bottom: 15px;
@@ -227,19 +243,24 @@ h1 {
     }
   }
 }
+
 .mintmodal {
   .modal-dialog {
     max-width: 400px;
+
     .modal-header {
       margin-bottom: 1rem;
     }
+
     .modal-body-inner {
       justify-content: space-between;
     }
+
     .modal-footer {
       flex-wrap: nowrap;
       justify-content: center;
     }
+
     .tab-button {
       min-width: 100px;
       max-width: 100px;
@@ -247,8 +268,10 @@ h1 {
     }
   }
 }
+
 .modal-footer {
   border: none;
+
   .tab-button {
     border: none;
   }
@@ -279,4 +302,48 @@ h1 {
 
 .clr-white {
   color: white;
+}
+
+.bg-nft-box {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.9)), url(https://i.imgur.com/0BRq1K2.jpg);
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.fs-20 {
+  font-size: 30px;
+}
+
+.fs-30 {
+  font-size: 30px;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.nft-img {
+  border-radius: 10px;
+  width: 250px;
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.lh-3 {
+  line-height: 3rem;
+}
+
+@media only screen and (min-width: 319px) and (max-width: 767px) {
+  .bg-nft-box {
+    height: 100%;
+    padding: 25px 0;
+
+    .nft-img {
+      margin: 10px auto;
+    }
+  }
 }

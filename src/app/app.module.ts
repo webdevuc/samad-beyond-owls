@@ -52,6 +52,7 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
 import { ConnectWalletDialogComponent } from './components/connect-wallet-dialog/connect-wallet-dialog.component';
 import {MatListModule} from "@angular/material/list";
 import { OwlStoryComponent } from './components/owl-story/owl-story.component';
+import { CountDownComponent } from './components/count-down/count-down.component';
 //import { LazyLoadImageModule } from 'ng-lazyload-image'; 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { OwlStoryComponent } from './components/owl-story/owl-story.component';
     AdminpanelComponent,
     ConnectWalletDialogComponent,
     OwlStoryComponent,
+    CountDownComponent,
   ],
   imports: [
     FormsModule,
