@@ -25,6 +25,12 @@ export class NftCollectionComponent implements OnInit {
   DEFAULT = 120
   circleLoader: boolean = false;
   config: CountdownConfig = { leftTime: this.DEFAULT, notify: 0, format: 'm:s' }
+
+  // opens date MINT's
+  public whitelistMintOpens : string = 'Nov 12 2022 16:00:00 UTC';
+  public publicMintOpens : string = 'Nov 12 2022 18:00:00 UTC';
+  public saleEnd : string = 'Nov 15 2022 16:00:00 UTC';
+
   constructor(
     private readonly APIServices: NFTsAPIServices,
     private readonly router: Router,

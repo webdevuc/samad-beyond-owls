@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
@@ -6,11 +6,12 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './count-down.component.html',
   styleUrls: ['./count-down.component.scss']
 })
-export class CountDownComponent implements  OnInit, OnDestroy {
+export class CountDownComponent implements OnInit, OnDestroy {
+  @Input() public mintDate: string;
   private subscription: Subscription;
 
   public dateNow = new Date();
-  public dDay = new Date('Nov 03 2022 18:00:00');
+  public dDay;
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;
@@ -26,8 +27,12 @@ export class CountDownComponent implements  OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    console.log('this.mintDate', this.mintDate)
+    this.dDay = new Date(this.mintDate);
+    console.log('dday=>', this.dDay);
     this.subscription = interval(1000)
       .subscribe(x => { this.getTimeDifference(); });
+
   }
 
   private getTimeDifference() {
@@ -36,14 +41,14 @@ export class CountDownComponent implements  OnInit, OnDestroy {
   }
 
   private allocateTimeUnits(timeDifference) {
-    this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
-    this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
-    this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
-    this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+    this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute) ?? 0;
+    this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute) ?? 0;
+    this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay) ?? 0;
+    this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay)) ?? 0;
     this.cdr.detectChanges();
   }
 
-  
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -1,13 +1,13 @@
-p {
-    color: #cecece;
-}
-
 .btn {
     background: linear-gradient(89.02deg, #6226d9 0.89%, #8c52ff 100%) !important;
-    // border-color: darkgoldenrod;
     border-radius: 10px;
     margin: 5px;
     min-width: 200px;
     margin: 12px;
     font-size: 14px;
+}
+
+p {
+    line-height: 2em;
+    letter-spacing: 1px;
 }

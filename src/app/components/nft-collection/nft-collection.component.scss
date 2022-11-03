@@ -124,7 +124,7 @@ h1 {
 
 .tab {
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 0 15px 8px #292a29;
   margin-bottom: 26px;
   margin-left: auto;
@@ -305,11 +305,12 @@ h1 {
 }
 
 .bg-nft-box {
+  padding: 20px 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.9)), url('../../../assets/MOON-LANDING_BANNER_2.jpg');
   background-position: center center;
   background-size: cover;
-  overflow: hidden;
-  height: 100vh;
+  // overflow: hidden;
+  // height: 100vh;
 }
 
 .fs-20 {
@@ -346,4 +347,8 @@ h1 {
       margin: 10px auto;
     }
   }
+}
+
+.bg-dark-gray {
+  background-color: rgb(31 31 47/1);
 }
