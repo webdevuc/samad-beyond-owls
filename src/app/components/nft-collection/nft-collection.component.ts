@@ -28,7 +28,7 @@ export class NftCollectionComponent implements OnInit {
 
   // opens date MINT's
   public whitelistMintOpens : string = 'Nov 12 2022 16:00:00 UTC';
-  public publicMintOpens : string = 'Nov 12 2022 18:00:00 UTC';
+  public publicMintOpens : string = 'Nov 12 2022 17:00:00 UTC';
   public saleEnd : string = 'Nov 15 2022 16:00:00 UTC';
 
   constructor(
