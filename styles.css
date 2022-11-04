@@ -10279,6 +10279,9 @@ bs-daterangepicker-container {
     visibility: hidden;
   }
 }
+.fs-13 {
+  font-size: 13px !important;
+}
 .fs-15 {
   font-size: 15px !important;
 }
