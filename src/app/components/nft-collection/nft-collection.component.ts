@@ -27,9 +27,13 @@ export class NftCollectionComponent implements OnInit {
   config: CountdownConfig = { leftTime: this.DEFAULT, notify: 0, format: 'm:s' }
 
   // opens date MINT's
-  public whitelistMintOpens : string = 'Nov 12 2022 16:00:00 UTC';
-  public publicMintOpens : string = 'Nov 12 2022 17:00:00 UTC';
-  public saleEnd : string = 'Nov 15 2022 16:00:00 UTC';
+  public launches = [
+    {name:'Whitelist minting opens in', launchDate:'Nov 19 2022 16:00:00 UTC'},
+    {name:'Public minting opens in', launchDate:'Nov 19 2022 17:00:00 UTC'},
+    {name:'Sale End', launchDate:'Nov 22 2022 16:00:00 UTC'},
+    {name:'Ai Launch', launchDate:'Nov 30 2022 16:00:00 UTC'},
+  ]
+
 
   constructor(
     private readonly APIServices: NFTsAPIServices,
