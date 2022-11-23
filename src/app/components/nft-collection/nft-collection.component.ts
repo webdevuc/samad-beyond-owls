@@ -54,7 +54,7 @@ export class NftCollectionComponent implements OnInit {
 
   async ngOnInit() {
 
-    const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+    const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
 
     (async () => {
       const client = new aptos.AptosClient(NODE_URL);
@@ -188,8 +188,8 @@ export class NftCollectionComponent implements OnInit {
   async mintNFT() {
     const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
-    const moduleAddr = "0xeb26003af18891244a9ea4a3772f88c9697ffed4a9ec28a99b4cb8ef10c7609e";
-    const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+    const moduleAddr = "0x87bd81e9013081406dfc7a6a69c81feabe70c972eeca855791c6133a0cfdda0e";
+    const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
     const collectionName = "Beyond Owls";
 
     let sender;
@@ -218,7 +218,7 @@ export class NftCollectionComponent implements OnInit {
       } else if (wallet_type === "martian") {
 
         try {
-          const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+          const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
           const tokenStore: { data: any } = await window.martian.getAccountResources(
             collectionAddr!,
             "0x3::token::TokenStore"
