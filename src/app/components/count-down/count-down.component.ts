@@ -23,13 +23,10 @@ export class CountDownComponent implements OnInit, OnDestroy {
   public hoursToDday;
   public daysToDday;
 
-
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    console.log('this.mintDate', this.mintDate)
     this.dDay = new Date(this.mintDate);
-    console.log('dday=>', this.dDay);
     this.subscription = interval(1000)
       .subscribe(x => { this.getTimeDifference(); });
 
@@ -45,10 +42,16 @@ export class CountDownComponent implements OnInit, OnDestroy {
     this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute) ?? 0;
     this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay) ?? 0;
     this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay)) ?? 0;
+
     this.cdr.detectChanges();
   }
 
-
+  public getReturnZero(value: number) {
+    if (value <= 0) {
+      value = 0
+    }
+    return value;
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

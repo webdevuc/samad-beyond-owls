@@ -16,24 +16,24 @@ export class ConnectWalletDialogComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.data);
+        // console.log(this.data);
     }
 
     ngOnChanges(): void {
-        console.log('MODAL_ON CHANGES CALLED');
+        // console.log('MODAL_ON CHANGES CALLED');
     }
 
     async connectWallet(type: string) {
         try {
-            console.log(type);
+            // console.log(type);
             const result = await connect(type as WalletType);
             // @ts-ignore
             const {account, disconnect} = result;
             const address = await account();
-            console.log('ADDRESS', address);
+            // console.log('ADDRESS', address);
             this.emitData.next(address);
             // this.data.disconnect = disconnect;
-            console.log({address, result});
+            // console.log({address, result});
         } catch (e) {
             switch (e) {
                 case 'Petra wallet not installed':
@@ -47,9 +47,9 @@ export class ConnectWalletDialogComponent implements OnInit, OnChanges {
                     break;
                 default:
                     // @ts-ignore
-                    console.log('ERROR:', e.message);
+                    // console.log('ERROR:', e.message);
             }
-            console.log(e);
+            // console.log(e);
         }
     }
 }

@@ -49,11 +49,11 @@ export class CoinDetailsComponent implements OnInit {
           });
         });
       } catch (e) {
-            console.log('Please Connect MetaMsk !');
+            // console.log('Please Connect MetaMsk !');
             // User has denied account access to DApp...
           }
     } else {
-        console.log('You have to install MetaMask !');
+        // console.log('You have to install MetaMask !');
       }
     }
 

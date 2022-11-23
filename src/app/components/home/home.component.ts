@@ -105,12 +105,10 @@ export class HomeComponent implements OnInit {
     }, 1000);
 
     this.APIServices.userLoginData$.subscribe((data) => {
-      console.log(data, 'Home component');
       this.authUser = data;
     })
 
     this.APIServices.claimButtonLoading$.subscribe((data) => {
-      console.log(data, '@dadadadad home component claimButtonLoading');
       this.circleLoader = data;
     })
 
@@ -162,14 +160,11 @@ export class HomeComponent implements OnInit {
     const namiWalletAssetsList = await Nami.getAssets();
     let totalNamiAssets = 0;
     namiWalletAssetsList.map((item: any) => totalNamiAssets += Number(item.quantity));
-    console.log("Total Assets: ", totalNamiAssets);
 
     // this.APIServices.totalNamiWalletNFT$.subscribe((totalNamiAssets) => {
     if (!totalNamiAssets) return;
-    console.log(totalNamiAssets, '@dadadadad totalNamiWalletNFT nft collection component');
     // this.authToken = data;
     const prevTotalNamiAssets = localStorage.getItem("namiWalletTotalAssets") ? Number(localStorage.getItem("namiWalletTotalAssets")) : 0;
-    console.log("=============== HI ===================", prevTotalNamiAssets)
     if (totalNamiAssets > prevTotalNamiAssets) {
       // console.log("current assets are more than prev");
       // Enable claim button
@@ -322,9 +317,9 @@ export class HomeComponent implements OnInit {
       // console.log("mintMetadata => ", JSON.stringify(mintMetadata));
       let txHash: any = '';
       try { // T#1
-        console.log("======================= Start Tx ==========================")
+        // console.log("======================= Start Tx ==========================")
         txHash = await MintLoader.buildFullTransaction(recipients);
-        console.log("======================= End Tx ==========================")
+        // console.log("======================= End Tx ==========================")
 
         if (txHash && txHash.error) {
           this.toastr.error("Transaction Failed");
@@ -334,7 +329,7 @@ export class HomeComponent implements OnInit {
           return
         }
       } catch (err: any) {
-        console.log("err1: ", err);
+        // console.log("err1: ", err);
         this.handleClaimButton(false);
         if (err && err.info) {
           this.toastr.info(err.info);
@@ -376,7 +371,7 @@ export class HomeComponent implements OnInit {
         //   }
         // }
       }
-      console.log("mintTransaction ", txHash);
+      // console.log("mintTransaction ", txHash);
 
       // const txHash = await Nami.send({
       //   address: this.adminNamiWalletAddress, // ADMIN ADDRESS
@@ -429,7 +424,7 @@ export class HomeComponent implements OnInit {
           .catch((err) => {
             // this.toastr.success(`TxHash is: ${txHash}`, "Trippy Owl Collection claimed successfully");
             this.toastr.error("Something went wrong");
-            console.log("Error is: ", err);
+            // console.log("Error is: ", err);
             // this.circleLoader = false;
             this.handleClaimButton(false);
 
@@ -438,7 +433,7 @@ export class HomeComponent implements OnInit {
       }
 
     } catch (error: any) {
-      console.log("Error :: ", error);
+      // console.log("Error :: ", error);
       if (error && error.info) {
         this.toastr.info(error.info);
       } else {

@@ -7,11 +7,19 @@ import { environment as env } from '../../../environments/environment';
 import Loader from '../../services/nami-loader.service';
 import MintLoader from '../../services/nami-minting-243.service';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
+
+// const aptos = require("aptos");
+const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+
+declare const window: any;
+declare const document: any;
+
 @Component({
   selector: 'app-nft-collection',
   templateUrl: './nft-collection.component.html',
   styleUrls: ['./nft-collection.component.scss']
 })
+
 export class NftCollectionComponent implements OnInit {
   adminNamiWalletAddress = env.adminNamiWalletAddress;
   TRIPPY_OWL_COLLECTION_PRICE = env.TRIPPY_OWL_COLLECTION_PRICE
@@ -28,21 +36,48 @@ export class NftCollectionComponent implements OnInit {
 
   // opens date MINT's
   public launches = [
-    {name:'Whitelist minting opens in', launchDate:'Nov 19 2022 16:00:00 UTC'},
-    {name:'Public minting opens in', launchDate:'Nov 19 2022 17:00:00 UTC'},
-    {name:'Sale End', launchDate:'Nov 22 2022 16:00:00 UTC'},
-    {name:'Ai Launch', launchDate:'Nov 30 2022 16:00:00 UTC'},
-  ]
+    { name: 'Whitelist minting opens in', launchDate: 'Nov 19 2022 16:00:00 UTC' },
+    { name: 'Public minting opens in', launchDate: 'Nov 19 2022 17:00:00 UTC' },
+    { name: 'Sale End', launchDate: 'Nov 19 2022 17:00:00 UTC' },
+    { name: 'Ai Launch', launchDate: 'Nov 19 2022 17:00:00 UTC' },
+  ];
 
+  public minted: number = 0;
+  private account: any;
 
   constructor(
     private readonly APIServices: NFTsAPIServices,
     private readonly router: Router,
     private toastr: ToastrService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
   ) { }
 
   async ngOnInit() {
+
+    const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+
+    // (async () => {
+    //   const client = new aptos.AptosClient(NODE_URL);
+    //   let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
+    //   this.minted = (tokenStore[3].data.minted - 1);
+    //   console.log(this.minted);
+
+    //   //here this.minted should be displayed to front end.
+    // })
+
+    // const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
+
+    // if (wallet_type === "aptos") {
+    //   this.account = window.aptos.account();
+    // } else if (wallet_type === "martian") {
+    //   this.account = window.martian.account();
+    // } else if (wallet_type === "pontem") {
+    //   this.account = window.pontem.account()
+    // }
+
+    // console.log(this.account);
+
+    // const collectionName = "Beyond Owls";
 
     let exctingValue: any = localStorage.getItem(this.KEY)
     let value = +exctingValue ?? this.DEFAULT;
@@ -127,11 +162,14 @@ export class NftCollectionComponent implements OnInit {
     // })
   }
 
+
+
   handleClaimButton = (_value: boolean) => {
     // console.log("handleClaimButton func : ", _value);
     localStorage.setItem("claimBtnLoading", `${_value}`);
     this.APIServices.claimButtonLoading$.next(_value);
   }
+
   async handleMintNft(obj: any, action: any) {
     //  if (this.authUser && (this.authUser.type === 'dev' || this.authUser.type === 'admin')) {
 
@@ -145,6 +183,72 @@ export class NftCollectionComponent implements OnInit {
     };
 
     // $('#exampleModaltwo').modal('show');
+  }
+
+  async mintNFT() {
+    const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
+
+    const moduleAddr = "0xeb26003af18891244a9ea4a3772f88c9697ffed4a9ec28a99b4cb8ef10c7609e";
+    const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+    const collectionName = "Beyond Owls";
+
+    let sender;
+
+    function stringToHex(text: string) {
+      const encoder = new TextEncoder();
+      const encoded = encoder.encode(text);
+      return Array.from(encoded, (i) => i.toString(16).padStart(2, "0")).join("");
+    }
+
+    const payload = {
+      type: "entry_function_payload",
+      function: `${moduleAddr}::owl_nft1::mint_script`,
+      arguments: [collectionAddr],
+      type_arguments: [],
+    };
+
+    try {
+
+      if (wallet_type === "aptos") {
+
+        const transaction = await (
+          window as any
+        ).aptos.signAndSubmitTransaction(payload);
+
+      } else if (wallet_type === "martian") {
+
+        try {
+          const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
+          const tokenStore: { data: any } = await window.martian.getAccountResources(
+            collectionAddr!,
+            "0x3::token::TokenStore"
+          );
+          console.log(tokenStore);
+          this.minted = (tokenStore[3].data.minted - 1);
+          console.log(this.minted)
+        } catch (e) {
+          console.log(e)
+        }
+
+        sender = (await window.martian.account()).address;
+        const transaction = await window.martian.generateTransaction(sender, payload);
+        const txnHash = await window.martian.signAndSubmitTransaction(transaction);
+
+      } else if (wallet_type === "pontem") {
+
+        const options = {
+          max_gas_amount: '1000000',
+          gas_unit_price: '100',
+          expiration_timestamp_secs: '2646793600',
+        }
+        window.pontem.signAndSubmit(payload, options).then(tx => {
+          console.log('Transaction', tx)
+        })
+      }
+
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   clickMint = async () => {
@@ -172,11 +276,11 @@ export class NftCollectionComponent implements OnInit {
         return
       }
 
-        // if (localStorage.getItem("isCollectionLaunched") || localStorage.getItem("isCollectionLaunched") === "1") {
-        // // if (this.authUser.type !== "dev") {
-        //   this.toastr.info("Comming Soon!")
-        //   return
-        // }
+      // if (localStorage.getItem("isCollectionLaunched") || localStorage.getItem("isCollectionLaunched") === "1") {
+      // // if (this.authUser.type !== "dev") {
+      //   this.toastr.info("Comming Soon!")
+      //   return
+      // }
 
       const nftResp: any = await new Promise(async (resolve, reject) => {
         const resp = await this.APIServices.verifyClaimedCollection({

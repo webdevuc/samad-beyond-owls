@@ -1,19 +1,15 @@
 <div class=" mt-3 d-flex flex-wrap d-flex justify-content-md-center w-100">
     <i class="fas fa-stopwatch text-secondary fs-20 d-flex align-items-center mx-2 my-auto" aria-hidden="true"></i>
 
-    <div class="p-2 bg-secondary rounded count text-logo-color mx-2"> {{daysToDday}}</div>
-    <!-- <span class="d-flex align-items-center ml-1 mr-2 text-light text-sm fs-10"> day(s), </span> -->
+    <div class="p-2 bg-secondary rounded count text-logo-color mx-2" > {{getReturnZero(daysToDday)}}</div>
 
 
-    <div class="p-2 bg-secondary rounded count text-logo-color mx-2"> {{hoursToDday}}</div>
-    <!-- <span class="d-flex align-items-center ml-1 mr-2 text-light text-sm fs-10"> hour(s), </span> -->
+    <div class="p-2 bg-secondary rounded count text-logo-color mx-2"> {{getReturnZero(hoursToDday)}}</div>
 
 
-    <div class="p-2 bg-secondary rounded count text-logo-color mx-2">{{minutesToDday}}</div>
-    <!-- <span class="d-flex align-items-center ml-1 mr-2 text-light text-sm fs-10">min(s), </span> -->
+    <div class="p-2 bg-secondary rounded count text-logo-color mx-2">{{getReturnZero(minutesToDday)}}</div>
 
 
-    <div class="p-2 bg-secondary rounded count text-logo-color mx-2">{{secondsToDday}}</div>
-    <!-- <span class="d-flex align-items-center ml-1 mr-2 text-light text-sm fs-10">sec(s)</span> -->
+    <div class="p-2 bg-secondary rounded count text-logo-color mx-2">{{getReturnZero(secondsToDday)}}</div>
 
 </div>

@@ -572,7 +572,6 @@ export class PersonalComponent implements OnInit {
   }
   assignGlobalValues() {
     this.isLogin = this.contractService.isLogin;
-    console.log(this.isLogin , '@this.isLoginPersonal')
     this.accountNo = this.contractService.accountNo;
     this.totalBalance = this.contractService.totalBalance;
     this.griseBalance = this.contractService.totalGriseBalance;

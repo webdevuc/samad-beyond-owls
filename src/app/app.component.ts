@@ -1,25 +1,26 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ClaimService } from './services/claim.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 // import Wallet from "@harmonicpool/cardano-wallet-interface";
 // import Wallet from "../packages/cardano-wallet-interface-main";
-import {ToastrService} from 'ngx-toastr';
-import {LiquidityContractService} from 'src/app/services/liquidity-contract.service';
-import {SharedService} from 'src/app/services/shared.service';
-import {ContractService} from './services/contract.service';
-import {GriseTokenContractService} from './services/grise-token-contract.service';
-import {LocalDataUpdateService} from './services/local-data-update.service';
-import {MinAbiDataContractService} from './services/minabi-data-contract.service';
-import {environment as env} from '../environments/environment';
-import {GraphDataService} from './services/graph-data.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {any} from 'underscore';
+import { ToastrService } from 'ngx-toastr';
+import { LiquidityContractService } from 'src/app/services/liquidity-contract.service';
+import { SharedService } from 'src/app/services/shared.service';
+import { ContractService } from './services/contract.service';
+import { GriseTokenContractService } from './services/grise-token-contract.service';
+import { LocalDataUpdateService } from './services/local-data-update.service';
+import { MinAbiDataContractService } from './services/minabi-data-contract.service';
+import { environment as env } from '../environments/environment';
+import { GraphDataService } from './services/graph-data.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { any } from 'underscore';
 import Loader from './services/nami-loader.service';
-import {NFTsAPIServices} from './services/nft.service';
-import {ConnectWalletDialogComponent} from "./components/connect-wallet-dialog/connect-wallet-dialog.component";
-import {connect, WalletType} from "@horizonx/aptos-wallet-connector";
+import { NFTsAPIServices } from './services/nft.service';
+import { ConnectWalletDialogComponent } from "./components/connect-wallet-dialog/connect-wallet-dialog.component";
+import { connect, WalletType } from "@horizonx/aptos-wallet-connector";
 import { BehaviorSubject } from 'rxjs';
-
+import Swal from 'sweetalert2'
 // const CoinSelection = require('./wallet/coinSelection.js');
 // import CoinSelectionSL  from './wallet/coinSelectionLatest';
 // import CoinSelectionSL  from './wallet/coinSelection';
@@ -64,6 +65,9 @@ export class AppComponent implements OnInit {
     public eth: number;
     public dot: number;
 
+    public claimButtons: any = [];
+    public selectedClaimEgg;
+
     constructor(
         public dialog: MatDialog,
         public walletDialog: MatDialog,
@@ -79,19 +83,20 @@ export class AppComponent implements OnInit {
         private toastrService: ToastrService,
         private http: HttpClient,
         private graphDataService: GraphDataService,
-    ) {}
+        private claimService: ClaimService,
+    ) { this.claimButtons = this.claimService.getClaimEggs(); }
 
     async ngOnInit() {
-        if (localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type')){
+        this.selectedClaimEgg = this.claimButtons[0];
+        if (localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type')) {
             // tslint:disable-next-line:variable-name
             const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
             const result = await connect(wallet_type as WalletType);
             // @ts-ignore
-            const {account, disconnect} = result;
+            const { account, disconnect } = result;
             this.disconnect = disconnect();
             const address = await account();
             this.state$.next(address);
-            console.log(wallet_type, '****');
         }
 
         const Nami = await Loader.Cardano();
@@ -197,6 +202,8 @@ export class AppComponent implements OnInit {
             }
             this.refAccountNo = this.contractService.referralAccountNo;
         });
+
+
     }
 
     testMultipleWallets() {
@@ -256,15 +263,11 @@ export class AppComponent implements OnInit {
             }
         }
 
-        console.log('Hi testing...!');
-
         await Nami.enable();
 
         // Get Connected Wallet Address
         const paymentAddr = await Nami.getAddress();
-        console.log('addr ==> ', paymentAddr);
         // console.log("UTXO: =>> ", await Nami.getUtxos())
-        console.log('All Assets: => ', await Nami.getAssets());
         if (localStorage.getItem('walletAddr') !== paymentAddr) {
             localStorage.setItem('walletAddr', paymentAddr);
             localStorage.removeItem('namiWalletTotalAssets');
@@ -274,7 +277,7 @@ export class AppComponent implements OnInit {
         const namiWalletAssetsList = await Nami.getAssets();
         let totalNamiAssets = 0;
         namiWalletAssetsList.map((item) => totalNamiAssets += Number(item.quantity));
-        console.log('Total Assets: ', totalNamiAssets);
+
 
         this.APIServices.totalNamiWalletNFT$.next(totalNamiAssets);
         if (!localStorage.getItem('namiWalletTotalAssets')) {
@@ -296,9 +299,7 @@ export class AppComponent implements OnInit {
 
         try {
             const allAssets = await Nami.getAssets();
-            console.log('allAssets :: ', allAssets);
         } catch (error) {
-            console.log('Error :: ', error);
         }
 
 
@@ -308,10 +309,8 @@ export class AppComponent implements OnInit {
         // this.walletBalance = localStorage.getItem("lovelaces");
         // await Loader.load()
         const CCVault = await Loader.CCVault();
-        console.log('Hi testing...!');
 
         const checkEnabled = await CCVault.enable();
-        console.log('cc valult ', checkEnabled);
 
 
         // // Get Connected Wallet Address
@@ -399,8 +398,6 @@ export class AppComponent implements OnInit {
             // console.log(data, "this is nami address");
 
         } catch (error) {
-            console.log('Something went wrong!');
-            console.log(error);
         }
     }
 
@@ -454,6 +451,12 @@ export class AppComponent implements OnInit {
     async afterConnectToWallet() {
         this.localDataUpdateService.forceUpdateStakeTransactionsData(true);
         this.localDataUpdateService.forceUpdateExchangeRateData(true);
+    }
+
+    async disconnectWallet() {
+        await this.state$.next(this.disconnect);
+        localStorage.removeItem('aptos-wallet-connector#last-connected-wallet-type');
+
     }
 
     showLaunchDialog() {
@@ -514,13 +517,11 @@ export class AppComponent implements OnInit {
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '30%';
-        dialogConfig.data = {disconnect: this.disconnect};
+        dialogConfig.data = { disconnect: this.disconnect };
         const modalRef = this.walletDialog.open(ConnectWalletDialogComponent, dialogConfig);
 
         modalRef.componentInstance.emitData.subscribe(($e) => {
-            console.log('EVENT', $e);
             this.state$.next($e);
-            console.log($e);
             modalRef.close();
         });
     }
@@ -530,5 +531,24 @@ export class AppComponent implements OnInit {
             return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
         }
         return '';
+    }
+
+    openEggClaimModal(egg) {
+        Swal.fire({
+            // title: 'Claim available on ' + egg.cliamDate,
+            title: 'Coming Soon...',
+            background: '#2d333a',
+            color: '#fff',
+            width: 500,
+            imageUrl: egg.imgPath,
+            imageWidth: 200,
+            imageHeight: 200,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
     }
 }
