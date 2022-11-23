@@ -21,7 +21,7 @@
             <img src="assets/bnb-black.png" alt="logo" style="height: 30px; width: 30px;">
           </button>
 
-          <span class="digit liq_time">{{ liquidityEventData?.totalInvestment | number:'1.0-5' }} BNB</span>
+          <span class="digit liq_time">{{ liquidityEventData.totalInvestment | number:'1.0-5' }} BNB</span>
         </div>
       </div>
       <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 tab">
@@ -56,7 +56,7 @@
       <div class="col-md-6 col-xs-12">
         <div class="box_lable">
           <br>
-          <span class="box">{{ liquidityEventData?.uniqueInvestorCount }}</span>
+          <span class="box">{{ liquidityEventData.uniqueInvestorCount }}</span>
           <br>
           <h4 class="label">Unique contributor</h4>
           <br>
@@ -65,7 +65,7 @@
       <div class="col-md-6 col-xs-12">
         <div class="box_lable">
           <br>
-          <span class="box">{{ liquidityEventData?.referralAccountCount }}</span>
+          <span class="box">{{ liquidityEventData.referralAccountCount }}</span>
           <br>
           <h4 class="label">Unique Referrer</h4>
           <br>

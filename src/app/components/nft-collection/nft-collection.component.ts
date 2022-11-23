@@ -8,7 +8,7 @@ import Loader from '../../services/nami-loader.service';
 import MintLoader from '../../services/nami-minting-243.service';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 
-// const aptos = require("aptos");
+const aptos = require("aptos");
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 
 declare const window: any;
@@ -56,14 +56,14 @@ export class NftCollectionComponent implements OnInit {
 
     const collectionAddr = "0xd96d761368f46b99170dff235cb92ca8408986e84c04027b44da0bad37b6679e";
 
-    // (async () => {
-    //   const client = new aptos.AptosClient(NODE_URL);
-    //   let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
-    //   this.minted = (tokenStore[3].data.minted - 1);
-    //   console.log(this.minted);
+    (async () => {
+      const client = new aptos.AptosClient(NODE_URL);
+      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
+      this.minted = (tokenStore[3].data.minted - 1);
+      console.log(this.minted);
 
-    //   //here this.minted should be displayed to front end.
-    // })
+      //here this.minted should be displayed to front end.
+    })
 
     // const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 

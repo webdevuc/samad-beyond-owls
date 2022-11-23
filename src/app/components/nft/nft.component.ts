@@ -123,22 +123,22 @@ export class NFTComponent implements OnInit {
     // });
     // if (userApiResp.status) {
 
-      this.APIServices.userLoginData$.subscribe((data) => {
-        console.log(data, 'Home component');
-        this.authUser = data;
-      })
+    this.APIServices.userLoginData$.subscribe((data) => {
+      console.log(data, 'Home component');
+      this.authUser = data;
+    })
 
-      // localStorage.setItem("token", userApiResp.token);
-      // this.authUser = userApiResp.data.type;
-      // console.log(this.authUser, "admin12345")
+    // localStorage.setItem("token", userApiResp.token);
+    // this.authUser = userApiResp.data.type;
+    // console.log(this.authUser, "admin12345")
 
-      this.fundsbtn = false;
-      this.remainingNftsClaimBtn = false;
-      if (this.authUser === 'admin') {
-        this.fundsbtn = true;
-      } else if (this.authUser === 'dev') {
-        this.remainingNftsClaimBtn = true;
-      }
+    this.fundsbtn = false;
+    this.remainingNftsClaimBtn = false;
+    if (this.authUser === 'admin') {
+      this.fundsbtn = true;
+    } else if (this.authUser === 'dev') {
+      this.remainingNftsClaimBtn = true;
+    }
     // }
   }
 
@@ -466,11 +466,14 @@ export class NFTComponent implements OnInit {
       } else {
         this.toastr.success(`TxHash is: ${txHash}`, "Remaining NFTs minted successfully");
       }
-    } catch (err) {
-      console.log("err1: ", err);
-      if (err && err.info) {
-        // this.toastr.info(err.info);
-        return
+    } catch (error) {
+      console.log("err1: ", error);
+
+      if (error) {
+        if (error instanceof Error)
+          if (error['info'])
+            // this.toastr.info(err.info);
+            return
 
       } else {
         this.toastr.error("Failed to batch minting");
@@ -847,12 +850,13 @@ export class NFTComponent implements OnInit {
             this.disablebtn = false;
             return
           }
-        } catch (err) {
-          console.log("err1: ", err);
-          if (err && err.info) {
-            // this.toastr.info(err.info);
-            this.disablebtn = false;
-            //console.log(err.info, "error test");
+        } catch (error) {
+          // console.log("err1: ", err);
+          if (error) {
+            if (error instanceof Error)
+              if (error['info'])
+                // this.toastr.info(err.info);
+                this.disablebtn = false;
             return
 
           } else {
@@ -920,11 +924,16 @@ export class NFTComponent implements OnInit {
         }
       }
     } catch (error) {
-      console.log("Error :: ", error);
-      if (error && error.info) {
-        this.toastr.info(error.info);
-      } else {
-        this.toastr.error("Something went wrong");
+      // console.log("Error :: ", error);
+      if (error) {
+        if (error instanceof Error)
+          if (error['info']) {
+            this.toastr.info(error['info']);
+          } else {
+            this.toastr.error("Something went wrong");
+          }
+
+
       }
     }
   }

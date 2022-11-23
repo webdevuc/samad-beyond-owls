@@ -19,7 +19,7 @@ export class SellFormComponent implements OnInit {
   feeamount: boolean = false;
   inputvalue: any;
   authUser: any = null;
-  disablebtn:any = false;
+  disablebtn: any = false;
   constructor(
     private readonly APIServices: NFTsAPIServices,
     private readonly router: Router,
@@ -85,14 +85,14 @@ export class SellFormComponent implements OnInit {
         mintToken: this.selectedNft.mintToken,
       }
       console.log("sellAsset : ", sellAsset);
-      const transectionFee =  this.ASSET_TRANSFER_PRICE;
+      const transectionFee = this.ASSET_TRANSFER_PRICE;
 
       // Transfer amount (royalty fee + Asset amount) from connected wallet's address to admin
       try {
         const Nami = await Loader.Cardano();
 
         const checkWallet = await Loader.verifyWallet(transectionFee, this.authUser.type);
-        console.log("transectionFee: ",transectionFee, sellAsset.amount, "putOnSale verifyWallet => ", checkWallet);
+        console.log("transectionFee: ", transectionFee, sellAsset.amount, "putOnSale verifyWallet => ", checkWallet);
 
         // const walletBalance = localStorage.getItem("lovelaces") ? localStorage.getItem("lovelaces") : 0;
         // console.log("balance cond: ", walletBalance, Number(walletBalance) / 1000000, transectionFee + 1, Number(walletBalance) / 1000000 > transectionFee + 1);
@@ -150,9 +150,12 @@ export class SellFormComponent implements OnInit {
 
       } catch (error) {
         console.log("Error :: ", error);
-        if (error && error.code) {
-          this.toastr.error(error.info);
-          this.disablebtn = false;
+        if (error) {
+          if (error instanceof Error)
+            if (error['code']) {
+              this.toastr.error(error['info']);
+              this.disablebtn = false;
+            }
         } else {
           this.toastr.error("Something went wrong");
           this.disablebtn = false;
