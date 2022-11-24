@@ -249,6 +249,14 @@ export class NftCollectionComponent implements OnInit {
     } catch (e) {
       console.log(e)
     }
+    (async () => {
+      const client = new aptos.AptosClient(NODE_URL);
+      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
+      this.minted = (tokenStore[3].data.minted - 1);
+      console.log(this.minted);
+
+      //here this.minted should be displayed to front end.
+    })()
   }
 
   clickMint = async () => {
