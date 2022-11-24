@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NFTsAPIServices } from "../../services/nft.service";
 import { ToastrService } from 'ngx-toastr';
@@ -50,6 +50,7 @@ export class NftCollectionComponent implements OnInit {
     private readonly router: Router,
     private toastr: ToastrService,
     private spinnerService: SpinnerService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   async ngOnInit() {
@@ -60,6 +61,7 @@ export class NftCollectionComponent implements OnInit {
       const client = new aptos.AptosClient(NODE_URL);
       let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
       this.minted = (tokenStore[3].data.minted - 1);
+      this.cdr.detectChanges();
       console.log(this.minted);
 
       //here this.minted should be displayed to front end.
@@ -253,6 +255,7 @@ export class NftCollectionComponent implements OnInit {
       const client = new aptos.AptosClient(NODE_URL);
       let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
       this.minted = (tokenStore[3].data.minted - 1);
+      this.cdr.detectChanges();
       console.log(this.minted);
 
       //here this.minted should be displayed to front end.
