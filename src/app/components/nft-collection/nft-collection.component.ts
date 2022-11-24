@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NFTsAPIServices } from "../../services/nft.service";
 import { ToastrService } from 'ngx-toastr';
@@ -50,20 +50,16 @@ export class NftCollectionComponent implements OnInit {
     private readonly router: Router,
     private toastr: ToastrService,
     private spinnerService: SpinnerService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   async ngOnInit() {
 
     const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
+    setInterval(() => { this.getAptosMintedCount(collectionAddr); }, 5000);
 
-    (async () => {
-      const client = new aptos.AptosClient(NODE_URL);
-      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
-      this.minted = (tokenStore[3].data.minted - 1);
-      console.log(this.minted);
 
-      //here this.minted should be displayed to front end.
-    })
+
 
     // const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
@@ -102,6 +98,18 @@ export class NftCollectionComponent implements OnInit {
 
     this.handleClaimButton((localStorage.getItem("claimBtnLoading") === "true" ? true : false));
     await this.syncNamiWallet();
+  }
+
+
+  getAptosMintedCount(collectionAddr) {
+    (async () => {
+      const client = new aptos.AptosClient(NODE_URL);
+      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
+      this.minted = (tokenStore[3].data.minted - 1);
+      this.cdr.detectChanges();
+      console.log(this.minted);
+    })
+
   }
 
   async syncNamiWallet() {
@@ -225,6 +233,7 @@ export class NftCollectionComponent implements OnInit {
           );
           console.log(tokenStore);
           this.minted = (tokenStore[3].data.minted - 1);
+          this.cdr.detectChanges();
           console.log(this.minted)
         } catch (e) {
           console.log(e)
