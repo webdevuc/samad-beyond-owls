@@ -58,12 +58,12 @@ export class NftCollectionComponent implements OnInit {
 
     (async () => {
       const client = new aptos.AptosClient(NODE_URL);
-      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr!, "0x3::token::TokenStore");
+      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
       this.minted = (tokenStore[3].data.minted - 1);
       console.log(this.minted);
 
       //here this.minted should be displayed to front end.
-    })
+    })()
 
     // const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
@@ -217,18 +217,18 @@ export class NftCollectionComponent implements OnInit {
 
       } else if (wallet_type === "martian") {
 
-        try {
-          const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
-          const tokenStore: { data: any } = await window.martian.getAccountResources(
-            collectionAddr!,
-            "0x3::token::TokenStore"
-          );
-          console.log(tokenStore);
-          this.minted = (tokenStore[3].data.minted - 1);
-          console.log(this.minted)
-        } catch (e) {
-          console.log(e)
-        }
+        // try {
+        //   const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
+        //   const tokenStore: { data: any } = await window.martian.getAccountResources(
+        //     collectionAddr!,
+        //     "0x3::token::TokenStore"
+        //   );
+        //   console.log(tokenStore);
+        //   this.minted = (tokenStore[3].data.minted - 1);
+        //   console.log(this.minted)
+        // } catch (e) {
+        //   console.log(e)
+        // }
 
         sender = (await window.martian.account()).address;
         const transaction = await window.martian.generateTransaction(sender, payload);
