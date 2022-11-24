@@ -57,15 +57,18 @@ export class NftCollectionComponent implements OnInit {
 
     const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
 
-    (async () => {
-      const client = new aptos.AptosClient(NODE_URL);
-      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
-      this.minted = (tokenStore[3].data.minted - 1);
-      this.cdr.detectChanges();
-      console.log(this.minted);
+    setInterval(() => {
+      (async () => {
+        const client = new aptos.AptosClient(NODE_URL);
+        let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
+        this.minted = (tokenStore[3].data.minted - 1);
+        this.cdr.detectChanges();
+        console.log(this.minted);
 
-      //here this.minted should be displayed to front end.
-    })()
+        //here this.minted should be displayed to front end.
+      })()
+    }, 500)
+
 
     // const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
