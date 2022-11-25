@@ -60,11 +60,16 @@ export class NftCollectionComponent implements OnInit {
     setInterval(() => {
       (async () => {
         const client = new aptos.AptosClient(NODE_URL);
-        let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
-        console.log(tokenStore);
-        this.minted = (tokenStore[2].data.minted - 1);
-        this.cdr.detectChanges();
-
+        let tokenStore: Array<any> = await client.getAccountResources(collectionAddr);
+        let length = tokenStore.length;
+        console.log(length);
+        if (length === 4) {
+          this.minted = 0;
+          this.cdr.detectChanges();
+        } else if (length === 5) {
+          this.minted = (tokenStore[3].data.minted - 1);
+          this.cdr.detectChanges();
+        }
         //here this.minted should be displayed to front end.
       })()
     }, 500)
