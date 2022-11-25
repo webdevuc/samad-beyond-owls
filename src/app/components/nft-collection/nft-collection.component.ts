@@ -9,7 +9,7 @@ import MintLoader from '../../services/nami-minting-243.service';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 
 const aptos = require("aptos");
-const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+const NODE_URL = "https://fullnode.mainnet.aptoslabs.com";
 
 declare const window: any;
 declare const document: any;
@@ -55,15 +55,15 @@ export class NftCollectionComponent implements OnInit {
 
   async ngOnInit() {
 
-    const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
+    const collectionAddr = "0x3d401b744100ec86484896d7873494109a5dcd8685cdf6f009cf984f52254f5f";
 
     setInterval(() => {
       (async () => {
         const client = new aptos.AptosClient(NODE_URL);
         let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
-        this.minted = (tokenStore[3].data.minted - 1);
+        console.log(tokenStore);
+        this.minted = (tokenStore[2].data.minted - 1);
         this.cdr.detectChanges();
-        console.log(this.minted);
 
         //here this.minted should be displayed to front end.
       })()
@@ -193,8 +193,8 @@ export class NftCollectionComponent implements OnInit {
   async mintNFT() {
     const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
-    const moduleAddr = "0x87bd81e9013081406dfc7a6a69c81feabe70c972eeca855791c6133a0cfdda0e";
-    const collectionAddr = "0xa9eedec70260ca823c95b7f2ec76de719c04bf810e6bffc6a67eaa17a2340890";
+    const moduleAddr = "0x55d3652e628e5cd7947232c4e896f558a88c6d2238f8f6e264fb7c1ada5aa2f9";
+    const collectionAddr = "0x3d401b744100ec86484896d7873494109a5dcd8685cdf6f009cf984f52254f5f";
     const collectionName = "Beyond Owls";
 
     let sender;
@@ -207,7 +207,7 @@ export class NftCollectionComponent implements OnInit {
 
     const payload = {
       type: "entry_function_payload",
-      function: `${moduleAddr}::owl_nft1::mint_script`,
+      function: `${moduleAddr}::owl_nft2::mint_script`,
       arguments: [collectionAddr],
       type_arguments: [],
     };
@@ -254,15 +254,15 @@ export class NftCollectionComponent implements OnInit {
     } catch (e) {
       console.log(e)
     }
-    (async () => {
-      const client = new aptos.AptosClient(NODE_URL);
-      let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
-      this.minted = (tokenStore[3].data.minted - 1);
-      this.cdr.detectChanges();
-      console.log(this.minted);
+    // (async () => {
+    //   const client = new aptos.AptosClient(NODE_URL);
+    //   let tokenStore: { data: any } = await client.getAccountResources(collectionAddr);
+    //   this.minted = (tokenStore[3].data.minted - 1);
+    //   this.cdr.detectChanges();
+    //   console.log(this.minted);
 
-      //here this.minted should be displayed to front end.
-    })()
+    //   //here this.minted should be displayed to front end.
+    // })()
   }
 
   clickMint = async () => {
