@@ -55,7 +55,7 @@ export class NftCollectionComponent implements OnInit {
 
   async ngOnInit() {
 
-    const collectionAddr = "0x3d401b744100ec86484896d7873494109a5dcd8685cdf6f009cf984f52254f5f";
+    const collectionAddr = "0x41f9b1bf4a506129eebc10981f2199863ddf442e3f526e18a64b403387c95cc5";
 
     setInterval(() => {
       (async () => {
@@ -199,7 +199,7 @@ export class NftCollectionComponent implements OnInit {
     const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
     const moduleAddr = "0x55d3652e628e5cd7947232c4e896f558a88c6d2238f8f6e264fb7c1ada5aa2f9";
-    const collectionAddr = "0x3d401b744100ec86484896d7873494109a5dcd8685cdf6f009cf984f52254f5f";
+    const collectionAddr = "0x41f9b1bf4a506129eebc10981f2199863ddf442e3f526e18a64b403387c95cc5";
     const collectionName = "Beyond Owls";
 
     let sender;
@@ -212,7 +212,7 @@ export class NftCollectionComponent implements OnInit {
 
     const payload = {
       type: "entry_function_payload",
-      function: `${moduleAddr}::owl_nft2::mint_script`,
+      function: `${moduleAddr}::owl_nft3::mint_script`,
       arguments: [collectionAddr],
       type_arguments: [],
     };
