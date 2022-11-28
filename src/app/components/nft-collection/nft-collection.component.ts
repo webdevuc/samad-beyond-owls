@@ -34,15 +34,14 @@ export class NftCollectionComponent implements OnInit {
   circleLoader: boolean = false;
   config: CountdownConfig = { leftTime: this.DEFAULT, notify: 0, format: 'm:s' }
 
-
+  // opens date MINT's
  // opens date MINT's
  public launches = [
-  { name: 'Minting Starts', launchDate: 'Nov 28 2022 17:00:00 UTC' },
+  { name: 'Minting Starts', launchDate: 'Nov 28 2022 12:00:00 UTC' },
   // { name: 'Public minting opens in', launchDate: 'Nov 19 2022 17:00:00 UTC' },
-  { name: 'Minting End', launchDate: 'Dec 05 2022 17:00:00 UTC' },
-  { name: 'Ai Launch', launchDate: 'Dec 19 2022 17:00:00 UTC' },
+  { name: 'Minting End', launchDate: 'Dec 05 2022 12:00:00 UTC' },
+  { name: 'Ai Launch', launchDate: 'Dec 19 2022 12:00:00 UTC' },
 ];
-
 
   public minted: number = 0;
   private account: any;
@@ -57,7 +56,7 @@ export class NftCollectionComponent implements OnInit {
 
   async ngOnInit() {
 
-    const collectionAddr = "0x41f9b1bf4a506129eebc10981f2199863ddf442e3f526e18a64b403387c95cc5";
+    const collectionAddr = "0x6d55a22360842f1790086f3859684e7d8b6f06b509cf279b31bb03246c391f9";
 
     setInterval(() => {
       (async () => {
@@ -201,7 +200,7 @@ export class NftCollectionComponent implements OnInit {
     const wallet_type = localStorage.getItem('aptos-wallet-connector#last-connected-wallet-type');
 
     const moduleAddr = "0x55d3652e628e5cd7947232c4e896f558a88c6d2238f8f6e264fb7c1ada5aa2f9";
-    const collectionAddr = "0x41f9b1bf4a506129eebc10981f2199863ddf442e3f526e18a64b403387c95cc5";
+    const collectionAddr = "0x6d55a22360842f1790086f3859684e7d8b6f06b509cf279b31bb03246c391f9";
     const collectionName = "Beyond Owls";
 
     let sender;
@@ -214,7 +213,7 @@ export class NftCollectionComponent implements OnInit {
 
     const payload = {
       type: "entry_function_payload",
-      function: `${moduleAddr}::owl_nft3::mint_script`,
+      function: `${moduleAddr}::owl_nft4::mint_script`,
       arguments: [collectionAddr],
       type_arguments: [],
     };
