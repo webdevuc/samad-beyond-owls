@@ -123,7 +123,7 @@ export class CoinCorelationComponent implements OnInit {
   }
 
   getCoins(){
-    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
+    this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
       if(resJSON.code == 200){
@@ -135,7 +135,7 @@ export class CoinCorelationComponent implements OnInit {
   getCoinCorrelation(coinName:any, correlateCoin:any){
     let headers = new HttpHeaders();
     let params = new HttpParams()
-    this.http.get(`https://api.ethama.finance/get-statitistical-data?coin=${coinName}&corr-with=${correlateCoin}`, {
+    this.http.get(`https://grisemetamoonverse.io/get-statitistical-data?coin=${coinName}&corr-with=${correlateCoin}`, {
       headers: headers,
       params: params,
       responseType: 'text'

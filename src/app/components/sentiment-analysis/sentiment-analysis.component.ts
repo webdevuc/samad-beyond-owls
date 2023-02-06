@@ -81,7 +81,7 @@ export class SentimentAnalysisComponent implements OnInit {
   min_cap: number;
   max_cap: number;
   limit: number;
-  url = `https://api.ethama.finance/get-best-coin`;
+  url = `https://grisemetamoonverse.io/get-best-coin`;
   items: any = [];
 
   highcharts = Highcharts;
@@ -161,7 +161,7 @@ export class SentimentAnalysisComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-  public loadData = true
+  public loadData = false;
   public loadingstate: number;
   public ld: number = 0;
 
@@ -357,7 +357,7 @@ export class SentimentAnalysisComponent implements OnInit {
     let headers = new HttpHeaders();
     let params = new HttpParams()
       .set("coin", productName)
-    this.http.get('https://api.ethama.finance/get-sentiment-coin', {
+    this.http.get('https://grisemetamoonverse.io/get-sentiment-coin', {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -461,7 +461,7 @@ export class SentimentAnalysisComponent implements OnInit {
     this.onProductChanged("bitcoin")
     // Highcharts.chart('container', this.pieChart);
      // // get coin names for dropdown options
-    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
+    this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
@@ -472,7 +472,7 @@ export class SentimentAnalysisComponent implements OnInit {
 
 
     // // all coins api call
-    // this.http.get('https://api.ethama.finance/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
+    // this.http.get('https://grisemetamoonverse.io/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
     //   // console.log(Response);
     //   let resSTR = JSON.stringify(Response);
     //   let resJSON = JSON.parse(resSTR);
@@ -481,7 +481,7 @@ export class SentimentAnalysisComponent implements OnInit {
     // })
 
     // // Trending coins api call
-    // this.http.get('https://api.ethama.finance/get-trending-coin').subscribe(Response => {
+    // this.http.get('https://grisemetamoonverse.io/get-trending-coin').subscribe(Response => {
     //   // console.log(Response);
     //   let trendResSTR = JSON.stringify(Response);
     //   let trendResJSON = JSON.parse(trendResSTR);
@@ -493,7 +493,7 @@ export class SentimentAnalysisComponent implements OnInit {
     // let headers = new HttpHeaders();
     // let params = new HttpParams()
     //   .set("coin", "bitcoin")
-    // this.http.get('https://api.ethama.finance/get-coin-predict', {
+    // this.http.get('https://grisemetamoonverse.io/get-coin-predict', {
     //   headers: headers,
     //   params: params,
     //   responseType: 'text'
@@ -650,7 +650,7 @@ export class SentimentAnalysisComponent implements OnInit {
   //   // all coins api call
   //   if (this.page_number > 1) {
   //     this.page_number -= 1
-  //     this.http.get('https://api.ethama.finance/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
+  //     this.http.get('https://grisemetamoonverse.io/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
   //       // console.log(Response);
   //       let resSTR = JSON.stringify(Response);
   //       let resJSON = JSON.parse(resSTR);
@@ -658,7 +658,7 @@ export class SentimentAnalysisComponent implements OnInit {
   //       // console.log(data_coins);
   //     })
   //   } else {
-  //     this.http.get('https://api.ethama.finance/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
+  //     this.http.get('https://grisemetamoonverse.io/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
   //       // console.log(Response);
   //       let resSTR = JSON.stringify(Response);
   //       let resJSON = JSON.parse(resSTR);
@@ -674,7 +674,7 @@ export class SentimentAnalysisComponent implements OnInit {
   //   // all coins api call
   //   if (this.page_number <= 900) {
   //     this.page_number += 1
-  //     this.http.get('https://api.ethama.finance/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
+  //     this.http.get('https://grisemetamoonverse.io/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
   //       // console.log(Response);
   //       let resSTR = JSON.stringify(Response);
   //       let resJSON = JSON.parse(resSTR);
@@ -682,7 +682,7 @@ export class SentimentAnalysisComponent implements OnInit {
   //       // console.log(data_coins);
   //     })
   //   } else {
-  //     this.http.get('https://api.ethama.finance/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
+  //     this.http.get('https://grisemetamoonverse.io/get-all-coin?page=' + this.page_number + '&per_page=10').subscribe(Response => {
   //       // console.log(Response);
   //       let resSTR = JSON.stringify(Response);
   //       let resJSON = JSON.parse(resSTR);

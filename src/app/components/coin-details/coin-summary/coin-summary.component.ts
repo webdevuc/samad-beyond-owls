@@ -233,7 +233,7 @@ export class CoinSummaryComponent implements OnInit {
 getWordCloudNews (coinName: any){
   const headers = new HttpHeaders;
   const body = { coin_name: coinName };
-  this.http.post<any>('https://api.ethama.finance/get-google-news', body, { headers }).subscribe(data => {
+  this.http.post<any>('https://grisemetamoonverse.io/get-google-news', body, { headers }).subscribe(data => {
     let details = data;
     if(details.code === 200 && details.data.news_link.length !== 0){
       this.NewsData = details.data
@@ -302,7 +302,7 @@ getCoinTrends(coinName: any){
   let headers = new HttpHeaders();
   let params = new HttpParams()
     .set("coin", coinName)
-  this.http.get(`https://api.ethama.finance/get-summary-page?coin=${coinName}&days=365`, {
+  this.http.get(`https://grisemetamoonverse.io/get-summary-page?coin=${coinName}&days=365`, {
     headers: headers,
     params: params,
     responseType: 'text'
@@ -524,7 +524,7 @@ getCoinData(name:string){
 
   ngOnInit(): void {
     this.getCoinData('bitcoin')
-    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
+    this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);

@@ -66,7 +66,7 @@ export class CoinDetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // this.staker_fuction();
+    this.staker_fuction();
   }
 
 }

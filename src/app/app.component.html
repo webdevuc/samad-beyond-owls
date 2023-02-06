@@ -108,7 +108,7 @@
                     </span>
                   </button> -->
                   <button mat-button [matMenuTriggerFor]="mobMenu"
-                    class="btn-primary bg-{{selectedClaimEgg.bg}} d-flex align-items-center fs-13">
+                    class="btn-primary bg-gradient d-flex align-items-center fs-13">
                     <span class=" text-white text-decoration-none d-flex justify-content-between">
                       <span class="d-flex align-items-center justify-content-between w-100">Claim_ _ _ Egg
                         <img class="img-responsive pb-2" alt="NFTs" [src]="selectedClaimEgg.imgPath" width="30" />
@@ -117,7 +117,7 @@
 
                   </button>
                   <mat-menu #mobMenu="matMenu">
-                    <button mat-menu-item *ngFor="let egg of claimButtons" class="bg-{{egg.bg}} py-0"
+                    <button mat-menu-item *ngFor="let egg of claimButtons" class="bg-gradient claim-btn py-0"
                       (click)="selectedClaimEgg=egg;openEggClaimModal(egg)"> <span
                         class=" text-white text-decoration-none d-flex justify-content-between">
                         <span class="d-flex align-items-center justify-content-between w-100">Claim_ _ _ Egg<img
@@ -423,7 +423,7 @@
     </span> -->
     <span class="grise">
       <a routerlink="" href="#/">
-        <img src="https://www.linkpicture.com/q/owl_logo_new_02-1.png" class="logo_video">
+        <img src="assets/Green_logo.png" class="logo_video w-100" height="50">
       </a>
     </span>
     <!-- <span class="grise"><a class="" routerlink="" href="#/"><img src="https://www.linkpicture.com/q/owl_logo_new_02-2.png" class="logo2"></a></span> -->
@@ -514,7 +514,7 @@
         </span>
       </button> -->
       <button mat-button [matMenuTriggerFor]="menu"
-        class="btn-primary bg-{{selectedClaimEgg.bg}} d-flex align-items-center fs-13">
+        class="btn-primary bg-gradient d-flex align-items-center fs-13">
         <span class=" text-white text-decoration-none d-flex justify-content-between">
           <span class="d-flex align-items-center justify-content-between w-100">Claim_ _ _ Egg
             <img class="img-responsive pb-2" alt="NFTs" [src]="selectedClaimEgg.imgPath" width="30" />
@@ -523,7 +523,7 @@
 
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let egg of claimButtons" class="bg-{{egg.bg}} py-0"
+        <button mat-menu-item *ngFor="let egg of claimButtons" class="bg-gradient claim-btn py-0"
           (click)="selectedClaimEgg=egg;openEggClaimModal(egg)"> <span
             class=" text-white text-decoration-none d-flex justify-content-between">
             <span class="d-flex align-items-center justify-content-between w-100">Claim_ _ _ Egg<img

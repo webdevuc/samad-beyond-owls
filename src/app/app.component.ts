@@ -156,7 +156,7 @@ export class AppComponent implements OnInit {
         this.checkLink();
         const header = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
         this.http
-            .get('https://api.ethama.finance/get-top-coin-grise')
+            .get('https://grisemetamoonverse.io/get-top-coin-grise')
             .subscribe((Response) => {
                 // console.log(Response);
                 const resSTR = JSON.stringify(Response);

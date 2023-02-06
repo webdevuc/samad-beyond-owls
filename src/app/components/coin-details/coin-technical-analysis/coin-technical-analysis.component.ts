@@ -134,7 +134,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
   getCoinCashflow(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("coin", coinName)
-    this.http.get(`https://api.ethama.finance/get-cashflow?coin=${coinName}&days=30`, {
+    this.http.get(`https://grisemetamoonverse.io/get-cashflow?coin=${coinName}&days=30`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -225,7 +225,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
   getCoinTechnicalGraph(coinName:any){
     let headers = new HttpHeaders();
     let params = new HttpParams().set("coin", coinName)
-    this.http.get(`https://api.ethama.finance/get-tech-analysis?coin=${coinName}`, {
+    this.http.get(`https://grisemetamoonverse.io/get-tech-analysis?coin=${coinName}`, {
       headers: headers,
       params: params,
       responseType: 'text'
@@ -297,7 +297,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoinData('bitcoin')
-    this.http.get('https://api.ethama.finance/get-coin-name').subscribe(Response => {
+    this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
