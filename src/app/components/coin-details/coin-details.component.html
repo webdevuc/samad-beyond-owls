@@ -1,4 +1,5 @@
-<div *ngIf="allowed_user == true">
+<!-- <div *ngIf="allowed_user == true"> -->
+    <!-- commented above div on 07-02-2023 as discussed with samad  -->
     <div class="coin-details-navbar-div">
         <a class="coin-navbar-item" routerLinkActive="active" routerLink="/coin-details/summary" queryParamsHandling="merge">
             <label class="mb-0 app-item-text">Coin Summary</label>
@@ -22,12 +23,12 @@
             <label class="mb-0 app-item-text">Coin Correlation</label>
         </a>
     </div>
-    <app-my-loader></app-my-loader>
+    <!-- <app-my-loader></app-my-loader> -->
     <div class="details-div">
         <router-outlet></router-outlet>
     </div>
-</div>
-<div *ngIf="allowed_user == false">
+<!-- </div> -->
+<div *ngIf="allowed_user == false" class="d-none">
     <div style="font-size: 30px; margin-top: 21%; line-height: normal;" class="text-center mb-5">
         AI will only be available to NFT holders.
         <div>

@@ -349,96 +349,97 @@ export class TokenMetrixComponent implements OnInit {
         ];
         this.lineChartLabels = time_stamp;
 
-        // let PastPrice:any = []
-        // let PredictedPrice:any = []
-        // if(details.data.data[0]){
-        //   // const Past = details.data.data[0].data.timeseries
-        //   const Future = details.data.data[0].data.predicted
-        //   // for (let i = 0; i < Past.length; i++) {
-        //   //   PastPrice.push([Past[i].ds,Past[i].y])
-        //   // }
-        //   for (let i = 0; i < Future.length; i++) {
-        //     PredictedPrice.push([Future[i].ds,Future[i].y])
-        //   }
-        // }
+        let PastPrice: any = []
+        let PredictedPrice: any = []
+        
+        if (details?.data?.data[0]) {
+          // const Past = details.data.data[0].data.timeseries
+          const Future = details.data.data[0].data.predicted
+          // for (let i = 0; i < Past.length; i++) {
+          //   PastPrice.push([Past[i].ds,Past[i].y])
+          // }
+          for (let i = 0; i < Future.length; i++) {
+            PredictedPrice.push([Future[i].ds, Future[i].y])
+          }
+        }
 
-        // this.GraphData = {
-        //   chart: {
-        //     backgroundColor: "#3b4148",
-        //   },
-        //   rangeSelector: {
-        //     buttonTheme: { // styles for the buttons
-        //       fill: 'none',
-        //       stroke: 'none',
-        //       'stroke-width': 0,
-        //       r: 8,
-        //       style: {
-        //           color: 'white',
-        //           fontWeight: 'bold'
-        //       },
-        //       states: {
-        //           hover: {
-        //               fill: 'white',
-        //               style: {
-        //                   color: 'black'
-        //               }
-        //           },
-        //           select: {
-        //               fill: 'white',
-        //               style: {
-        //                   color: 'black'
-        //               }
-        //           }
-        //       }
-        //   },
-        //   inputStyle: {
-        //       color: 'white',
-        //       fontWeight: 'bold',
-        //       states:{
-        //           select:{
-        //               color: 'black',
-        //           }
-        //       }
-        //   },
-        //   labelStyle: {
-        //       color: 'white',
-        //       fontWeight: 'bold',
-        //   }
-        //   },
-        //   title: {
-        //     text: "Coin Past and Predicted Price",
-        //     style: {
-        //       color: '#fff',
-        //     }
-        //   },
-        //   yAxis: {
-        //       title: {
-        //           text: ''
-        //       },
-        //       gridLineColor: 'gray',
-        //       labels: {
-        //         style: {
-        //             color: 'white'
-        //         }
-        //     }
-        //   },
+        this.GraphData = {
+          chart: {
+            backgroundColor: "#3b4148",
+          },
+          rangeSelector: {
+            buttonTheme: { // styles for the buttons
+              fill: 'none',
+              stroke: 'none',
+              'stroke-width': 0,
+              r: 8,
+              style: {
+                color: 'white',
+                fontWeight: 'bold'
+              },
+              states: {
+                hover: {
+                  fill: 'white',
+                  style: {
+                    color: 'black'
+                  }
+                },
+                select: {
+                  fill: 'white',
+                  style: {
+                    color: 'black'
+                  }
+                }
+              }
+            },
+            inputStyle: {
+              color: 'white',
+              fontWeight: 'bold',
+              states: {
+                select: {
+                  color: 'black',
+                }
+              }
+            },
+            labelStyle: {
+              color: 'white',
+              fontWeight: 'bold',
+            }
+          },
+          title: {
+            text: "Coin Past and Predicted Price",
+            style: {
+              color: '#fff',
+            }
+          },
+          yAxis: {
+            title: {
+              text: ''
+            },
+            gridLineColor: 'gray',
+            labels: {
+              style: {
+                color: 'white'
+              }
+            }
+          },
 
-        //   series: [
-        //     {
-        //       type: "line",
-        //       name: "Past Price",
-        //       data: PastPrice,
-        //       color: '#DDDF00',
-        //     },
+          series: [
+            {
+              type: "line",
+              name: "Past Price",
+              data: PastPrice,
+              color: '#DDDF00',
+            },
 
-        //     {
-        //       type: "line",
-        //       name: "Predicted Price",
-        //       data: PredictedPrice,
-        //       color: '#ff0000'
-        //     }
-        //   ]
-        // }
+            {
+              type: "line",
+              name: "Predicted Price",
+              data: PredictedPrice,
+              color: '#ff0000'
+            }
+          ]
+        }
 
       }
     })
@@ -559,8 +560,8 @@ export class TokenMetrixComponent implements OnInit {
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
       this.coins_list_api = resJSON.data.data;
-
-      // console.log(this.coins_list_api);
+      this.cdr.detectChanges();
+      console.log('this.coins_list_api =>', this.coins_list_api);
     })
 
 
@@ -668,8 +669,8 @@ export class TokenMetrixComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.staker_fuction();
-    // this.CustomOnInit();
+    this.staker_fuction();
+    this.CustomOnInit();
   }
 
   // function for pre_page pagination

@@ -641,8 +641,8 @@ export class SentimentAnalysisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.staker_fuction();
-    // this.CustomOnInit()
+    this.staker_fuction();
+    this.CustomOnInit()
   }
 
   // function for pre_page pagination

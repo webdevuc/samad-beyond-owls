@@ -1,61 +1,69 @@
 <!-- keep that comment start -->
-<div *ngIf="allowed_user == true">
-<!-- keep that comment end -->
+<!-- *ngIf="allowed_user == true" --> <!-- commented this div on 07-02-2023 as discussed with samad  -->
+<div>
+  <!-- keep that comment end -->
 
-<div class="bg-color ">
+  <div class="bg-color ">
 
-  <div class="row tab-outer-div">
-    <!-- introduction part -->
-    
-    <div class="col-lg-12 ">
+    <div class="row tab-outer-div">
+      <!-- introduction part -->
 
-      <h1 class="headingAi_first">Introduction AI Platform</h1>
-      <div class="tab" style="text-align: justify;">
+      <div class="col-lg-12 ">
+
+        <h1 class="headingAi_first">Introduction AI Platform</h1>
+        <div class="tab" style="text-align: justify;">
 
 
-      <div class="row">
-        <div class="col-lg-12">
-         <h1> How to use Grise Token AI-Indices</h1>
-        </div>
-        <div class="col-lg-12 my-3">
-          <h4 class="text-danger">NOTE: Indices Rebalancing Times Are an Approximation.</h4>
-        </div>
-        <div class="col-lg-12 my-3">
-          <div class="info-text">
-          Sometimes we may update the indices when we make important updates or changes to technical details and
-          calculations for an index. For example, we recently added a requirement for all indices to only hold
-          cryptocurrencies with a daily trading volume greater than $500k. Each of these technical updates requires us
-          to re-do the index. This will apply with future technical updates to indices.
-	        Furthermore, we have recently add features related to trading signal. This features is based on Deep Learning by which our stacker can take smart decision to avoid loss in trading. In AI-Price prediction algorithms we can see the future expected price up-to two months and take fast decision to in-out the market.
-          As a result, the days and times are an approximation and indices may take 1-4 hours to fully update or on
-          occasion be rebalanced more than their time-horizon to make important technical updates.
-        </div>
-      </div>
-      <div class="col-lg-12 my-3">
-          <h4 class="text-danger">DISCLAIMER
-          Indices of crypto investments, like all types of investment-related information, are subject to risk; they can
-          go down as well as up; and relying on such information can lead to losses as well as gains. Information about
-          past performance is not necessarily indicative of future performance.
-          </h4>
-      </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <h1> How to use Grise Token AI-Indices</h1>
+            </div>
+            <div class="col-lg-12 my-3">
+              <h4 class="text-danger">NOTE: Indices Rebalancing Times Are an Approximation.</h4>
+            </div>
+            <div class="col-lg-12 my-3">
+              <div class="info-text">
+                Sometimes we may update the indices when we make important updates or changes to technical details and
+                calculations for an index. For example, we recently added a requirement for all indices to only hold
+                cryptocurrencies with a daily trading volume greater than $500k. Each of these technical updates
+                requires us
+                to re-do the index. This will apply with future technical updates to indices.
+                Furthermore, we have recently add features related to trading signal. This features is based on Deep
+                Learning by which our stacker can take smart decision to avoid loss in trading. In AI-Price prediction
+                algorithms we can see the future expected price up-to two months and take fast decision to in-out the
+                market.
+                As a result, the days and times are an approximation and indices may take 1-4 hours to fully update or
+                on
+                occasion be rebalanced more than their time-horizon to make important technical updates.
+              </div>
+            </div>
+            <div class="col-lg-12 my-3">
+              <h4 class="text-danger">DISCLAIMER
+                Indices of crypto investments, like all types of investment-related information, are subject to risk;
+                they can
+                go down as well as up; and relying on such information can lead to losses as well as gains. Information
+                about
+                past performance is not necessarily indicative of future performance.
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
 
     <!-- index module and trading signal -->
     <div class="row tab-outer-div">
-    <div class="col-lg-6">
-      <h1 class="headingAi">Index Section</h1>
+      <div class="col-lg-6">
+        <h1 class="headingAi">Index Section</h1>
 
-      <div class="tab">
+        <div class="tab">
 
-        <div class="indice_form">
+          <div class="indice_form">
 
-          <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+            <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
               <h2 class="text-danger">
-                <span class="mr-3 text-danger">Last Updated Date/Time:</span>  {{last_change_date}}
+                <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
               </h2>
               <label>
                 <h3>Crypto indice module can be use to find the best coins in current market.
@@ -118,83 +126,83 @@
 
 
               </div>
-            
-
-            <div class="text-center mt-3">
-              <h3>Minimum Trading Volume: 500K</h3>
-            </div>
-            <div class="indbutton text-center">
-              <button class="buttonind"><span>Submit </span></button>
-            </div>
-            <div class="text-left text-danger">
-              Disclaimer: Some tokens and crypto investments may have higher risk than others, for instance smaller
-              market cap tokens and issuers; and tokens with lower daily trading volume have higher risks because of
-              lower liquidity. Risks related to specific tokens can be mitigated by diversification, which is present
-              to
-              varying extents in the indices.
-            </div>
-          </form>
-
-        </div>
 
 
-      </div>
-    </div>
-  
-   
-  <!-- trading signal  -->
-  <div class="col-lg-6 ">
-    <h1 class="headingAi">Get Your Trading Signal</h1>
+              <div class="text-center mt-3">
+                <h3>Minimum Trading Volume: 500K</h3>
+              </div>
+              <div class="indbutton text-center">
+                <button class="buttonind"><span>Submit </span></button>
+              </div>
+              <div class="text-left text-danger">
+                Disclaimer: Some tokens and crypto investments may have higher risk than others, for instance smaller
+                market cap tokens and issuers; and tokens with lower daily trading volume have higher risks because of
+                lower liquidity. Risks related to specific tokens can be mitigated by diversification, which is present
+                to
+                varying extents in the indices.
+              </div>
+            </form>
 
-    <div class="tab">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="col-lg-6">
-            <h4 for="ice-cream-choice_t">Choose Coin:</h4>
-            <input class="inputcoinsearch mb-3" type="text" list="coinListTrading" name="coin" [(ngModel)]='trade_coin_t'
-              (change)="coinListTrading(trade_coin_t)" />
-
-            <datalist id="coinListTrading">
-              <option *ngFor="let data_coin_name of coins_list_api;" [value]="data_coin_name.symbol">
-                {{data_coin_name.id}} ({{data_coin_name.symbol}})
-              </option>
-            </datalist>
-            <p>Money IN-OUT Sentiment: {{ai_decision_1}}</p>
-            <p>User Growth Sentiment: {{ai_decision_3}}</p>
           </div>
-          <div class="col-lg-6">
-            <h3 class="text-danger">
-              <span class="mr-3 text-danger">Last Updated Date/Time:</span>  {{last_change_date}}
-            </h3>
-            <p>Largest Transaction Sentiment: {{ai_decision_2}}</p>
-          
-            <p>Concentration On-Chain Sentiment: {{ai_decision_4}}</p>
-    
-            <!-- <p>Response {{success_response}}</p> -->
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="chart-wrapper">
-            <canvas baseChart height="270px" width="450px" [colors]="doughnutChartColors" [data]="doughnutChartData"
-              [options]="DonOptions" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
-            </canvas>
-          </div>
+
+
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-  <div class="row tab-outer-div">
+
+      <!-- trading signal  -->
+      <div class="col-lg-6 ">
+        <h1 class="headingAi">Get Your Trading Signal</h1>
+
+        <div class="tab">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-6">
+                <h4 for="ice-cream-choice_t">Choose Coin:</h4>
+                <input class="inputcoinsearch mb-3" type="text" list="coinListTrading" name="coin"
+                  [(ngModel)]='trade_coin_t' (change)="coinListTrading(trade_coin_t)" />
+
+                <datalist id="coinListTrading">
+                  <option *ngFor="let data_coin_name of coins_list_api;" [value]="data_coin_name.symbol">
+                    {{data_coin_name.id}} ({{data_coin_name.symbol}})
+                  </option>
+                </datalist>
+                <p>Money IN-OUT Sentiment: {{ai_decision_1}}</p>
+                <p>User Growth Sentiment: {{ai_decision_3}}</p>
+              </div>
+              <div class="col-lg-6">
+                <h3 class="text-danger">
+                  <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
+                </h3>
+                <p>Largest Transaction Sentiment: {{ai_decision_2}}</p>
+
+                <p>Concentration On-Chain Sentiment: {{ai_decision_4}}</p>
+
+                <!-- <p>Response {{success_response}}</p> -->
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="chart-wrapper">
+                <canvas baseChart height="270px" width="450px" [colors]="doughnutChartColors" [data]="doughnutChartData"
+                  [options]="DonOptions" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row tab-outer-div">
       <!-- graph index section -->
       <div class="col-lg-12 tab-outer-div">
-        <div *ngIf="ld == 1" id="loader" class="loader"></div>
-    
+        <!-- <div *ngIf="ld == 1" id="loader" class="loader"></div> -->
+
         <div *ngIf="!loadData" class="chart-wrapper">
           <h1 class="headingAi">Indices Coin Predictions</h1>
           <div class="tab">
-            <canvas baseChart [colors]="PieChartColor" [data]="pieChartData"
-              [options]="pieChartOptions" [legend]="pieChartLegend" [labels]="pieChartLabels" [chartType]="pieChartType">
+            <canvas baseChart [colors]="PieChartColor" [data]="pieChartData" [options]="pieChartOptions"
+              [legend]="pieChartLegend" [labels]="pieChartLabels" [chartType]="pieChartType">
             </canvas>
             <!-- <highcharts-chart class="custom-chart-styles"
               [Highcharts]="highcharts"
@@ -203,79 +211,83 @@
           </div>
         </div>
       </div>
-  </div>
-  <div class="tab-outer-div">
-    <h1 class="headingAi">Coin Price Prediction</h1>
-    <div class="tab">
-      <h4 class="text-danger">
-        <span class="mr-3 text-danger">Last Updated Date/Time:</span>  {{last_change_date}}
-      </h4>
-      <h2 for="ice-cream-choice" class="mr-3">Choose Coin:</h2>
-      <input class="inputcoinsearch mb-3 " type="text" list="productList" name="product" [(ngModel)]='currentProduct'
-        (change)="getCoinPrediction(currentProduct)" />
+    </div>
+    <div class="tab-outer-div">
+      <h1 class="headingAi">Coin Price Prediction</h1>
+      <div class="tab">
+        <h4 class="text-danger">
+          <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
+        </h4>
+        <h2 for="ice-cream-choice" class="mr-3">Choose Coin:</h2>
+        <input class="inputcoinsearch mb-3 " type="text" list="productList" name="product" [(ngModel)]='currentProduct'
+          (change)="getCoinPrediction(currentProduct)" />
 
-      <datalist id="productList">
-        <option *ngFor="let data_coin_name of coins_list_api;" [value]="data_coin_name.id">
-          {{data_coin_name.id}} ({{data_coin_name.symbol}})
-        </option>
-      </datalist>
-      <div class="custom-chart-styles">
-        <canvas baseChart width="1400px" height="600px" [datasets]="lineChartData" [labels]="lineChartLabels"
-          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" chartType="line"
-          [plugins]="lineChartPlugins">
-        </canvas>
-      </div>
-      <!-- <highcharts-chart class="custom-chart-styles"
+        <datalist id="productList">
+          <option *ngFor="let data_coin_name of coins_list_api;" [value]="data_coin_name.id">
+            {{data_coin_name.id}} ({{data_coin_name.symbol}})
+          </option>
+        </datalist>
+        <div class="custom-chart-styles">
+          <canvas baseChart width="1400px" height="600px" [datasets]="lineChartData" [labels]="lineChartLabels"
+            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" chartType="line"
+            [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+        <!-- <highcharts-chart class="custom-chart-styles"
         [Highcharts]="highcharts"
         [constructorType]="'stockChart'"
         [options]="GraphData">
       </highcharts-chart> -->
-    </div>
-  </div>
-<div class="row tab-outer-div">
-
-    <!-- trending coins -->
-    <div class="col-lg-12 ">
-      <h1 class="headingAi">CoinGecko Trending Coins</h1>
-
-      <div class="table-tab">
-        <hr>
-
-        <table
-          class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th scope="col">Name</th>
-
-              <th scope="col">Market Cap Rank</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-data-hover" *ngFor="let data of trend_coins; let i=index ">
-              <!-- <tr> -->
-              <td>{{i+1}}</td>
-              <td>
-                {{data.name}}
-
-                <img class="exchange_img" src="{{data.small}}" />
-
-              </td>
-              <td>{{data.market_cap_rank}}</td>
-
-            </tr>
-          </tbody>
-        </table>
-
       </div>
     </div>
-  
-</div>
+    <div class="row tab-outer-div">
+
+      <!-- trending coins -->
+      <div class="d-flex flex-wrap w-100">
+        <div class="d-flex w-100 justify-content-center">
+          <h1 class="headingAi px-2">CoinGecko Trending Coins</h1>
+        </div>
+
+        <div class="d-flex w-100 justify-content-center">
+          <div class="table-tab">
+            <hr>
+
+            <table
+              class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th scope="col">Name</th>
+
+                  <th scope="col">Market Cap Rank</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-data-hover" *ngFor="let data of trend_coins; let i=index ">
+                  <!-- <tr> -->
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{data.name}}
+
+                    <img class="exchange_img" src="{{data.small}}" />
+
+                  </td>
+                  <td>{{data.market_cap_rank}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
 
 
 
 
-<!-- <div class="row tab-outer-div">
+    <!-- <div class="row tab-outer-div">
     <div class="col-lg-12 ">
       <h1 class="headingAi">All Coins </h1>
       <div class="tab">
@@ -341,20 +353,21 @@
 </div> -->
 
   </div>
-<!-- keep that comment start -->
-  
-</div> 
-<div *ngIf="allowed_user == false">
+  <!-- keep that comment start -->
+
+</div>
+<div *ngIf="allowed_user == false" class="d-none">
   <div style="font-size: 30px; margin-top: 21%; line-height: normal; padding:0px 10px;" class="text-center mb-5">
     AI will only be available to NFT holders.
     <div>
-      <img class="sidebar-icon" src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/dashboard.png" alt="dashboard">
+      <img class="sidebar-icon" src="https://bnb-grise-assests.s3.us-west-2.amazonaws.com/assets/dashboard.png"
+        alt="dashboard">
       <br>
       <div class="d-flex justify-content-center access-btn-div">
         <!-- <span (click)="giveAccess()" class="access-btn">Access AI</span> -->
       </div>
     </div>
-  <!-- <div style="font-size: 30px; margin-top: 21%;" class="text-center mb-5">
+    <!-- <div style="font-size: 30px; margin-top: 21%;" class="text-center mb-5">
   Please hold grise NFT's to gain access
   <div>
     <a routerLinkActive="active" routerLink="/dashboard" queryParamsHandling="merge" onclick="closeNav()">
@@ -363,6 +376,6 @@
       <label class="mb-0 app-item-text">Dashboard</label>
     </a>
   </div> -->
-</div>
+  </div>
 </div>
 <!-- keep that comment end -->

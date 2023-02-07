@@ -1,5 +1,5 @@
-<div *ngIf="allowed_user == true">
-
+<!-- <div *ngIf="allowed_user == true"> -->
+<!-- commented above div on 07-02-2023 as discussed with samad  -->
   <div class="container bg-color ">
 
     <div class="row ">
@@ -67,9 +67,9 @@
     </div>
 
   </div>
-</div>
+<!-- </div> -->
 
-<div *ngIf="allowed_user == false">
+<div *ngIf="allowed_user == false" class="d-none">
   <div style="font-size: 30px; margin-top: 21%; line-height: normal;" class="text-center mb-5">
     AI will only be available to NFT holders.
     <div>
