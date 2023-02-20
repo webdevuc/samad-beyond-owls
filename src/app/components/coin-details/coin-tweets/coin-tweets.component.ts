@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import * as Highcharts from "highcharts/highstock";
 
@@ -142,10 +142,11 @@ export class CoinTweetsComponent implements OnInit {
         }
         this.Indexes = index
       }
+      this.cdr.detectChanges();
     })
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCoinTweets("bitcoin")

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import * as Highcharts from "highcharts/highstock";
 import Indicators from "highcharts/indicators/indicators-all.js";
@@ -27,9 +27,9 @@ export class CoinSummaryComponent implements OnInit {
   NewsData: any = ''
   Indexes: any = []
   WordCloud: any = ''
-  coins_list_api:any = []
-  currentProduct:string = 'bitcoin'
-  
+  coins_list_api: any = []
+  currentProduct: string = 'bitcoin'
+
   highcharts = Highcharts;
   public wordCloud: any = {
     chart: {
@@ -38,13 +38,13 @@ export class CoinSummaryComponent implements OnInit {
     title: {
       text: '',
       style: {
-          color: '#fff',
+        color: '#fff',
       }
     },
     series: [{
-        type: 'wordcloud',
-        data: [],
-        name: 'Occurrences'
+      type: 'wordcloud',
+      data: [],
+      name: 'Occurrences'
     }],
   };
 
@@ -59,37 +59,37 @@ export class CoinSummaryComponent implements OnInit {
         'stroke-width': 0,
         r: 8,
         style: {
-            color: 'white',
-            fontWeight: 'bold'
+          color: 'white',
+          fontWeight: 'bold'
         },
         states: {
-            hover: {
-                fill: 'white',
-                style: {
-                    color: 'black'
-                }
-            },
-            select: {
-                fill: 'white',
-                style: {
-                    color: 'black'
-                }
+          hover: {
+            fill: 'white',
+            style: {
+              color: 'black'
             }
+          },
+          select: {
+            fill: 'white',
+            style: {
+              color: 'black'
+            }
+          }
         }
-    },
-    inputStyle: {
+      },
+      inputStyle: {
         color: 'white',
         fontWeight: 'bold',
-        states:{
-            select:{
-                color: 'black',
-            }
+        states: {
+          select: {
+            color: 'black',
+          }
         }
-    },
-    labelStyle: {
+      },
+      labelStyle: {
         color: 'white',
         fontWeight: 'bold',
-    },
+      },
     },
     title: {
       text: "Coin Price and MovingAvg",
@@ -99,22 +99,22 @@ export class CoinSummaryComponent implements OnInit {
     },
     yAxis: {
       title: {
-          text: 'Price & Moving Avg'
+        text: 'Price & Moving Avg'
       },
       gridLineColor: 'gray',
       labels: {
         style: {
-            color: 'white'
+          color: 'white'
         }
-    }
-  },
+      }
+    },
     series: [
       {
         type: "line",
         name: "Price",
         data: [],
         color: '#ED561B',
-        
+
       },
       {
         type: "line",
@@ -125,7 +125,7 @@ export class CoinSummaryComponent implements OnInit {
     ]
   }
 
-  public coinTrends:any = {
+  public coinTrends: any = {
     chart: {
       backgroundColor: "#2d3339",
     },
@@ -136,38 +136,38 @@ export class CoinSummaryComponent implements OnInit {
         'stroke-width': 0,
         r: 8,
         style: {
-            color: 'white',
-            fontWeight: 'bold'
+          color: 'white',
+          fontWeight: 'bold'
         },
         states: {
-            hover: {
-                fill: 'white',
-                style: {
-                    color: 'black'
-                }
-            },
-            select: {
-                fill: 'white',
-                style: {
-                    color: 'black'
-                }
+          hover: {
+            fill: 'white',
+            style: {
+              color: 'black'
             }
-            // disabled: { ... }
+          },
+          select: {
+            fill: 'white',
+            style: {
+              color: 'black'
+            }
+          }
+          // disabled: { ... }
         }
-    },
-    inputStyle: {
+      },
+      inputStyle: {
         color: 'white',
         fontWeight: 'bold',
-        states:{
-            select:{
-                color: 'black',
-            }
+        states: {
+          select: {
+            color: 'black',
+          }
         }
-    },
-    labelStyle: {
+      },
+      labelStyle: {
         color: 'white',
         fontWeight: 'bold',
-    },
+      },
     },
     title: {
       text: "Coin Seasonal and Trends",
@@ -180,7 +180,7 @@ export class CoinSummaryComponent implements OnInit {
         },
         title: {
           text: "Trends",
-          
+
         },
         height: "60%",
         resize: {
@@ -209,9 +209,9 @@ export class CoinSummaryComponent implements OnInit {
         name: "Trends",
         data: [],
         color: '#24CBE5',
-        
+
       },
-      
+
       {
         type: "column",
         name: "Seasonal",
@@ -220,307 +220,309 @@ export class CoinSummaryComponent implements OnInit {
         color: '#50B432',
         zonesAxis: 'y',
         zones: [{
-            value: 0.5,
-            color: 'red',
+          value: 0.5,
+          color: 'red',
         }, {
-            value: 1,
-            color: 'yellow',
+          value: 1,
+          color: 'yellow',
         }]
       }
     ]
   }
 
-getWordCloudNews (coinName: any){
-  const headers = new HttpHeaders;
-  const body = { coin_name: coinName };
-  this.http.post<any>('https://grisemetamoonverse.io/get-google-news', body, { headers }).subscribe(data => {
-    let details = data;
-    if(details.code === 200 && details.data.news_link.length !== 0){
-      this.NewsData = details.data
+  getWordCloudNews(coinName: any) {
+    const headers = new HttpHeaders;
+    const body = { coin_name: coinName };
+    this.http.post<any>('https://grisemetamoonverse.io/get-google-news', body, { headers }).subscribe(data => {
+      let details = data;
+      if (details.code === 200 && details.data.news_link.length !== 0) {
+        this.NewsData = details.data
 
-      let i: number = 0
-      let j: any = []
-      details.data.news_link.forEach((news:any) => {
+        let i: number = 0
+        let j: any = []
+        details.data.news_link.forEach((news: any) => {
           j.push(i)
-          i=i+1;
-      });
-      this.Indexes=j
+          i = i + 1;
+        });
+        this.Indexes = j
 
-      if(details.data.scraping_error_message === "success - 200"){
-        var bigcoin = false;
-        var Wordlist = details.data.word_cloud_data
-        Object.values(Wordlist).map((v:any) => {
-            if(v>50){
-                bigcoin = true
+        if (details.data.scraping_error_message === "success - 200") {
+          var bigcoin = false;
+          var Wordlist = details.data.word_cloud_data
+          Object.values(Wordlist).map((v: any) => {
+            if (v > 50) {
+              bigcoin = true
             }
             return null;
-        }) 
-        let list: any = [];
-        i=0;
-        Object.entries(Wordlist).map((item:any) => {
-        if(i<100){
-            if(bigcoin){
-                if(item[1]< 20){
-                    list.push({name: item[0], weight: item[1]+20})
-                }else{
-                    list.push({name: item[0], weight: item[1]})
+          })
+          let list: any = [];
+          i = 0;
+          Object.entries(Wordlist).map((item: any) => {
+            if (i < 100) {
+              if (bigcoin) {
+                if (item[1] < 20) {
+                  list.push({ name: item[0], weight: item[1] + 20 })
+                } else {
+                  list.push({ name: item[0], weight: item[1] })
                 }
-            }else{
-                if(item[1]< 20){
-                    list.push({name: item[0], weight: item[1]+10})
-                }else{
-                    list.push({name: item[0], weight: item[1]})
+              } else {
+                if (item[1] < 20) {
+                  list.push({ name: item[0], weight: item[1] + 10 })
+                } else {
+                  list.push({ name: item[0], weight: item[1] })
                 }
+              }
+              i = i + 1;
             }
-            i=i+1;
-        }
-        return null;
-        })
-        this.WordCloud = list
-        this.wordCloud = {
-          chart: {
-          backgroundColor: "#3b4148",
-          },
-          title: {
-          text: '',
-          style: {
-              color: '#fff',
-          }
-          },
-          series: [{
+            return null;
+          })
+          this.WordCloud = list
+          this.wordCloud = {
+            chart: {
+              backgroundColor: "#3b4148",
+            },
+            title: {
+              text: '',
+              style: {
+                color: '#fff',
+              }
+            },
+            series: [{
               type: 'wordcloud',
               name: 'Occurrences',
               data: this.WordCloud
-          }],
-        };
+            }],
+          };
+        }
       }
-    }
-  });
-}
+      this.cdr.detectChanges();
+    });
+  }
 
-getCoinTrends(coinName: any){
-  let headers = new HttpHeaders();
-  let params = new HttpParams()
-    .set("coin", coinName)
-  this.http.get(`https://grisemetamoonverse.io/get-summary-page?coin=${coinName}&days=365`, {
-    headers: headers,
-    params: params,
-    responseType: 'text'
-  }).toPromise().then(Response => {
-    let details = JSON.parse(Response);
-    let Price: any = []
-    let MovingAvg: any = []
-    for (let i = 0; i < details.data.data.length; i++) {
-      Price.push([details.data.data[i][0],details.data.data[i][1]])
-      if(details.data.data[i][2]===""){
-          MovingAvg.push([details.data.data[i][0],0])
-      }else{
-          MovingAvg.push([details.data.data[i][0],details.data.data[i][2]])
+  getCoinTrends(coinName: any) {
+    let headers = new HttpHeaders();
+    let params = new HttpParams()
+      .set("coin", coinName)
+    this.http.get(`https://grisemetamoonverse.io/get-summary-page?coin=${coinName}&days=365`, {
+      headers: headers,
+      params: params,
+      responseType: 'text'
+    }).toPromise().then(Response => {
+      let details = JSON.parse(Response);
+      let Price: any = []
+      let MovingAvg: any = []
+      for (let i = 0; i < details.data.data.length; i++) {
+        Price.push([details.data.data[i][0], details.data.data[i][1]])
+        if (details.data.data[i][2] === "") {
+          MovingAvg.push([details.data.data[i][0], 0])
+        } else {
+          MovingAvg.push([details.data.data[i][0], details.data.data[i][2]])
+        }
       }
-    }
-    this.coinHistory = {
-      chart: {
-        backgroundColor: "#3b4148",
-      },
-      rangeSelector: {
-        buttonTheme: { // styles for the buttons
-          fill: 'none',
-          stroke: 'none',
-          'stroke-width': 0,
-          r: 8,
-          style: {
+      this.coinHistory = {
+        chart: {
+          backgroundColor: "#3b4148",
+        },
+        rangeSelector: {
+          buttonTheme: { // styles for the buttons
+            fill: 'none',
+            stroke: 'none',
+            'stroke-width': 0,
+            r: 8,
+            style: {
               color: 'white',
               fontWeight: 'bold'
-          },
-          states: {
+            },
+            states: {
               hover: {
-                  fill: 'white',
-                  style: {
-                      color: 'black'
-                  }
+                fill: 'white',
+                style: {
+                  color: 'black'
+                }
               },
               select: {
-                  fill: 'white',
-                  style: {
-                      color: 'black'
-                  }
+                fill: 'white',
+                style: {
+                  color: 'black'
+                }
               }
-          }
-      },
-      inputStyle: {
-          color: 'white',
-          fontWeight: 'bold',
-          states:{
-              select:{
-                  color: 'black',
+            }
+          },
+          inputStyle: {
+            color: 'white',
+            fontWeight: 'bold',
+            states: {
+              select: {
+                color: 'black',
               }
-          }
-      },
-      labelStyle: {
-          color: 'white',
-          fontWeight: 'bold',
-      },
-      },
-      title: {
-        text: "Coin Price and MovingAvg",
-        style: {
-          color: '#fff',
-        }
-      },
-      yAxis: {
+            }
+          },
+          labelStyle: {
+            color: 'white',
+            fontWeight: 'bold',
+          },
+        },
         title: {
+          text: "Coin Price and MovingAvg",
+          style: {
+            color: '#fff',
+          }
+        },
+        yAxis: {
+          title: {
             text: 'Price & Moving Avg',
             style: {
               color: '#fff',
             }
-        },
-        gridLineColor: 'gray',
-        labels: {
-          style: {
+          },
+          gridLineColor: 'gray',
+          labels: {
+            style: {
               color: 'white'
+            }
           }
-      }
-    },
-      series: [
-        {
-          type: "line",
-          name: "Price",
-          data: Price,
-          color: '#ED561B',
         },
-        {
-          type: "line",
-          name: "MovingAvg",
-          data: MovingAvg,
-          color: '#DDDF00',
-        }
-      ]
-    }
+        series: [
+          {
+            type: "line",
+            name: "Price",
+            data: Price,
+            color: '#ED561B',
+          },
+          {
+            type: "line",
+            name: "MovingAvg",
+            data: MovingAvg,
+            color: '#DDDF00',
+          }
+        ]
+      }
 
-    let Trends:any = []
-    let Seasonal:any = []
-    for (let i = 0; i < details.data.trends.datetime.length; i++) {
-      Trends.push([details.data.trends.datetime[i]/1000000,details.data.trends.trend[i]])
-      Seasonal.push([details.data.trends.datetime[i]/1000000,details.data.trends.seasonal[i]])
-    }
+      let Trends: any = []
+      let Seasonal: any = []
+      for (let i = 0; i < details.data.trends.datetime.length; i++) {
+        Trends.push([details.data.trends.datetime[i] / 1000000, details.data.trends.trend[i]])
+        Seasonal.push([details.data.trends.datetime[i] / 1000000, details.data.trends.seasonal[i]])
+      }
 
-    this.coinTrends = {
-      chart: {
-        backgroundColor: "#3b4148",
-      },
-      rangeSelector: {
-        buttonTheme: { // styles for the buttons
-          fill: 'none',
-          stroke: 'none',
-          'stroke-width': 0,
-          r: 8,
-          style: {
+      this.coinTrends = {
+        chart: {
+          backgroundColor: "#3b4148",
+        },
+        rangeSelector: {
+          buttonTheme: { // styles for the buttons
+            fill: 'none',
+            stroke: 'none',
+            'stroke-width': 0,
+            r: 8,
+            style: {
               color: 'white',
               fontWeight: 'bold'
-          },
-          states: {
+            },
+            states: {
               hover: {
-                  fill: 'white',
-                  style: {
-                      color: 'black'
-                  }
+                fill: 'white',
+                style: {
+                  color: 'black'
+                }
               },
               select: {
-                  fill: 'white',
-                  style: {
-                      color: 'black'
-                  }
+                fill: 'white',
+                style: {
+                  color: 'black'
+                }
               }
               // disabled: { ... }
-          }
-      },
-      inputStyle: {
-          color: 'white',
-          fontWeight: 'bold',
-          states:{
-              select:{
-                  color: 'black',
+            }
+          },
+          inputStyle: {
+            color: 'white',
+            fontWeight: 'bold',
+            states: {
+              select: {
+                color: 'black',
               }
+            }
+          },
+          labelStyle: {
+            color: 'white',
+            fontWeight: 'bold',
+          },
+        },
+        title: {
+          text: "Coin Seasonal and Trends",
+          style: {
+            color: '#fff',
           }
-      },
-      labelStyle: {
-          color: 'white',
-          fontWeight: 'bold',
-      },
-      },
-      title: {
-        text: "Coin Seasonal and Trends",
-        style: {
-          color: '#fff',
-        }
-      },
-      yAxis: [
-        {
-          labels: {
-            align: "right",
-            x: -3,
-          },
-          title: {
-            text: "Trends",
-            
-          },
-          height: "60%",
-          resize: {
-            enabled: true
-          },
         },
-        {
-          labels: {
-            align: "right",
-            x: -3
+        yAxis: [
+          {
+            labels: {
+              align: "right",
+              x: -3,
+            },
+            title: {
+              text: "Trends",
+
+            },
+            height: "60%",
+            resize: {
+              enabled: true
+            },
           },
-          title: {
-            text: "Seasonal"
-          },
-          top: "65%",
-          height: "35%",
-          offset: 0,
-        }
-      ],
-      tooltip: {
-        split: true,
-      },
-      series: [
-        {
-          type: "line",
-          name: "Trends",
-          data: Trends,
-          color: '#24CBE5',
-          
+          {
+            labels: {
+              align: "right",
+              x: -3
+            },
+            title: {
+              text: "Seasonal"
+            },
+            top: "65%",
+            height: "35%",
+            offset: 0,
+          }
+        ],
+        tooltip: {
+          split: true,
         },
-        
-        {
-          type: "column",
-          name: "Seasonal",
-          data: Seasonal,
-          yAxis: 1,
-          color: '#50B432',
-          zonesAxis: 'y',
-          zones: [{
+        series: [
+          {
+            type: "line",
+            name: "Trends",
+            data: Trends,
+            color: '#24CBE5',
+
+          },
+
+          {
+            type: "column",
+            name: "Seasonal",
+            data: Seasonal,
+            yAxis: 1,
+            color: '#50B432',
+            zonesAxis: 'y',
+            zones: [{
               value: 0.5,
               color: 'red',
-          }, {
+            }, {
               value: 1,
               color: 'yellow',
-          }]
-        }
-      ]
-    }
+            }]
+          }
+        ]
+      }
+      this.cdr.detectChanges();
 
-  })
-}
+    })
+  }
 
-getCoinData(name:string){
-  this.getWordCloudNews(name);
-  this.getCoinTrends(name);
-}
+  getCoinData(name: string) {
+    this.getWordCloudNews(name);
+    this.getCoinTrends(name);
+  }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCoinData('bitcoin')
@@ -529,8 +531,7 @@ getCoinData(name:string){
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
       this.coins_list_api = resJSON.data.data;
-
-      // console.log(this.coins_list_api);
+      this.cdr.detectChanges();
     })
   }
 

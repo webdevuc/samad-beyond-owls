@@ -62,7 +62,7 @@
           <div class="indice_form">
 
             <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-              <h2 class="text-danger">
+              <h2 class="text-danger" *ngIf="last_change_date">
                 <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
               </h2>
               <label>
@@ -171,8 +171,9 @@
                 <p>User Growth Sentiment: {{ai_decision_3}}</p>
               </div>
               <div class="col-lg-6">
-                <h3 class="text-danger">
-                  <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
+                <h3 class="text-danger" *ngIf="getYourTradingSignalUpdatedDate">
+                  <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{getYourTradingSignalUpdatedDate |
+                  date: 'yyyy/MM/dd h:mm:ss'}}
                 </h3>
                 <p>Largest Transaction Sentiment: {{ai_decision_2}}</p>
 
@@ -215,7 +216,7 @@
     <div class="tab-outer-div">
       <h1 class="headingAi">Coin Price Prediction</h1>
       <div class="tab">
-        <h4 class="text-danger">
+        <h4 class="text-danger" *ngIf="last_change_date">
           <span class="mr-3 text-danger">Last Updated Date/Time:</span> {{last_change_date}}
         </h4>
         <h2 for="ice-cream-choice" class="mr-3">Choose Coin:</h2>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import * as Highcharts from "highcharts/highstock";
 import Indicators from "highcharts/indicators/indicators-all.js";
@@ -219,6 +219,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
           ]
         }
       }
+      this.cdr.detectChanges();
     })
   }
 
@@ -285,6 +286,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
           ]
         }
       }
+      this.cdr.detectChanges();
     })
   }
 
@@ -293,7 +295,7 @@ export class CoinTechnicalAnalysisComponent implements OnInit {
     this.getCoinTechnicalGraph(name);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr : ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCoinData('bitcoin')

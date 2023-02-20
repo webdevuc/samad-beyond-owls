@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -8,24 +8,24 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 })
 export class CoinMarketComponent implements OnInit {
 
-  green:any = {  
+  green: any = {
     "background-color": "green",
     "border-radius": "50%",
     "width": "50px",
-    "height": "50px" 
-  }  
-  red:any = {  
+    "height": "50px"
+  }
+  red: any = {
     "background-color": "red",
     "border-radius": "50%",
     "width": "50px",
-    "height": "50px"   
-  }  
+    "height": "50px"
+  }
 
-  Markets:any = []
-  Exchanges:any = []
-  exchangeName:string = "binance"
+  Markets: any = []
+  Exchanges: any = []
+  exchangeName: string = "binance"
 
-  getCoinMarket(coinName:any){
+  getCoinMarket(coinName: any) {
     let headers = new HttpHeaders();
     let params = new HttpParams().set("exchange", coinName)
     this.http.get(`https://grisemetamoonverse.io/get-detail-exchange?exchange=${coinName}`, {
@@ -34,13 +34,14 @@ export class CoinMarketComponent implements OnInit {
       responseType: 'text'
     }).toPromise().then(Response => {
       let details = JSON.parse(Response);
-      if(details.code == 200){
+      if (details.code == 200) {
         this.Markets = details.data.data
+        this.cdr.detectChanges();
       }
     })
   }
 
-  getExchanges(){
+  getExchanges() {
     let headers = new HttpHeaders();
     let params = new HttpParams()
     this.http.get(`https://grisemetamoonverse.io/get-top-exchange`, {
@@ -49,13 +50,14 @@ export class CoinMarketComponent implements OnInit {
       responseType: 'text'
     }).toPromise().then(Response => {
       let details = JSON.parse(Response);
-      if(details.code == 200){
+      if (details.code == 200) {
         this.Exchanges = details.data.data
+        this.cdr.detectChanges();
       }
     })
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCoinMarket("binance")

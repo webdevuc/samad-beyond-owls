@@ -268,7 +268,7 @@ export class TokenMetrixComponent implements OnInit {
   // coins_list_api
   public coins_list_api: any = [];
   // coin search dropdown
-  currentProduct: string = "";
+  currentProduct: string = "bitcoin";
 
 
   // Last Change Date
@@ -312,7 +312,8 @@ export class TokenMetrixComponent implements OnInit {
   success_response: string;
 
 
-  trade_coin_t: string;
+  trade_coin_t: string = 'btc';
+  public getYourTradingSignalUpdatedDate: any;
 
   handleInvester() {
     if (this.Inv_Type == "trader") {
@@ -323,126 +324,133 @@ export class TokenMetrixComponent implements OnInit {
   }
 
   getCoinPrediction(coinName: any) {
-    let headers = new HttpHeaders();
-    let params = new HttpParams().set("coin", coinName);
-    this.http.get(`https://grisemetamoonverse.io/get-coin-predict`, {
-      headers: headers,
-      params: params,
-      responseType: 'text'
-    }).toPromise().then(Response => {
-      let details = JSON.parse(Response);
-      if (details.code == 200) {
+    let value = this.coins_list_api.find(x => x?.id === coinName);
+    let find = value || this.currentProduct;
+    if (find) {
+      let headers = new HttpHeaders();
+      let params = new HttpParams().set("coin", coinName);
+      this.http.get(`https://grisemetamoonverse.io/get-coin-predict`, {
+        headers: headers,
+        params: params,
+        responseType: 'text'
+      }).toPromise().then(Response => {
+        let details = JSON.parse(Response);
 
-        let price: number[] = [];
-        let time_stamp: string[] = [];
+        // last_change_date
+        if (details.code == 200) {
+          if (details?.data)
+            this.last_change_date = details.data.last_updated_date;
+          let price: number[] = [];
+          let time_stamp: string[] = [];
 
-        // console.log(coin_json)
-        for (let data_coin of details.data.predicted) {
+          // console.log(coin_json)
+          for (let data_coin of details.data.predicted) {
 
-          let date = new Date(data_coin.ds)
-          let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
-          price.push(data_coin.y)
-          time_stamp.push(date_final)
-        }
-        this.lineChartData = [
-          { data: price, label: `${coinName} Predicted Price` }
-        ];
-        this.lineChartLabels = time_stamp;
-
-        let PastPrice: any = []
-        let PredictedPrice: any = []
-        
-        if (details?.data?.data[0]) {
-          // const Past = details.data.data[0].data.timeseries
-          const Future = details.data.data[0].data.predicted
-          // for (let i = 0; i < Past.length; i++) {
-          //   PastPrice.push([Past[i].ds,Past[i].y])
-          // }
-          for (let i = 0; i < Future.length; i++) {
-            PredictedPrice.push([Future[i].ds, Future[i].y])
+            let date = new Date(data_coin.ds)
+            let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
+            price.push(data_coin.y)
+            time_stamp.push(date_final)
           }
-        }
+          this.lineChartData = [
+            { data: price, label: `${coinName} Predicted Price` }
+          ];
+          this.lineChartLabels = time_stamp;
 
-        this.GraphData = {
-          chart: {
-            backgroundColor: "#3b4148",
-          },
-          rangeSelector: {
-            buttonTheme: { // styles for the buttons
-              fill: 'none',
-              stroke: 'none',
-              'stroke-width': 0,
-              r: 8,
-              style: {
-                color: 'white',
-                fontWeight: 'bold'
-              },
-              states: {
-                hover: {
-                  fill: 'white',
-                  style: {
-                    color: 'black'
-                  }
+          let PastPrice: any = [];
+          let PredictedPrice: any = [];
+          if (details?.data) {
+            // const Past = details.data.data[0].data.timeseries
+            const Future = details.data.predicted
+            // for (let i = 0; i < Past.length; i++) {
+            //   PastPrice.push([Past[i].ds,Past[i].y])
+            // }
+            for (let i = 0; i < Future.length; i++) {
+              PredictedPrice.push([Future[i].ds, Future[i].y])
+            }
+          }
+          this.cdr.detectChanges();
+          this.GraphData = {
+            chart: {
+              backgroundColor: "#3b4148",
+            },
+            rangeSelector: {
+              buttonTheme: { // styles for the buttons
+                fill: 'none',
+                stroke: 'none',
+                'stroke-width': 0,
+                r: 8,
+                style: {
+                  color: 'white',
+                  fontWeight: 'bold'
                 },
-                select: {
-                  fill: 'white',
-                  style: {
-                    color: 'black'
+                states: {
+                  hover: {
+                    fill: 'white',
+                    style: {
+                      color: 'black'
+                    }
+                  },
+                  select: {
+                    fill: 'white',
+                    style: {
+                      color: 'black'
+                    }
                   }
                 }
+              },
+              inputStyle: {
+                color: 'white',
+                fontWeight: 'bold',
+                states: {
+                  select: {
+                    color: 'black',
+                  }
+                }
+              },
+              labelStyle: {
+                color: 'white',
+                fontWeight: 'bold',
               }
             },
-            inputStyle: {
-              color: 'white',
-              fontWeight: 'bold',
-              states: {
-                select: {
-                  color: 'black',
+            title: {
+              text: "Coin Past and Predicted Price",
+              style: {
+                color: '#fff',
+              }
+            },
+            yAxis: {
+              title: {
+                text: ''
+              },
+              gridLineColor: 'gray',
+              labels: {
+                style: {
+                  color: 'white'
                 }
               }
             },
-            labelStyle: {
-              color: 'white',
-              fontWeight: 'bold',
-            }
-          },
-          title: {
-            text: "Coin Past and Predicted Price",
-            style: {
-              color: '#fff',
-            }
-          },
-          yAxis: {
-            title: {
-              text: ''
-            },
-            gridLineColor: 'gray',
-            labels: {
-              style: {
-                color: 'white'
+
+            series: [
+              {
+                type: "line",
+                name: "Past Price",
+                data: PastPrice,
+                color: '#DDDF00',
+              },
+
+              {
+                type: "line",
+                name: "Predicted Price",
+                data: PredictedPrice,
+                color: '#ff0000'
               }
-            }
-          },
-
-          series: [
-            {
-              type: "line",
-              name: "Past Price",
-              data: PastPrice,
-              color: '#DDDF00',
-            },
-
-            {
-              type: "line",
-              name: "Predicted Price",
-              data: PredictedPrice,
-              color: '#ff0000'
-            }
-          ]
+            ]
+          }
+          this.cdr.detectChanges();
         }
 
-      }
-    })
+      });
+    }
   }
 
 
@@ -463,7 +471,9 @@ export class TokenMetrixComponent implements OnInit {
       .set("fsym", final_coin_symbol)
       .set("api_key", "d00aa50b839f504c38e611fe15f168cb3f0361e4b192efb98e90dfc303acea7b")
     this.http.get("https://min-api.cryptocompare.com/data/tradingsignals/intotheblock/latest", { headers: headers_trading, params: params_trading, responseType: 'text' }).toPromise().then(res_trading => {
-      let data_json_trading = JSON.parse(res_trading)
+      let data_json_trading = JSON.parse(res_trading);
+
+
 
       if (data_json_trading.Response != "Error") {
         this.doughnutChartData = [data_json_trading.Data.inOutVar.score, data_json_trading.Data.largetxsVar.score, data_json_trading.Data.addressesNetGrowth.score, data_json_trading.Data.concentrationVar.score]
@@ -473,7 +483,7 @@ export class TokenMetrixComponent implements OnInit {
         this.ai_decision_4 = data_json_trading.Data.concentrationVar.sentiment
 
         this.success_response = data_json_trading.Response + " " + data_json_trading.Message
-
+        this.getYourTradingSignalUpdatedDate = new Date(data_json_trading.Data.time);
       }
       else {
         this.doughnutChartData = []
@@ -484,16 +494,9 @@ export class TokenMetrixComponent implements OnInit {
 
         this.success_response = data_json_trading.Response + " " + data_json_trading.Message
 
-
       }
-
-
-
-
-
-
-
-    })
+    });
+    this.getCoinPrediction('bitcoin');
 
   }
 
@@ -553,7 +556,10 @@ export class TokenMetrixComponent implements OnInit {
   }
 
   CustomOnInit() {
-    this.getCoinPrediction('bitcoin')
+
+    this.currentProduct = 'bitcoin';
+    this.coinListTrading(this.trade_coin_t);
+
     // get coin names for dropdown options
     this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       // console.log(Response);
@@ -561,8 +567,8 @@ export class TokenMetrixComponent implements OnInit {
       let resJSON = JSON.parse(resSTR);
       this.coins_list_api = resJSON.data.data;
       this.cdr.detectChanges();
-      console.log('this.coins_list_api =>', this.coins_list_api);
     })
+
 
 
     // all coins api call
@@ -584,52 +590,53 @@ export class TokenMetrixComponent implements OnInit {
     })
 
     // intial coin prediction graph
-    let headers = new HttpHeaders();
-    let params = new HttpParams()
-      .set("coin", "bitcoin")
-    this.http.get('https://grisemetamoonverse.io/get-coin-predict', { headers: headers, params: params, responseType: 'text' }).toPromise().then(Response => {
-      // console.log(Response);
+    // let headers = new HttpHeaders();
+    // let params = new HttpParams()
+    //   .set("coin", "bitcoin")
+    // this.http.get('https://grisemetamoonverse.io/get-coin-predict', { headers: headers, params: params, responseType: 'text' }).toPromise().then(Response => {
+    //   // console.log(Response);
 
 
-      let coin_json = JSON.parse(Response);
-      let price: number[] = [];
-      let time_stamp: string[] = [];
+    //   let coin_json = JSON.parse(Response);
+    //   let price: number[] = [];
+    //   let time_stamp: string[] = [];
 
-      // last change date display
-      this.last_change_date = coin_json.data.last_updated_date
-      // console.log(this.last_change_date)
+    //   // last change date display
+    //   // this.last_change_date = coin_json.data.last_updated_date
+    //   // console.log(this.last_change_date)
 
-      // console.log(coin_json)
-      for (let data_coin of coin_json.data.predicted) {
+    //   // console.log(coin_json)
+    //   for (let data_coin of coin_json.data.predicted) {
 
-        let date = new Date(data_coin.ds)
-        let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
-        price.push(data_coin.y)
-        time_stamp.push(date_final)
-
-
-      }
-      // let price_past:number[]=[];
-      // let coin_timestamp_past:Date[]=[];
-
-      // for (let data_coin_past of coin_json.data.timeseries){
-
-      //   let date_past = new Date(data_coin_past.ds)
-      //   price_past.push(data_coin_past.y)
-      //   coin_timestamp_past.push(date_past)
-
-      // }
-
-      // console.log(coin_timestamp_past)
-
-      this.lineChartData = [
-        { data: price, label: "Predicted Price" }
-      ];
-      this.lineChartLabels = time_stamp;
+    //     let date = new Date(data_coin.ds)
+    //     let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
+    //     price.push(data_coin.y)
+    //     time_stamp.push(date_final)
 
 
-      // console.log(this.trend_coins);
-    })
+    //   }
+    //   // let price_past:number[]=[];
+    //   // let coin_timestamp_past:Date[]=[];
+
+    //   // for (let data_coin_past of coin_json.data.timeseries){
+
+    //   //   let date_past = new Date(data_coin_past.ds)
+    //   //   price_past.push(data_coin_past.y)
+    //   //   coin_timestamp_past.push(date_past)
+
+    //   // }
+
+    //   // console.log(coin_timestamp_past)
+
+    //   this.lineChartData = [
+    //     { data: price, label: "Predicted Price" }
+    //   ];
+    //   this.lineChartLabels = time_stamp;
+
+
+    //   // console.log(this.trend_coins);
+    // })
+    this.getCoinPrediction(this.currentProduct)
 
     // Trading Signal
     let headers_trading = new HttpHeaders();
@@ -665,11 +672,13 @@ export class TokenMetrixComponent implements OnInit {
 
 
 
-    })
+    });
+    this.cdr.detectChanges();
   }
 
   ngOnInit(): void {
     this.staker_fuction();
+
     this.CustomOnInit();
   }
 

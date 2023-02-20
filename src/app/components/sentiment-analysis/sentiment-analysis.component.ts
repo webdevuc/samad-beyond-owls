@@ -154,7 +154,7 @@ export class SentimentAnalysisComponent implements OnInit {
     }
   };
   public PieChartColor: Color[] = [{
-    backgroundColor: ['#2ecc71','#e74c3c','#f1c40f','#a05195','#d45087','#f95d6a','#ff7c43', '#ffa600', '#ca5300', '#aa2600']
+    backgroundColor: ['#2ecc71', '#e74c3c', '#f1c40f', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#ca5300', '#aa2600']
   }];
   public pieChartLabels: Label[] = ['SciFi', 'Drama', 'Comedy'];
   public pieChartData: SingleDataSet = [30, 50, 20];
@@ -299,7 +299,7 @@ export class SentimentAnalysisComponent implements OnInit {
 
 
   constructor(private contractService: ContractService,
-    private http: HttpClient,
+    private http: HttpClient, private cdr: ChangeDetectorRef
   ) {
     this.page_number = 1;
 
@@ -352,122 +352,132 @@ export class SentimentAnalysisComponent implements OnInit {
   // }
 
   onProductChanged(productName: any) {
-    // console.log(productName);
+    let find = this.coins_list_api.find(x => x?.id === productName);
+
     // intial coin prediction graph
-    let headers = new HttpHeaders();
-    let params = new HttpParams()
-      .set("coin", productName)
-    this.http.get('https://grisemetamoonverse.io/get-sentiment-coin', {
-      headers: headers,
-      params: params,
-      responseType: 'text'
-    }).toPromise().then(Response => {
-      let coin_json = JSON.parse(Response);
-      let positive = Math.floor(coin_json.data.data.positive)
-      let Negative = Math.ceil(coin_json.data.data.negative)+1
-      let neutral = Math.floor(coin_json.data.data.neutral)
-      this.pieChartData = [positive,Negative,neutral]
-      this.pieChartLabels = ['Positive','Negative','Neutral']
-      // console.log(positive,Negative,neutral)
-      // this.pieChart = {
-      //   chart: {
-      //       type: 'pie',
-      //       backgroundColor: "#3b4148",
-      //   },
-      //   title: {
-      //       text: coin_json.data.data.coin_name,
-      //       style: {
-      //         color: '#fff',
-      //       }
-      //   },
-      //   tooltip: {
-      //       pointFormat: '{series.name}: {point.percentage:.1f}%'
-      //   },
-      //   accessibility: {
-      //       point: {
-      //           valueSuffix: '%'
-      //       }
-      //   },
-      //   plotOptions: {
-      //       pie: {
-      //           allowPointSelect: true,
-      //           cursor: 'pointer',
-      //           dataLabels: {
-      //               enabled: true,
-      //               format: '{point.name}: {point.percentage:.1f} %'
-      //           }
-      //       }
-      //   },
-      //   series: [{
-      //       name: 'Sentiment Analysis',
-      //       colorByPoint: true,
-      //       data: [{
-      //         name: 'Negative',
-      //         y: Negative,
-      //         color: '#e74c3c'
-      //       }, {
-      //         name: 'Neutral',
-      //         y: neutral,
-      //         color: '#f1c40f'
-      //       }, {
-      //         name: 'Positve',
-      //         y: positive,
-      //         color: '#2ecc71'
-      //       }]
-      //   }]
-      // }
+    if (find) {
 
 
-      // console.log(coin_json);
-      // let price: number[] = [];
-      // let time_stamp: string[] = [];
+      let headers = new HttpHeaders();
+      let params = new HttpParams()
+        .set("coin", productName)
+      this.http.get('https://grisemetamoonverse.io/get-sentiment-coin', {
+        headers: headers,
+        params: params,
+        responseType: 'text'
+      }).toPromise().then(Response => {
+        let coin_json = JSON.parse(Response);
+        let positive = Math.floor(coin_json.data.data.positive);
+        let Negative = Math.ceil(coin_json.data.data.negative) + 1;
+        let neutral = Math.floor(coin_json.data.data.neutral);
+        this.pieChartData = [positive, Negative, neutral];
+        this.pieChartLabels = ['Positive', 'Negative', 'Neutral'];
 
-      // console.log(coin_json)
-      // for (let data_coin of coin_json.data.predicted) {
+        this.cdr.detectChanges();
+        
 
-      //   let date = new Date(data_coin.ds)
-      //   let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
-      //   price.push(data_coin.y)
-      //   time_stamp.push(date_final)
+        // console.log(positive,Negative,neutral)
+        // this.pieChart = {
+        //   chart: {
+        //       type: 'pie',
+        //       backgroundColor: "#3b4148",
+        //   },
+        //   title: {
+        //       text: coin_json.data.data.coin_name,
+        //       style: {
+        //         color: '#fff',
+        //       }
+        //   },
+        //   tooltip: {
+        //       pointFormat: '{series.name}: {point.percentage:.1f}%'
+        //   },
+        //   accessibility: {
+        //       point: {
+        //           valueSuffix: '%'
+        //       }
+        //   },
+        //   plotOptions: {
+        //       pie: {
+        //           allowPointSelect: true,
+        //           cursor: 'pointer',
+        //           dataLabels: {
+        //               enabled: true,
+        //               format: '{point.name}: {point.percentage:.1f} %'
+        //           }
+        //       }
+        //   },
+        //   series: [{
+        //       name: 'Sentiment Analysis',
+        //       colorByPoint: true,
+        //       data: [{
+        //         name: 'Negative',
+        //         y: Negative,
+        //         color: '#e74c3c'
+        //       }, {
+        //         name: 'Neutral',
+        //         y: neutral,
+        //         color: '#f1c40f'
+        //       }, {
+        //         name: 'Positve',
+        //         y: positive,
+        //         color: '#2ecc71'
+        //       }]
+        //   }]
+        // }
 
 
-      // }
-      // let price_past:number[]=[];
-      // let coin_timestamp_past:Date[]=[];
+        // console.log(coin_json);
+        // let price: number[] = [];
+        // let time_stamp: string[] = [];
 
-      // for (let data_coin_past of coin_json.data.timeseries){
+        // console.log(coin_json)
+        // for (let data_coin of coin_json.data.predicted) {
 
-      //   let date_past = new Date(data_coin_past.ds)
-      //   price_past.push(data_coin_past.y)
-      //   coin_timestamp_past.push(date_past)
-
-      // }
-
-      // console.log(coin_timestamp_past)
-
-      // this.lineChartData = [{
-      //   data: price,
-      //   label: "Predicted Price"
-      // }];
-      // this.lineChartLabels = time_stamp;
+        //   let date = new Date(data_coin.ds)
+        //   let date_final: string = formatDate(date, 'yyyy/MM/dd', 'en');
+        //   price.push(data_coin.y)
+        //   time_stamp.push(date_final)
 
 
-      // console.log(this.trend_coins);
-    })
+        // }
+        // let price_past:number[]=[];
+        // let coin_timestamp_past:Date[]=[];
 
+        // for (let data_coin_past of coin_json.data.timeseries){
+
+        //   let date_past = new Date(data_coin_past.ds)
+        //   price_past.push(data_coin_past.y)
+        //   coin_timestamp_past.push(date_past)
+
+        // }
+
+        // console.log(coin_timestamp_past)
+
+        // this.lineChartData = [{
+        //   data: price,
+        //   label: "Predicted Price"
+        // }];
+        // this.lineChartLabels = time_stamp;
+
+
+        // console.log(this.trend_coins);
+      })
+    }
   }
 
-  CustomOnInit(){
-    this.onProductChanged("bitcoin")
+  CustomOnInit() {
+    this.onProductChanged("bitcoin");
+    this.currentProduct = 'bitcoin';
     // Highcharts.chart('container', this.pieChart);
-     // // get coin names for dropdown options
+    // // get coin names for dropdown options
     this.http.get('https://grisemetamoonverse.io/get-coin-name').subscribe(Response => {
       // console.log(Response);
       let resSTR = JSON.stringify(Response);
       let resJSON = JSON.parse(resSTR);
+      console.log('resJSON =>', resJSON);
       this.coins_list_api = resJSON.data.data;
 
-      // console.log(this.coins_list_api);
+
     })
 
 
@@ -631,10 +641,10 @@ export class SentimentAnalysisComponent implements OnInit {
 
   }
 
-  giveAccess(){
-    if(this.allowed_user){
+  giveAccess() {
+    if (this.allowed_user) {
       this.allowed_user = false
-    }else{
+    } else {
       this.allowed_user = true
       this.CustomOnInit();
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { MultiDataSet, Label, SingleDataSet, Color } from 'ng2-charts';
@@ -172,7 +172,7 @@ export class CoinPredictionComponent implements OnInit {
         }
         this.lineChartData = [{data:price, label:`${coinName} Predicted Price`}];
         this.lineChartLabels = time_stamp;
-
+        this.cdr.detectChanges();
         // let PastPrice:any = []
         // let PredictedPrice:any = []
         // if(details.data.data[0]){
@@ -267,7 +267,7 @@ export class CoinPredictionComponent implements OnInit {
       }
     })
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCoinPrediction("bitcoin")

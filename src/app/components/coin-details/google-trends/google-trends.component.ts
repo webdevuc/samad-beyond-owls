@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import * as Highcharts from "highcharts/highstock";
 import Indicators from "highcharts/indicators/indicators-all.js";
@@ -128,7 +128,7 @@ export class GoogleTrendsComponent implements OnInit {
     ]
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   getGoogleTrend(){
     const body = { 'coinName': this.currentProduct };
@@ -246,6 +246,7 @@ export class GoogleTrendsComponent implements OnInit {
           ]
         }
       }
+      this.cdr.detectChanges();
     })
   }
 
