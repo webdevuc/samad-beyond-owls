@@ -1,6 +1,8 @@
 p,
 span,
-div,th,tr {
+div,
+th,
+tr {
   color: #fff;
 }
 
@@ -9,43 +11,43 @@ div,th,tr {
   height: 100%;
   background-color: #3b4148;
 }
+
 .exchange_img {
   width: 30px;
   height: 30px;
   margin-right: 5px;
   border-radius: 50%;
 }
-.headingAi_first{
+
+.headingAi_first {
   margin-bottom: 26px;
   margin-left: 56px;
   margin-right: 56px;
   border: 3px solid #000000;
   border-radius: 32px;
-  background: linear-gradient(
-89.02deg, #6226D9 0.89%, #8C52FF 100%) !important
-// background-color: red;
+  background: linear-gradient(89.02deg, #6226D9 0.89%, #8C52FF 100%) !important // background-color: red;
 }
-.headingAi{
+
+.headingAi {
   margin: 35px 56px;
   border: 3px solid #000000;
   border-radius: 32px;
-  background: linear-gradient(
-89.02deg, #6226D9 0.89%, #8C52FF 100%) !important
-// background-color: red;
+  background: linear-gradient(89.02deg, #6226D9 0.89%, #8C52FF 100%) !important // background-color: red;
 }
-.pagination_btn{
+
+.pagination_btn {
   text-decoration: none;
   margin: 0px 1px;
   color: white !important;
-  background: linear-gradient(
-89.02deg, #6226D9 0.89%, #8C52FF 100%) !important;
-    border-radius: 10px;
+  background: linear-gradient(89.02deg, #6226D9 0.89%, #8C52FF 100%) !important;
+  border-radius: 10px;
 }
-.pagination_btn:hover{
+
+.pagination_btn:hover {
   color: white !important;
 }
 
-.tab-outer-div{
+.tab-outer-div {
   margin: 0%;
   width: 100%;
   height: 100%;
@@ -58,7 +60,7 @@ div,th,tr {
   height: 100%;
   padding: 20px;
   border-radius: 10px;
-  overflow:scroll;
+  overflow: scroll;
   overflow-x: scroll;
   box-shadow: 0 0 15px 8px #292a29;
   transition: all 0.7s ease-in-out;
@@ -94,7 +96,7 @@ div,th,tr {
 
 .line-splitter {
   margin-bottom: 20px;
-  
+
   margin-top: 20px;
   border-bottom: 2px solid grey;
 }
@@ -154,26 +156,31 @@ div,th,tr {
   font-size: 20px;
   border-radius: 10px;
 }
+
 // indices form css code
-.indice_form{
- 
- text-align: justify;
- padding: 20px;
+.indice_form {
+
+  text-align: justify;
+  padding: 20px;
 }
+
 .cap_market {
   text-align: left;
 }
+
 .switch {
   position: relative;
   display: inline-block;
   width: 40px;
   height: 20px;
 }
+
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -185,6 +192,7 @@ div,th,tr {
   -webkit-transition: .4s;
   transition: .4s;
 }
+
 .slider:before {
   position: absolute;
   content: "";
@@ -196,36 +204,42 @@ div,th,tr {
   -webkit-transition: .4s;
   transition: .4s;
 }
-input:checked + .slider {
+
+input:checked+.slider {
   background-color: #8C52FF;
 }
-input:checked + .slider:before {
+
+input:checked+.slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
 }
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 30px;
 }
+
 .slider.round:before {
   border-radius: 50%;
 }
+
 // submit btn
 .buttonind {
-  background: linear-gradient(
-    89.02deg, #6226D9 0.89%, #8C52FF 100%) !important;
-        border-radius: 10px;
-        padding: 6px;
-        min-width: 200px;
-        margin: 12px;
+  background: linear-gradient(89.02deg, #6226D9 0.89%, #8C52FF 100%) !important;
+  border-radius: 10px;
+  padding: 6px;
+  min-width: 200px;
+  margin: 12px;
 }
+
 .indbutton span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
+
 .indbutton span:after {
   content: '\00bb';
   position: absolute;
@@ -234,38 +248,55 @@ input:checked + .slider:before {
   right: -20px;
   transition: 0.5s;
 }
+
 .indbutton:hover span {
   padding-right: 25px;
 }
+
 .indbutton:hover span:after {
   opacity: 1;
   right: 0;
 }
+
 .loader {
-  margin:0px auto;
+  margin: 0px auto;
   border: 16px solid #F3F3F3;
   border-radius: 50%;
   border-top: 16px solid #8C52FF;
   width: 120px;
   height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
   animation: spin 2s linear infinite;
 }
+
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
 @media(max-width:992px) {
 
   .title {
     padding-left: 25%;
   }
-  
+
   .tokeninfo-first {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -286,7 +317,7 @@ input:checked + .slider:before {
     padding-left: 0;
   }
 
-  .tab-outer-div{
+  .tab-outer-div {
     padding: 40px 0px;
   }
 
@@ -314,19 +345,19 @@ input:checked + .slider:before {
 
 }
 
-.inputcoinsearch{
+.inputcoinsearch {
   border-radius: 10px;
   color: rgb(0, 0, 0);
 }
 
-.chartjs-container{
+.chartjs-container {
   width: 100%;
   height: 100%;
   display: block;
   padding: 20px;
 }
 
-.custom-chart-styles{
+.custom-chart-styles {
   width: 100%;
   height: 100%;
   display: flex;
@@ -334,15 +365,15 @@ input:checked + .slider:before {
   padding: 40px 0px;
 }
 
-.table-data-hover:hover{
+.table-data-hover:hover {
   color: #fff;
 }
 
-.access-btn-div{
+.access-btn-div {
   padding: 20px 50px;
 }
 
-.access-btn{
+.access-btn {
   background-color: #6226D9;
   border: 1px solid #6226D9;
   color: #fff;
@@ -350,7 +381,17 @@ input:checked + .slider:before {
   border-radius: 5px;
 }
 
-.access-btn:hover{
+.access-btn:hover {
   border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.custom-chart-styles {
+  canvas {
+    width: 100% !important;
+  }
+}
+
+.pointer {
   cursor: pointer;
 }

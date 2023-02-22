@@ -39,15 +39,24 @@ export class TokenMetrixComponent implements OnInit {
   address: string;
   public bar: any = [];
   highcharts = Highcharts;
-  Inv_Type: string = "trader"
-  inv_type: string;
+  Inv_Type: boolean = true;
+  investor_type: string;
   time_win: string;
-  time_frame: string;
+  time_frame: string = 'w';
   min_cap: number;
   max_cap: number;
   limit: number;
   url = `https://grisemetamoonverse.io/get-best-coin`;
   items: any = [];
+
+  public timeFrame = [
+    { value: 'h', name: 'Hourly' },
+    { value: 'd', name: 'Daily' },
+    { value: 'w', name: 'Weekly' },
+    { value: 'm', name: 'Monthly' },
+    { value: 'y', name: 'Yearly' },
+  ]
+
   public pieChartOptions: any = {
     responsive: true,
     tooltips: {
@@ -316,10 +325,10 @@ export class TokenMetrixComponent implements OnInit {
   public getYourTradingSignalUpdatedDate: any;
 
   handleInvester() {
-    if (this.Inv_Type == "trader") {
-      this.Inv_Type = "invester"
+    if (this.Inv_Type) {
+      this.investor_type = "trader";
     } else {
-      this.Inv_Type = "trader"
+      this.investor_type = "invester";
     }
   }
 
@@ -484,6 +493,7 @@ export class TokenMetrixComponent implements OnInit {
 
         this.success_response = data_json_trading.Response + " " + data_json_trading.Message
         this.getYourTradingSignalUpdatedDate = new Date(data_json_trading.Data.time);
+        this.cdr.detectChanges();
       }
       else {
         this.doughnutChartData = []
@@ -493,7 +503,7 @@ export class TokenMetrixComponent implements OnInit {
         this.ai_decision_4 = ""
 
         this.success_response = data_json_trading.Response + " " + data_json_trading.Message
-
+        this.cdr.detectChanges();
       }
     });
     this.getCoinPrediction('bitcoin');
@@ -567,6 +577,7 @@ export class TokenMetrixComponent implements OnInit {
       let resJSON = JSON.parse(resSTR);
       this.coins_list_api = resJSON.data.data;
       this.cdr.detectChanges();
+
     })
 
 
@@ -677,9 +688,13 @@ export class TokenMetrixComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let param = { inv_type: true, time_wind: false, exampleRadios: 'w' }
+    this.onSubmit(param)
     this.staker_fuction();
 
     this.CustomOnInit();
+
+
   }
 
   // function for pre_page pagination
@@ -735,18 +750,18 @@ export class TokenMetrixComponent implements OnInit {
 
 
   // on submit index api
-  onSubmit(form: NgForm) {
+  onSubmit(form: any) {
     // loading stop
     this.ld = 1;
     // console.warn('your request has been submitted');
-    // console.log(form.value);
-    // {inv_type: true, time_wind: true, : 'w'}
-    let form_json = form.value;
+    console.log(form);
+
+    let form_json = form.value || form;
     if (form_json.inv_type == true) {
-      this.inv_type = "1"
+      this.investor_type = "1"
     }
     else {
-      this.inv_type = "0"
+      this.investor_type = "0"
     }
     if (form_json.time_wind == true) {
       this.time_win = "1"
@@ -759,7 +774,7 @@ export class TokenMetrixComponent implements OnInit {
     let params = new HttpParams()
       .set("min_cap", "500000")
       .set("max_cap", "947945765974")
-      .set("inv_type", this.inv_type)
+      .set("inv_type", this.investor_type)
       .set("limit", "10")
       .set("time_frame", this.time_frame)
       .set("time_win", this.time_win); //Create new HttpParams

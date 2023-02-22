@@ -72,9 +72,9 @@
               </label>
               <div class="col-lg-12">
                 <div class="col-lg-6 text-left">
-                  <label>Type: Trader/Inverstor
+                  <label>Type: Trader/ Inverstor
                     <label class="switch">
-                      <input (change)="handleInvester()" type="checkbox" name="inv_type" ngModel checked>
+                      <input (change)="handleInvester()" type="checkbox" name="inv_type" [(ngModel)]="Inv_Type" checked>
                       <span class="slider round"></span>
                     </label>
                   </label>
@@ -88,43 +88,20 @@
                     </label>
                   </label> -->
                 </div>
-                <div class="col-lg-12 text-left">
+                <div class="col-lg-12 text-left mb-3">
 
-                  <label class="text-center">Time-Horizon: &nbsp; &nbsp;</label>
+                  <label class="text-center">Time-Horizon:</label>
                   <br>
-                  <div>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="d"
-                      ngModel checked>
-                    <label class="form-check-label ml-1 mr-3" for="exampleRadios4">
-                      &nbsp; &nbsp;&nbsp; Daily
-                    </label>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="h"
-                      ngModel>
-                    <label class="form-check-label ml-1 mr-3" for="exampleRadios5">
-                      &nbsp; &nbsp;&nbsp; Hourly
-                    </label>
-
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="w"
-                      ngModel checked>
-                    <label class="form-check-label ml-1 mr-3" for="exampleRadios1">
-                      &nbsp; &nbsp;&nbsp; Weekly
-                    </label>
-
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="m"
-                      ngModel>
-                    <label class="form-check-label ml-1 mr-3" for="exampleRadios2">
-                      &nbsp; &nbsp;&nbsp; Monthly
-                    </label>
-
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="y"
-                      ngModel>
-                    <label class="form-check-label ml-1 mr-3" for="exampleRadios3">
-                      &nbsp; &nbsp;&nbsp; Yearly
-                    </label>
+                  <div class="d-flex w-100 justify-content-between">
+                    <div *ngFor="let item of timeFrame">
+                      <input class="form-check-input pointer" type="radio" name="exampleRadios" id="exampleRadios4"
+                        value="{{item.value}}" [(ngModel)]="time_frame">
+                      <label class="form-check-label ml-1 mr-3" for="exampleRadios4">
+                        &nbsp; &nbsp;&nbsp; {{item.name}}
+                      </label>
+                    </div>
                   </div>
                 </div>
-
-
               </div>
 
 
@@ -132,7 +109,7 @@
                 <h3>Minimum Trading Volume: 500K</h3>
               </div>
               <div class="indbutton text-center">
-                <button class="buttonind"><span>Submit </span></button>
+                <button class="buttonind" id="submitBtn"><span>Submit </span></button>
               </div>
               <div class="text-left text-danger">
                 Disclaimer: Some tokens and crypto investments may have higher risk than others, for instance smaller
